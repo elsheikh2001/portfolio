@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Ragab - Data Analyst Portfolio</title>
+    <!-- Font Awesome for real icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    #app{font-family:'Segoe UI',sans-serif;transition:background .4s,color .4s;min-height:100vh}
+    
+    #app.dark{
+      --bg:#0a0a0f;--surface:#111118;--surface2:#1a1a24;--brd:#2a2a3a;
+      --acc:#00d4aa;--acc2:#7c6aff;--text:#e8e8f0;--muted:#888899;--card:#14141e;
+    }
+    #app.light{
+      --bg:#f0f4ff;--surface:#ffffff;--surface2:#e8edf8;--brd:#cdd5f0;
+      --acc:#0066ff;--acc2:#7c3aed;--text:#1a1a2e;--muted:#5a6080;--card:#ffffff;
+    }
+    
+    #app{background:var(--bg);color:var(--text)}
+    
+    nav{background:var(--surface);border-bottom:1px solid var(--brd);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;transition:background .4s,border-color .4s;position:sticky;top:0;z-index:1000}
+    
+    .nav-links{display:flex;gap:1.5rem;align-items:center}
+    .nav-link{background:transparent;border:none;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;padding:5px 0;letter-spacing:.05em}
+    .nav-link:hover{color:var(--acc)}
+    .nav-link.active{color:var(--acc);border-bottom:2px solid var(--acc)}
+    
+    .brand{font-size:1.1rem;font-weight:800;letter-spacing:.05em}
+    .brand span{color:var(--acc)}
+    .nav-r{display:flex;align-items:center;gap:1rem}
+    .nav-badge{background:var(--acc);color:#fff;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.08em}
+    
+    .dropdown{position:relative;display:inline-block}
+    .dropbtn{background:var(--surface2);border:1px solid var(--brd);border-radius:30px;padding:6px 14px;font-size:1.2rem;cursor:pointer;color:var(--text);transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .dropbtn:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+    .dropdown-content{display:none;position:absolute;right:0;top:100%;margin-top:8px;background:var(--surface);border:1px solid var(--brd);border-radius:12px;min-width:60px;z-index:100;box-shadow:0 5px 20px rgba(0,0,0,0.2);overflow:hidden}
+    .dropdown-content.show{display:block}
+    .dropdown-item{display:flex;align-items:center;justify-content:center;padding:10px 16px;cursor:pointer;transition:all .2s;color:var(--text);font-size:1.2rem;border:none;background:transparent;width:100%;text-align:center}
+    .dropdown-item:hover{background:var(--surface2);transform:scale(1.05)}
+    .lang-btn{background:var(--surface2);border:1px solid var(--brd);border-radius:30px;padding:6px 14px;font-size:.75rem;font-weight:600;cursor:pointer;color:var(--text);transition:all .2s}
+    .lang-btn:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+    
+    sec{display:block;max-width:860px;margin:0 auto;padding:2rem 1.5rem 3rem;scroll-margin-top:70px}
+    .hero{padding:2.5rem 1.5rem 2.5rem;max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;scroll-margin-top:70px}
+    .hero-tag{display:inline-block;background:color-mix(in srgb,var(--acc) 15%,transparent);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);color:var(--acc);font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:5px 14px;border-radius:20px;margin-bottom:1.2rem;text-transform:uppercase}
+    .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;line-height:1.05;margin-bottom:.8rem}
+    .hero h1 em{color:var(--acc);font-style:normal}
+    .hero p{color:var(--muted);font-size:.9rem;line-height:1.7;max-width:440px;margin-bottom:1.5rem}
+    .btns{display:flex;gap:.75rem}
+    .btn-p{background:var(--acc);color:#fff;font-weight:700;font-size:.82rem;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;transition:all .2s}
+    .btn-p:hover{filter:brightness(1.15);transform:translateY(-1px)}
+    .btn-o{background:transparent;color:var(--text);font-weight:600;font-size:.82rem;padding:10px 24px;border-radius:8px;border:1px solid var(--brd);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .btn-o:hover{border-color:var(--acc);color:var(--acc)}
+    
+    .avatar{width:130px;height:130px;border-radius:18px;background:var(--surface2);border:2px solid var(--brd);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    
+    .stats{max-width:860px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-bottom:2rem}
+    .stat{background:var(--card);border:1px solid var(--brd);padding:1.25rem;text-align:center}
+    .stat:first-child{border-radius:12px 0 0 12px}
+    .stat:last-child{border-radius:0 12px 12px 0}
+    .stat-n{font-size:1.7rem;font-weight:800;color:var(--acc);display:block}
+    .stat-l{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px;display:block}
+    
+    .slabel{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);margin-bottom:.6rem}
+    .stitle{font-size:1.5rem;font-weight:800;margin-bottom:1.5rem}
+    
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.9rem}
+    .sk{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.1rem;position:relative;overflow:hidden;transition:all .25s;text-align:center}
+    .sk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--sc,var(--acc))}
+    .sk:hover{border-color:var(--sc,var(--acc));transform:translateY(-2px)}
+    .sk-icon{font-size:2rem;margin-bottom:.6rem;color:var(--sc,var(--acc))}
+    .sk-name{font-weight:700;font-size:.9rem;margin-bottom:.4rem}
+    .sk-bar{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;margin:.5rem 0}
+    .sk-fill{height:100%;border-radius:2px;background:var(--sc,var(--acc))}
+    .sk-sub{font-size:.7rem;color:var(--muted);margin-top:.35rem}
+    
+    .projects{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .pc{background:var(--card);border:1px solid var(--brd);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer}
+    .pc:hover{border-color:var(--acc2);transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.15)}
+    .pc.feat{grid-column:span 2}
+    .project-img{width:100%;height:160px;object-fit:cover;background:var(--surface2)}
+    .pc.feat .project-img{height:200px}
+    .ph{padding:1.25rem}
+    .ptag{display:inline-block;background:color-mix(in srgb,var(--acc2) 15%,transparent);color:var(--acc2);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:.65rem}
+    .pc.feat .ptag{background:color-mix(in srgb,var(--acc) 15%,transparent);color:var(--acc)}
+    .ptitle{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+    .pc.feat .ptitle{font-size:1.2rem}
+    .pdesc{font-size:.82rem;color:var(--muted);line-height:1.6}
+    .pf{padding:.6rem 1.25rem 1rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:1px solid var(--brd)}
+    .tb{background:var(--surface2);color:var(--muted);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:6px;border:1px solid var(--brd)}
+    .vbar{background:var(--surface2);border-radius:4px;height:6px;overflow:hidden;margin:.6rem 0}
+    .vfill{height:100%;border-radius:4px;background:var(--acc)}
+    
+    /* Modal for project details - Different background color */
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:2000;justify-content:center;align-items:center;overflow-y:auto}
+    .modal-content{background:#1e1e2e;border-radius:24px;max-width:850px;width:90%;margin:2rem auto;padding:2rem;position:relative;border:1px solid rgba(255,255,255,0.1);box-shadow:0 25px 50px rgba(0,0,0,0.5);animation:modalFadeIn 0.3s ease}
+    @keyframes modalFadeIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+    .modal-close{position:absolute;top:1rem;right:1.5rem;font-size:1.8rem;cursor:pointer;color:#888;transition:all .2s;z-index:10;background:#2a2a35;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .modal-close:hover{color:#00d4aa;transform:scale(1.1);background:#3a3a45}
+    .modal-img{width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin:1rem 0;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08)}
+    .modal-title{font-size:1.6rem;font-weight:800;margin-bottom:0.5rem;color:#00d4aa}
+    .modal-desc{color:#e8e8f0;line-height:1.8;margin:1rem 0;background:#2a2a35;padding:1.5rem;border-radius:16px;border-left:4px solid #00d4aa;font-size:0.95rem}
+    .modal-desc strong{color:#00d4aa}
+    .modal-tech{background:#252530;border-radius:16px;padding:1.2rem;margin-top:1rem;border:1px solid rgba(255,255,255,0.08)}
+    .modal-tech strong{color:#00d4aa}
+    .modal-tech .pf{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.8rem;padding:0}
+    
+    /* Light mode - Modal different background */
+    #app.light .modal-content{background:#ffffff;border:1px solid #e0e0e0}
+    #app.light .modal-close{background:#f0f0f0;color:#666}
+    #app.light .modal-close:hover{color:#0066ff;background:#e8e8e8}
+    #app.light .modal-title{color:#0066ff}
+    #app.light .modal-desc{background:#f5f7ff;color:#1a1a2e;border-left-color:#0066ff}
+    #app.light .modal-desc strong{color:#0066ff}
+    #app.light .modal-tech{background:#f0f4ff;border:1px solid #ddd}
+    #app.light .modal-tech strong{color:#0066ff}
+    
+    /* Dark mode - Modal different background */
+    #app.dark .modal-content{background:#1a1a2e;border:1px solid #2a2a3a}
+    #app.dark .modal-desc{background:#16213e}
+    #app.dark .modal-tech{background:#0f3460}
+    
+    .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+    .cert-card{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:1.2rem;transition:all .25s;display:flex;gap:1rem;align-items:flex-start;text-decoration:none;color:inherit}
+    .cert-card:hover{border-color:var(--acc);transform:translateY(-2px)}
+    .cert-icon{font-size:2rem;color:var(--acc)}
+    .cert-info{flex:1}
+    .cert-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+    .cert-issuer{font-size:.75rem;color:var(--acc);margin-bottom:.5rem}
+    .cert-date{font-size:.7rem;color:var(--muted);margin-bottom:.5rem}
+    .cert-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+    
+    .exp-timeline{display:flex;flex-direction:column;gap:1.5rem}
+    .exp-item{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:1.2rem;transition:all .25s;display:flex;gap:1rem;align-items:flex-start}
+    .exp-item:hover{border-color:var(--acc);transform:translateY(-2px)}
+    .exp-icon{font-size:2rem;color:var(--acc)}
+    .exp-info{flex:1}
+    .exp-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+    .exp-company{font-size:.75rem;color:var(--acc);margin-bottom:.5rem}
+    .exp-date{font-size:.7rem;color:var(--muted);margin-bottom:.5rem}
+    .exp-desc{font-size:.75rem;color:var(--muted);line-height:1.5;list-style-position:inside;padding-left:0}
+    .exp-desc li{margin-bottom:.3rem}
+    
+    .contact-c{background:var(--card);border:1px solid var(--brd);border-radius:18px;padding:2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;scroll-margin-top:70px}
+    .ct{font-size:1.3rem;font-weight:800;margin-bottom:.4rem}
+    .cs{color:var(--muted);font-size:.85rem}
+    .cbtns{display:flex;gap:.6rem;flex-wrap:wrap}
+    .cbtn{background:var(--surface2);border:1px solid var(--brd);color:var(--text);font-size:.78rem;font-weight:600;padding:9px 18px;border-radius:8px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+    .cbtn:hover,.cbtn.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+    
+    footer{max-width:860px;margin:0 auto;padding:1.5rem;border-top:1px solid var(--brd);text-align:center;font-size:.78rem;color:var(--muted)}
+    footer span{color:var(--acc)}
+    
+    @media (max-width: 700px){
+      nav{flex-wrap:wrap;height:auto;padding:0.8rem 1rem;gap:0.5rem}
+      .nav-links{order:3;width:100%;justify-content:center;flex-wrap:wrap;gap:0.8rem;margin-top:0.5rem}
+      .hero{grid-template-columns:1fr;text-align:center}
+      .hero p{margin-left:auto;margin-right:auto}
+      .btns{justify-content:center}
+      .contact-c{grid-template-columns:1fr;text-align:center}
+      .cbtns{justify-content:center}
+      .projects{grid-template-columns:1fr}
+      .pc.feat{grid-column:span 1}
+      .cert-card,.exp-item{flex-direction:column;text-align:center;align-items:center}
+    }
+    </style>
+</head>
+<body>
+
+<div id="app" class="dark">
+
+<nav>
+  <div class="brand">AR<span>.</span>data</div>
+  <div class="nav-links">
+    <button class="nav-link" data-section="home">🏠 Home</button>
+    <button class="nav-link" data-section="skills">📊 Skills</button>
+    <button class="nav-link" data-section="experience">💼 Experience</button>
+    <button class="nav-link" data-section="certifications">📜 Certs</button>
+    <button class="nav-link" data-section="projects">🚀 Projects</button>
+    <button class="nav-link" data-section="contact">📧 Contact</button>
+  </div>
+  <div class="nav-r">
+    <div class="dropdown">
+      <button class="dropbtn" id="themeBtn">🌙</button>
+      <div class="dropdown-content" id="themeDropdown">
+        <button class="dropdown-item" onclick="setTheme('dark', this)">🌙</button>
+        <button class="dropdown-item" onclick="setTheme('light', this)">☀️</button>
+      </div>
+    </div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">Ar</button>
+    <div class="nav-badge">Open to work</div>
+  </div>
+</nav>
+
+<div class="hero" id="home">
+  <div>
+    <div class="hero-tag" id="heroTag">Data Analyst</div>
+    <h1 id="heroName">Ahmed<br><em>Ragab</em></h1>
+    <p id="heroDesc">Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.</p>
+    <div class="btns">
+      <button class="btn-p" id="projectsBtn" onclick="scrollToSection('projects')">View Projects</button>
+      <a href="https://drive.google.com/file/d/1kdbtlttelr4tZB_HVd13UFXpC79_ly1X/view?usp=sharing" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i> Download CV</a>
+    </div>
+  </div>
+  <div class="avatar">
+    <img src="AhmedRagabnew.png" alt="Ahmed Ragab" onerror="this.src='https://via.placeholder.com/130x130?text=AR'">
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="stat-n">4+</span><span class="stat-l" id="stat1Label">Projects</span></div>
+  <div class="stat"><span class="stat-n">2+</span><span class="stat-l" id="stat2Label">Years Exp.</span></div>
+  <div class="stat"><span class="stat-n">8</span><span class="stat-l" id="stat3Label">Tools</span></div>
+  <div class="stat"><span class="stat-n">100%</span><span class="stat-l" id="stat4Label">Data Driven</span></div>
+</div>
+
+<sec id="skills">
+  <div class="slabel" id="expertiseLabel">Expertise</div>
+  <div class="stitle" id="skillsTitle">Technical Skills</div>
+  <div class="skills">
+    <div class="sk" style="--sc:#306998"><div class="sk-icon"><i class="fab fa-python"></i></div><div class="sk-name">Python</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-sub">Pandas · Matplotlib · Seaborn</div></div>
+    <div class="sk" style="--sc:#f29111"><div class="sk-icon"><i class="fas fa-database"></i></div><div class="sk-name">SQL</div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div><div class="sk-sub">MySQL · PostgreSQL · BigQuery</div></div>
+    <div class="sk" style="--sc:#f2c811"><div class="sk-icon"><i class="fas fa-chart-line"></i></div><div class="sk-name">Power BI</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><div class="sk-sub">DAX · Power Query</div></div>
+    <div class="sk" style="--sc:#e97627"><div class="sk-icon"><i class="fas fa-chart-pie"></i></div><div class="sk-name">Tableau</div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div><div class="sk-sub">Dashboards · Storytelling</div></div>
+    <div class="sk" style="--sc:#276dc3"><div class="sk-icon"><i class="fab fa-r-project"></i></div><div class="sk-name">R & Statistics</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><div class="sk-sub">ggplot2 · tidyverse</div></div>
+    <div class="sk" style="--sc:#1d7240"><div class="sk-icon"><i class="fas fa-file-excel"></i></div><div class="sk-name">Excel</div><div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div><div class="sk-sub">Pivot · VBA · Functions</div></div>
+  </div>
+</sec>
+
+<sec id="experience">
+  <div class="slabel" id="expLabel">Experience</div>
+  <div class="stitle" id="expTitle">Work Experience</div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="exp-info">
+        <div class="exp-title" id="exp1Title">Senior Data Analyst</div>
+        <div class="exp-company" id="exp1Company">Tech Solutions Co.</div>
+        <div class="exp-date" id="exp1Date">2023 - Present</div>
+        <ul class="exp-desc" id="exp1Desc">
+          <li>Leading data analytics projects for enterprise clients</li>
+          <li>Building interactive dashboards using Power BI and Tableau</li>
+          <li>Optimizing SQL queries improving performance by 40%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon"><i class="fas fa-database"></i></div>
+      <div class="exp-info">
+        <div class="exp-title" id="exp2Title">Data Analyst</div>
+        <div class="exp-company" id="exp2Company">Digital Insights Ltd.</div>
+        <div class="exp-date" id="exp2Date">2021 - 2023</div>
+        <ul class="exp-desc" id="exp2Desc">
+          <li>Analyzed customer behavior data to identify growth opportunities</li>
+          <li>Created automated reporting systems using Python</li>
+          <li>Collaborated with marketing team to optimize campaigns</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</sec>
+
+<sec id="certifications">
+  <div class="slabel" id="certsLabel">Certifications</div>
+  <div class="stitle" id="certsTitle">Courses & Certificates</div>
+  <div class="certs-grid">
+    <a href="https://drive.google.com/drive/folders/your-google-drive-link" target="_blank" class="cert-card">
+      <div class="cert-icon"><i class="fab fa-google"></i></div>
+      <div class="cert-info">
+        <div class="cert-title" id="cert1Title">Google Data Analytics Professional</div>
+        <div class="cert-issuer" id="cert1Issuer">Google · Coursera</div>
+        <div class="cert-date" id="cert1Date">2024</div>
+        <div class="cert-desc" id="cert1Desc">Complete data analysis lifecycle including data cleaning, analysis, and visualization.</div>
+      </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/your-google-drive-link" target="_blank" class="cert-card">
+      <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+      <div class="cert-info">
+        <div class="cert-title" id="cert2Title">Microsoft Power BI Data Analyst</div>
+        <div class="cert-issuer" id="cert2Issuer">Microsoft · PL-300</div>
+        <div class="cert-date" id="cert2Date">2023</div>
+        <div class="cert-desc" id="cert2Desc">Expert in Power BI, DAX, Power Query, and data modeling.</div>
+      </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/your-google-drive-link" target="_blank" class="cert-card">
+      <div class="cert-icon"><i class="fab fa-python"></i></div>
+      <div class="cert-info">
+        <div class="cert-title" id="cert3Title">Python for Data Science</div>
+        <div class="cert-issuer" id="cert3Issuer">IBM · Cognitive Class</div>
+        <div class="cert-date" id="cert3Date">2023</div>
+        <div class="cert-desc" id="cert3Desc">Mastering Pandas, NumPy, Matplotlib, and Seaborn for data analysis.</div>
+      </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/your-google-drive-link" target="_blank" class="cert-card">
+      <div class="cert-icon"><i class="fas fa-chart-simple"></i></div>
+      <div class="cert-info">
+        <div class="cert-title" id="cert4Title">SQL for Data Analysis</div>
+        <div class="cert-issuer" id="cert4Issuer">DataCamp</div>
+        <div class="cert-date" id="cert4Date">2022</div>
+        <div class="cert-desc" id="cert4Desc">Advanced SQL queries, window functions, and database optimization.</div>
+      </div>
+    </a>
+  </div>
+</sec>
+
+<sec id="projects">
+  <div class="slabel" id="workLabel">Work</div>
+  <div class="stitle" id="projectsTitle">Featured Projects</div>
+  <div class="projects">
+    <div class="pc feat" onclick="openProjectModal('sales')">
+      <img src="https://via.placeholder.com/600x200/00d4aa/1a1a24?text=Sales+Dashboard" class="project-img" alt="Sales Dashboard">
+      <div class="ph">
+        <div class="ptag">⭐ Featured</div>
+        <div class="ptitle">Sales Performance Dashboard</div>
+        <div class="pdesc">End-to-end analysis of 2M+ sales records. Interactive Power BI dashboard tracking KPIs, regional performance & forecasting with 94% accuracy.</div>
+        <div class="vbar"><div class="vfill" style="width:94%"></div></div>
+      </div>
+      <div class="pf"><span class="tb">Power BI</span><span class="tb">Python</span><span class="tb">SQL</span><span class="tb">DAX</span></div>
+    </div>
+    <div class="pc" onclick="openProjectModal('churn')">
+      <img src="https://via.placeholder.com/300x160/7c6aff/1a1a24?text=Churn+Prediction" class="project-img" alt="Churn Prediction">
+      <div class="ph">
+        <div class="ptag">ML</div>
+        <div class="ptitle">Customer Churn Prediction</div>
+        <div class="pdesc">Predictive model identifying at-risk customers with 87% precision using Scikit-learn.</div>
+      </div>
+      <div class="pf"><span class="tb">Python</span><span class="tb">Scikit-learn</span><span class="tb">Pandas</span></div>
+    </div>
+    <div class="pc" onclick="openProjectModal('ecommerce')">
+      <img src="https://via.placeholder.com/300x160/ff9f43/1a1a24?text=E-Commerce+Analysis" class="project-img" alt="E-Commerce Analysis">
+      <div class="ph">
+        <div class="ptag">EDA</div>
+        <div class="ptitle">E-Commerce Market Analysis</div>
+        <div class="pdesc">Deep-dive exploratory analysis of market trends, customer segments & pricing strategy.</div>
+      </div>
+      <div class="pf"><span class="tb">Python</span><span class="tb">Tableau</span><span class="tb">Excel</span></div>
+    </div>
+  </div>
+</sec>
+
+<sec id="contact">
+  <div class="contact-c">
+    <div>
+      <div class="ct" id="contactTitle">Let's work together</div>
+      <div class="cs" id="contactSub">Available for freelance projects & full-time roles</div>
+    </div>
+    <div class="cbtns">
+      <!-- زر الاتصال المباشر -->
+      <a href="tel:+201119880367" class="cbtn p"><i class="fas fa-phone-alt"></i> Call Me</a>
+      <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="cbtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="mailto:elsheikh1721@gmail.com" class="cbtn"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://wa.me/+201119880367" target="_blank" class="cbtn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</sec>
+
+<footer id="footer">Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i></footer>
+
+</div>
+
+<!-- Modal for Project Details -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-close" onclick="closeProjectModal()">&times;</div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Project details data
+const projectDetails = {
+  sales: {
+    title: "Sales Performance Dashboard",
+    images: [
+      "https://via.placeholder.com/800x400/00d4aa/1a1a24?text=Sales+Dashboard+1",
+      "https://via.placeholder.com/800x400/00d4aa/1a1a24?text=Sales+Dashboard+2"
+    ],
+    description: `The Sales Performance Dashboard is a comprehensive Power BI solution that tracks key performance indicators across multiple sales regions. This project involved:
+• Processing and cleaning 2+ million sales records using Python
+• Creating interactive visualizations for real-time monitoring
+• Implementing DAX measures for complex calculations
+• Achieving 94% forecasting accuracy using time series analysis
+• Building a user-friendly interface for executive decision making`,
+    tech: ["Power BI", "Python", "SQL", "DAX", "Excel"]
+  },
+  churn: {
+    title: "Customer Churn Prediction",
+    images: [
+      "https://via.placeholder.com/800x400/7c6aff/1a1a24?text=Churn+Model+1",
+      "https://via.placeholder.com/800x400/7c6aff/1a1a24?text=Churn+Model+2"
+    ],
+    description: `Machine learning model to predict customer churn and identify at-risk customers. Key achievements:
+• Achieved 87% precision using Random Forest and XGBoost
+• Engineered 25+ features from customer behavior data
+• Implemented cross-validation and hyperparameter tuning
+• Created interpretable visualizations for business stakeholders
+• Deployed model using Flask API for real-time predictions`,
+    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"]
+  },
+  ecommerce: {
+    title: "E-Commerce Market Analysis",
+    images: [
+      "https://via.placeholder.com/800x400/ff9f43/1a1a24?text=E-Commerce+1",
+      "https://via.placeholder.com/800x400/ff9f43/1a1a24?text=E-Commerce+2"
+    ],
+    description: `Comprehensive exploratory analysis of e-commerce market trends. This project delivered:
+• Analysis of 500,000+ transactions across 10+ product categories
+• Customer segmentation using RFM analysis
+• Pricing strategy recommendations that increased margins by 15%
+• Seasonal trend identification for inventory planning
+• Interactive Tableau dashboard for ongoing monitoring`,
+    tech: ["Python", "Tableau", "Excel", "SQL", "Pandas"]
+  }
+};
+
+function openProjectModal(projectId) {
+  const project = projectDetails[projectId];
+  if (!project) return;
+  
+  const modal = document.getElementById('projectModal');
+  const modalBody = document.getElementById('modalBody');
+  
+  let imagesHtml = '';
+  for (let i = 0; i < project.images.length; i++) {
+    imagesHtml += `<img src="${project.images[i]}" class="modal-img" alt="Project Image ${i+1}">`;
+  }
+  
+  let techHtml = '';
+  for (let i = 0; i < project.tech.length; i++) {
+    techHtml += `<span class="tb">${project.tech[i]}</span>`;
+  }
+  
+  modalBody.innerHTML = `
+    <h2 class="modal-title">🚀 ${project.title}</h2>
+    ${imagesHtml}
+    <div class="modal-desc">
+      <strong>📋 Project Overview:</strong><br><br>
+      ${project.description.replace(/\n/g, '<br>')}
+    </div>
+    <div class="modal-tech">
+      <strong>🛠 Technologies Used:</strong>
+      <div class="pf" style="padding:0.8rem 0 0 0;margin-top:0.5rem;">${techHtml}</div>
+    </div>
+  `;
+  
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  const modal = document.getElementById('projectModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('projectModal');
+  if (event.target === modal) {
+    closeProjectModal();
+  }
+}
+
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function updateActiveNavLink() {
+  const sections = ['home', 'skills', 'experience', 'certifications', 'projects', 'contact'];
+  const scrollPosition = window.scrollY + 100;
+  
+  for (const section of sections) {
+    const element = document.getElementById(section);
+    if (element) {
+      const offsetTop = element.offsetTop;
+      const offsetBottom = offsetTop + element.offsetHeight;
+      
+      if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-section') === section) {
+            link.classList.add('active');
+          }
+        });
+        break;
+      }
+    }
+  }
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    const section = link.getAttribute('data-section');
+    scrollToSection(section);
+  });
+});
+
+function setTheme(theme, btn) {
+  document.getElementById('app').className = theme;
+  const themeBtn = document.getElementById('themeBtn');
+  if (theme === 'dark') {
+    themeBtn.innerHTML = '🌙';
+  } else if (theme === 'light') {
+    themeBtn.innerHTML = '☀️';
+  }
+  document.getElementById('themeDropdown').classList.remove('show');
+}
+
+document.getElementById('themeBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('themeDropdown').classList.toggle('show');
+});
+
+document.addEventListener('click', function() {
+  document.getElementById('themeDropdown').classList.remove('show');
+});
+
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink);
+
+let currentLang = 'en';
+
+function toggleLanguage() {
+  const langBtn = document.getElementById('langBtn');
+  
+  if (currentLang === 'en') {
+    currentLang = 'ar';
+    langBtn.innerHTML = 'En';
+    
+    document.getElementById('heroTag').innerHTML = 'محلل بيانات';
+    document.getElementById('heroName').innerHTML = 'أحمد<br><em>رجب</em>';
+    document.getElementById('heroDesc').innerHTML = 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.';
+    document.getElementById('projectsBtn').innerHTML = 'استعراض المشاريع';
+    document.getElementById('cvBtn').innerHTML = '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية';
+    document.getElementById('stat1Label').innerHTML = 'مشاريع';
+    document.getElementById('stat2Label').innerHTML = 'سنوات خبرة';
+    document.getElementById('stat3Label').innerHTML = 'أدوات';
+    document.getElementById('stat4Label').innerHTML = 'قائم على البيانات';
+    document.getElementById('expertiseLabel').innerHTML = 'الخبرات';
+    document.getElementById('skillsTitle').innerHTML = 'المهارات التقنية';
+    
+    document.getElementById('expLabel').innerHTML = 'الخبرات';
+    document.getElementById('expTitle').innerHTML = 'الخبرة العملية';
+    document.getElementById('exp1Title').innerHTML = 'محلل بيانات أول';
+    document.getElementById('exp1Company').innerHTML = 'تك سوليوشنز';
+    document.getElementById('exp1Date').innerHTML = '٢٠٢٣ - حتى الآن';
+    document.getElementById('exp1Desc').innerHTML = '<li>قيادة مشاريع تحليل البيانات لعملاء المؤسسات</li><li>بناء لوحات تحكم تفاعلية باستخدام Power BI و Tableau</li><li>تحسين استعلامات SQL مما حسن الأداء بنسبة 40%</li>';
+    document.getElementById('exp2Title').innerHTML = 'محلل بيانات';
+    document.getElementById('exp2Company').innerHTML = 'ديجيتال إنسايتس';
+    document.getElementById('exp2Date').innerHTML = '٢٠٢١ - ٢٠٢٣';
+    document.getElementById('exp2Desc').innerHTML = '<li>تحليل بيانات سلوك العملاء لتحديد فرص النمو</li><li>إنشاء أنظمة تقارير آلية باستخدام بايثون</li><li>التعاون مع فريق التسويق لتحسين الحملات</li>';
+    
+    document.getElementById('certsLabel').innerHTML = 'الشهادات';
+    document.getElementById('certsTitle').innerHTML = 'الدورات والشهادات';
+    document.getElementById('cert1Title').innerHTML = 'تحليل بيانات جوجل الاحترافي';
+    document.getElementById('cert1Issuer').innerHTML = 'جوجل · كورسيرا';
+    document.getElementById('cert1Date').innerHTML = '٢٠٢٤';
+    document.getElementById('cert1Desc').innerHTML = 'دورة كاملة في تحليل البيانات تشمل تنظيف البيانات وتحليلها وتصورها.';
+    document.getElementById('cert2Title').innerHTML = 'محلل بيانات Power BI من مايكروسوفت';
+    document.getElementById('cert2Issuer').innerHTML = 'مايكروسوفت · PL-300';
+    document.getElementById('cert2Date').innerHTML = '٢٠٢٣';
+    document.getElementById('cert2Desc').innerHTML = 'خبير في Power BI و DAX و Power Query ونمذجة البيانات.';
+    document.getElementById('cert3Title').innerHTML = 'بايثون لعلوم البيانات';
+    document.getElementById('cert3Issuer').innerHTML = 'IBM · Cognitive Class';
+    document.getElementById('cert3Date').innerHTML = '٢٠٢٣';
+    document.getElementById('cert3Desc').innerHTML = 'إتقان Pandas و NumPy و Matplotlib و Seaborn لتحليل البيانات.';
+    document.getElementById('cert4Title').innerHTML = 'SQL لتحليل البيانات';
+    document.getElementById('cert4Issuer').innerHTML = 'DataCamp';
+    document.getElementById('cert4Date').innerHTML = '٢٠٢٢';
+    document.getElementById('cert4Desc').innerHTML = 'استعلامات SQL المتقدمة ودوال النوافذ وتحسين قواعد البيانات.';
+    
+    document.getElementById('workLabel').innerHTML = 'أعمال';
+    document.getElementById('projectsTitle').innerHTML = 'المشاريع المميزة';
+    document.getElementById('contactTitle').innerHTML = 'لنعمل معاً';
+    document.getElementById('contactSub').innerHTML = 'متاح للمشاريع المستقلة والوظائف بدوام كامل';
+    document.getElementById('footer').innerHTML = 'أحمد رجب · ملف أعمال محلل بيانات ٢٠٢٥ · صنع بـ <i class="fas fa-heart"></i>';
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const section = link.getAttribute('data-section');
+      if(section === 'home') link.innerHTML = '🏠 الرئيسية';
+      else if(section === 'skills') link.innerHTML = '📊 المهارات';
+      else if(section === 'experience') link.innerHTML = '💼 الخبرات';
+      else if(section === 'certifications') link.innerHTML = '📜 الشهادات';
+      else if(section === 'projects') link.innerHTML = '🚀 المشاريع';
+      else if(section === 'contact') link.innerHTML = '📧 التواصل';
+    });
+    
+    document.getElementById('app').setAttribute('dir', 'rtl');
+    
+  } else {
+    currentLang = 'En';
+    langBtn.innerHTML = 'Ar';
+    
+    document.getElementById('heroTag').innerHTML = 'Data Analyst';
+    document.getElementById('heroName').innerHTML = 'Ahmed<br><em>Ragab</em>';
+    document.getElementById('heroDesc').innerHTML = 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.';
+    document.getElementById('projectsBtn').innerHTML = 'View Projects';
+    document.getElementById('cvBtn').innerHTML = '<i class="fas fa-file-pdf"></i> Download CV';
+    document.getElementById('stat1Label').innerHTML = 'Projects';
+    document.getElementById('stat2Label').innerHTML = 'Years Exp.';
+    document.getElementById('stat3Label').innerHTML = 'Tools';
+    document.getElementById('stat4Label').innerHTML = 'Data Driven';
+    document.getElementById('expertiseLabel').innerHTML = 'Expertise';
+    document.getElementById('skillsTitle').innerHTML = 'Technical Skills';
+    
+    document.getElementById('expLabel').innerHTML = 'Experience';
+    document.getElementById('expTitle').innerHTML = 'Work Experience';
+    document.getElementById('exp1Title').innerHTML = 'Senior Data Analyst';
+    document.getElementById('exp1Company').innerHTML = 'Tech Solutions Co.';
+    document.getElementById('exp1Date').innerHTML = '2023 - Present';
+    document.getElementById('exp1Desc').innerHTML = '<li>Leading data analytics projects for enterprise clients</li><li>Building interactive dashboards using Power BI and Tableau</li><li>Optimizing SQL queries improving performance by 40%</li>';
+    document.getElementById('exp2Title').innerHTML = 'Data Analyst';
+    document.getElementById('exp2Company').innerHTML = 'Digital Insights Ltd.';
+    document.getElementById('exp2Date').innerHTML = '2021 - 2023';
+    document.getElementById('exp2Desc').innerHTML = '<li>Analyzed customer behavior data to identify growth opportunities</li><li>Created automated reporting systems using Python</li><li>Collaborated with marketing team to optimize campaigns</li>';
+    
+    document.getElementById('certsLabel').innerHTML = 'Certifications';
+    document.getElementById('certsTitle').innerHTML = 'Courses & Certificates';
+    document.getElementById('cert1Title').innerHTML = 'Google Data Analytics Professional';
+    document.getElementById('cert1Issuer').innerHTML = 'Google · Coursera';
+    document.getElementById('cert1Date').innerHTML = '2024';
+    document.getElementById('cert1Desc').innerHTML = 'Complete data analysis lifecycle including data cleaning, analysis, and visualization.';
+    document.getElementById('cert2Title').innerHTML = 'Microsoft Power BI Data Analyst';
+    document.getElementById('cert2Issuer').innerHTML = 'Microsoft · PL-300';
+    document.getElementById('cert2Date').innerHTML = '2023';
+    document.getElementById('cert2Desc').innerHTML = 'Expert in Power BI, DAX, Power Query, and data modeling.';
+    document.getElementById('cert3Title').innerHTML = 'Python for Data Science';
+    document.getElementById('cert3Issuer').innerHTML = 'IBM · Cognitive Class';
+    document.getElementById('cert3Date').innerHTML = '2023';
+    document.getElementById('cert3Desc').innerHTML = 'Mastering Pandas, NumPy, Matplotlib, and Seaborn for data analysis.';
+    document.getElementById('cert4Title').innerHTML = 'SQL for Data Analysis';
+    document.getElementById('cert4Issuer').innerHTML = 'DataCamp';
+    document.getElementById('cert4Date').innerHTML = '2022';
+    document.getElementById('cert4Desc').innerHTML = 'Advanced SQL queries, window functions, and database optimization.';
+    
+    document.getElementById('workLabel').innerHTML = 'Work';
+    document.getElementById('projectsTitle').innerHTML = 'Featured Projects';
+    document.getElementById('contactTitle').innerHTML = 'Let\'s work together';
+    document.getElementById('contactSub').innerHTML = 'Available for freelance projects & full-time roles';
+    document.getElementById('footer').innerHTML = 'Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i>';
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const section = link.getAttribute('data-section');
+      if(section === 'home') link.innerHTML = '🏠 Home';
+      else if(section === 'skills') link.innerHTML = '📊 Skills';
+      else if(section === 'experience') link.innerHTML = '💼 Experience';
+      else if(section === 'certifications') link.innerHTML = '📜 Certs';
+      else if(section === 'projects') link.innerHTML = '🚀 Projects';
+      else if(section === 'contact') link.innerHTML = '📧 Contact';
+    });
+    
+    document.getElementById('app').removeAttribute('dir');
+  }
+}
+</script>
+
+</body>
+</html> 
