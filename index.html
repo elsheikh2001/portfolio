@@ -297,7 +297,7 @@
     </div>
   </div>
   <div class="avatar">
-    <img src="AhmedRagabnew.png" alt="Ahmed Ragab" onerror="this.src='https://via.placeholder.com/130x130?text=AR'">
+    <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.src='https://via.placeholder.com/130x130?text=AR'">
   </div>
 </div>
 
@@ -445,7 +445,7 @@
   <div class="stitle" id="projectsTitle">Featured Projects</div>
   <div class="projects" id="projectsContainer">
     <div class="pc" onclick="openProjectModal('marketSales')">
-      <img src="supermarket.png?v=1" class="project-img" alt="Market Sales Analysis" onerror="this.src='https://via.placeholder.com/600x200/00d4aa/1a1a24?text=Market+Sales+Analysis'">
+      <img src="supermarket.png" class="project-img" alt="Market Sales Analysis" onerror="this.src='https://via.placeholder.com/600x200/00d4aa/1a1a24?text=Market+Sales+Analysis'">
       <div class="ph">
         <div class="ptag" id="proj1Tag">Excel</div>
         <div class="ptitle" id="proj1Title">Market Sales Analysis</div>
@@ -454,7 +454,7 @@
       <div class="pf"><span class="tb">Excel</span><span class="tb">Data Analysis</span></div>
     </div>
     <div class="pc" onclick="openProjectModal('roadAccident')">
-      <img src="Roadaccident.png?v=1" class="project-img" alt="Road Accident Analysis" onerror="this.src='https://via.placeholder.com/600x200/7c6aff/1a1a24?text=Road+Accident+Analysis'">
+      <img src="Roadaccident.png" class="project-img" alt="Road Accident Analysis" onerror="this.src='https://via.placeholder.com/600x200/7c6aff/1a1a24?text=Road+Accident+Analysis'">
       <div class="ph">
         <div class="ptag" id="proj2Tag">Python & Excel</div>
         <div class="ptitle" id="proj2Title">Road Accident Analysis</div>
@@ -463,7 +463,7 @@
       <div class="pf"><span class="tb">Python</span><span class="tb">Excel</span><span class="tb">Dashboard</span></div>
     </div>
     <div class="pc" onclick="openProjectModal('titanic')">
-      <img src="Titanic.png?v=1" class="project-img" alt="Titanic Survival Prediction" onerror="this.src='https://via.placeholder.com/600x200/ff9f43/1a1a24?text=Titanic+Prediction'">
+      <img src="Titanic.png" class="project-img" alt="Titanic Survival Prediction" onerror="this.src='https://via.placeholder.com/600x200/ff9f43/1a1a24?text=Titanic+Prediction'">
       <div class="ph">
         <div class="ptag" id="proj3Tag">Machine Learning</div>
         <div class="ptitle" id="proj3Title">Titanic Survival Prediction</div>
@@ -472,7 +472,7 @@
       <div class="pf"><span class="tb">Python</span><span class="tb">Power BI</span><span class="tb">Scikit-learn</span></div>
     </div>
     <div class="pc" onclick="openProjectModal('flightData')">
-      <img src="FlightAirplane1.png?v=1" class="project-img" alt="Flight Airplane Data Analysis" onerror="this.src='https://via.placeholder.com/600x200/e67e22/1a1a24?text=Flight+Data+Analysis'">
+      <img src="FlightAirplane1.png" class="project-img" alt="Flight Airplane Data Analysis" onerror="this.src='https://via.placeholder.com/600x200/e67e22/1a1a24?text=Flight+Data+Analysis'">
       <div class="ph">
         <div class="ptag" id="proj4Tag">Tableau</div>
         <div class="ptitle" id="proj4Title">Flight Airplane Data Analysis</div>
@@ -510,34 +510,39 @@
 </div>
 
 <script>
+// Helper function to get image with cache buster
+function getImageSrc(filename) {
+    return filename + '?v=' + Date.now();
+}
+
 // Project details
 const projectDetails = {
   marketSales: {
     titleEn: "Market Sales Analysis", titleAr: "تحليل مبيعات السوق",
     images: ["supermarket.png"],
-    descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts. The project involved data cleaning, pivot tables, and advanced charting to uncover actionable insights.",
-    descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق المستهدفة وجهود اكتساب العملاء. تضمن المشروع تنظيف البيانات، الجداول المحورية، والرسوم البيانية المتقدمة.",
+    descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
+    descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق.",
     tech: ["Excel", "Pivot Tables", "Data Visualization"]
   },
   roadAccident: {
     titleEn: "Road Accident Analysis", titleAr: "تحليل حوادث الطرق",
     images: ["Roadaccident.png"],
-    descEn: "Utilized Python for data cleaning to remove inaccuracies and inconsistencies, and developed insights using historical data. Created a dashboard in Excel to track key metrics, leading to a 15% reduction in the predicted accident rate.",
-    descAr: "تم استخدام بايثون لتنظيف البيانات وإزالة الأخطاء والتناقضات، وتطوير رؤى باستخدام البيانات التاريخية. تم إنشاء لوحة تحكم في Excel لتتبع المقاييس الرئيسية، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث المتوقع.",
+    descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
+    descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث.",
     tech: ["Python", "Pandas", "Excel", "Dashboard"]
   },
   titanic: {
     titleEn: "Titanic Survival Prediction", titleAr: "التنبؤ بنجاة التايتانيك",
     images: ["Titanic.png"],
-    descEn: "Developed a predictive machine learning model using Python and Power BI to analyze Titanic passenger survival rates. Achieved 80% accuracy through feature engineering and advanced data preprocessing techniques.",
-    descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI لتحليل معدلات نجاة ركاب التايتانيك. تم تحقيق دقة 80% من خلال هندسة الميزات وتقنيات المعالجة المسبقة المتقدمة للبيانات.",
+    descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
+    descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات.",
     tech: ["Python", "Scikit-learn", "Power BI", "Pandas"]
   },
   flightData: {
     titleEn: "Flight Airplane Data Analysis", titleAr: "تحليل بيانات الرحلات الجوية",
     images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
-    descEn: "Conducted comprehensive data preprocessing on flight datasets using Python, ensuring data integrity. Developed an interactive Tableau dashboard that improved flight scheduling efficiency, increasing on-time performance by 10% and enhancing customer experience.",
-    descAr: "تم إجراء معالجة شاملة للبيانات على مجموعات بيانات الرحلات الجوية باستخدام بايثون، مما يضمن سلامة البيانات. تم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين كفاءة جدولة الرحلات، وزيادة الأداء في الوقت المحدد بنسبة 10% وتحسين تجربة العملاء.",
+    descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
+    descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء بنسبة 10%.",
     tech: ["Python", "Tableau", "Data Cleaning"]
   }
 };
@@ -546,70 +551,72 @@ const certDetails = {
   depi: {
     titleEn: "Data Analysis Certificate - DEPI", titleAr: "شهادة تحليل البيانات - مبادرة رواد مصر الرقمية",
     images: ["depi1.png", "depi2.png"],
-    descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling. Completed from April 2024 to October 2024.",
-    descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية. تم الإكمال من أبريل 2024 إلى أكتوبر 2024.",
+    descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling.",
+    descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية.",
     tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"]
   },
   powerbi: {
     titleEn: "Power BI Certificates", titleAr: "شهادات Power BI",
     images: ["PowerBi.png", "PowerBimaven.png"],
-    descEn: "Microsoft Power BI Data Analyst certification and Maven Analytics Power BI certificate. Expertise in DAX, Power Query, data modeling, and interactive dashboard creation.",
-    descAr: "شهادة محلل بيانات Power BI من مايكروسوفت وشهادة Power BI من Maven Analytics. خبرة في DAX و Power Query ونمذجة البيانات وإنشاء لوحات التحكم التفاعلية.",
+    descEn: "Microsoft Power BI Data Analyst certification and Maven Analytics Power BI certificate.",
+    descAr: "شهادة محلل بيانات Power BI من مايكروسوفت وشهادة Power BI من Maven Analytics.",
     tech: ["Power BI", "DAX", "Power Query", "Data Modeling"]
   },
   icdl: {
     titleEn: "ICDL Certificate", titleAr: "شهادة ICDL",
     images: ["ICDL.png"],
-    descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office (Word, Excel, PowerPoint, Access), basic IT skills, internet usage, and computer security.",
-    descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office (Word، Excel، PowerPoint، Access)، مهارات تكنولوجيا المعلومات الأساسية، استخدام الإنترنت، وأمن الحاسوب.",
+    descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office.",
+    descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office.",
     tech: ["Microsoft Word", "Excel", "PowerPoint", "Access", "IT Skills"]
   },
   army: {
     titleEn: "Military Service Certificate - Data Entry & Accountant", titleAr: "شهادة الخدمة الوطنية - محاسب ومدخل بيانات",
     images: ["Army1.png", "Army2.png"],
-    descEn: "Completion of military service with excellence in data entry and accounting roles. Responsible for managing financial records and data processing at the Egyptian Ministry of Interior (Police).",
-    descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة. مسؤول عن إدارة السجلات المالية ومعالجة البيانات في وزارة الداخلية المصرية (الشرطة).",
+    descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior.",
+    descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية.",
     tech: ["Data Entry", "Accounting", "Financial Records", "Data Processing"]
   }
 };
 
-function openProjectModal(projectId, lang = currentLang) {
+function openProjectModal(projectId) {
   const p = projectDetails[projectId];
   if(!p) return;
   const modal = document.getElementById('projectModal');
   const body = document.getElementById('modalBody');
+  const isAr = currentLang === 'ar';
   let imagesHtml = '';
-  for(let img of p.images) imagesHtml += `<img src="${img}?v=1" class="modal-img" alt="Project Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
+  for(let img of p.images) imagesHtml += `<img src="${img}?v=${Date.now()}" class="modal-img" alt="Project Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
   let techHtml = '';
   for(let t of p.tech) techHtml += `<span class="tb">${t}</span>`;
-  const title = lang === 'ar' ? p.titleAr : p.titleEn;
-  const desc = lang === 'ar' ? p.descAr : p.descEn;
+  const title = isAr ? p.titleAr : p.titleEn;
+  const desc = isAr ? p.descAr : p.descEn;
   body.innerHTML = `
     <h2 class="modal-title">🚀 ${title}</h2>
     ${imagesHtml}
-    <div class="modal-desc"><strong>📋 ${lang === 'ar' ? 'نظرة عامة على المشروع:' : 'Project Overview:'}</strong><br><br>${desc.replace(/\n/g,'<br>')}</div>
-    <div class="modal-tech"><strong>🛠 ${lang === 'ar' ? 'التقنيات المستخدمة:' : 'Technologies Used:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
+    <div class="modal-desc"><strong>📋 ${isAr ? 'نظرة عامة على المشروع:' : 'Project Overview:'}</strong><br><br>${desc}</div>
+    <div class="modal-tech"><strong>🛠 ${isAr ? 'التقنيات المستخدمة:' : 'Technologies Used:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
   `;
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 
-function openCertModal(certId, lang = currentLang) {
+function openCertModal(certId) {
   const c = certDetails[certId];
   if(!c) return;
   const modal = document.getElementById('projectModal');
   const body = document.getElementById('modalBody');
+  const isAr = currentLang === 'ar';
   let imagesHtml = '';
-  for(let img of c.images) imagesHtml += `<img src="${img}?v=1" class="modal-img" alt="Certificate Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
+  for(let img of c.images) imagesHtml += `<img src="${img}?v=${Date.now()}" class="modal-img" alt="Certificate Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
   let techHtml = '';
   for(let t of c.tech) techHtml += `<span class="tb">${t}</span>`;
-  const title = lang === 'ar' ? c.titleAr : c.titleEn;
-  const desc = lang === 'ar' ? c.descAr : c.descEn;
+  const title = isAr ? c.titleAr : c.titleEn;
+  const desc = isAr ? c.descAr : c.descEn;
   body.innerHTML = `
     <h2 class="modal-title">📜 ${title}</h2>
     ${imagesHtml}
-    <div class="modal-desc"><strong>📋 ${lang === 'ar' ? 'تفاصيل الشهادة:' : 'Certificate Details:'}</strong><br><br>${desc.replace(/\n/g,'<br>')}</div>
-    <div class="modal-tech"><strong>🛠 ${lang === 'ar' ? 'المهارات المكتسبة:' : 'Skills Covered:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
+    <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل الشهادة:' : 'Certificate Details:'}</strong><br><br>${desc}</div>
+    <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات المكتسبة:' : 'Skills Covered:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
   `;
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -661,73 +668,65 @@ function updateLanguageUI() {
   const isAr = currentLang === 'ar';
   langBtn.innerHTML = isAr ? 'En' : 'Ar';
   
-  // Hero section
   document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
   document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
-  document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.';
+  document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling.';
   document.getElementById('projectsBtn').innerHTML = isAr ? 'استعراض المشاريع' : 'View Projects';
   document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية' : '<i class="fas fa-file-pdf"></i> Download CV';
   
-  // Stats
   document.getElementById('stat1Label').innerHTML = isAr ? 'مشاريع' : 'Projects';
   document.getElementById('stat2Label').innerHTML = isAr ? 'سنوات خبرة' : 'Years Exp.';
   document.getElementById('stat3Label').innerHTML = isAr ? 'أدوات' : 'Tools';
   document.getElementById('stat4Label').innerHTML = isAr ? 'قائم على البيانات' : 'Data Driven';
   
-  // Skills
   document.getElementById('expertiseLabel').innerHTML = isAr ? 'الخبرات' : 'Expertise';
   document.getElementById('skillsTitle').innerHTML = isAr ? 'المهارات التقنية' : 'Technical Skills';
   document.getElementById('skill1Name').innerHTML = isAr ? 'إكسل' : 'Excel';
-  document.getElementById('skill1Sub').innerHTML = isAr ? 'جداول محورية · VBA · دوال' : 'Pivot · VBA · Functions';
   document.getElementById('skill2Name').innerHTML = isAr ? 'باور بي آي' : 'Power BI';
-  document.getElementById('skill2Sub').innerHTML = isAr ? 'DAX · Power Query' : 'DAX · Power Query';
   document.getElementById('skill3Name').innerHTML = isAr ? 'بايثون' : 'Python';
-  document.getElementById('skill3Sub').innerHTML = isAr ? 'Pandas · Matplotlib · Seaborn' : 'Pandas · Matplotlib · Seaborn';
   document.getElementById('skill4Name').innerHTML = isAr ? 'تابلو' : 'Tableau';
-  document.getElementById('skill4Sub').innerHTML = isAr ? 'لوحات تحكم · سرد قصصي' : 'Dashboards · Storytelling';
   document.getElementById('skill5Name').innerHTML = isAr ? 'SQL وإدارة قواعد البيانات' : 'SQL & Database Management';
-  document.getElementById('skill5Sub').innerHTML = isAr ? 'MySQL · PostgreSQL · BigQuery' : 'MySQL · PostgreSQL · BigQuery';
   document.getElementById('skill6Name').innerHTML = isAr ? 'التحليل الإحصائي' : 'Statistical Analysis';
-  document.getElementById('skill6Sub').innerHTML = isAr ? 'اختبار الفرضيات · الانحدار' : 'Hypothesis Testing · Regression';
   document.getElementById('skill7Name').innerHTML = isAr ? 'النمذجة التنبؤية' : 'Predictive Modeling';
-  document.getElementById('skill7Sub').innerHTML = isAr ? 'Scikit-learn · XGBoost · تعلم آلة' : 'Scikit-learn · XGBoost · ML';
   document.getElementById('skill8Name').innerHTML = isAr ? 'مايكروسوفت أوفيس (ICDL)' : 'Microsoft Office (ICDL)';
-  document.getElementById('skill8Sub').innerHTML = isAr ? 'وورد · باوربوينت · آوتلوك' : 'Word · PowerPoint · Outlook';
   
-  // Experience
   document.getElementById('expLabel').innerHTML = isAr ? 'الخبرات' : 'Experience';
   document.getElementById('expTitle').innerHTML = isAr ? 'الخبرة العملية' : 'Work Experience';
-  document.getElementById('exp1Title').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
-  document.getElementById('exp1Company').innerHTML = isAr ? 'إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)' : 'International Marathon United Technology (IMUT)';
-  document.getElementById('exp1Date').innerHTML = isAr ? 'أكتوبر 2024 – حتى الآن | القاهرة، مصر' : '10/2024 – present | Cairo, Egypt';
+  
   if(isAr) {
-    document.getElementById('exp1Desc').innerHTML = '<li>قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.</li><li>تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.</li><li>استخراج الرؤى من مجموعات البيانات المعقدة لدفع التحسينات التشغيلية.</li>';
+    document.getElementById('exp1Title').innerHTML = 'محلل بيانات';
+    document.getElementById('exp1Company').innerHTML = 'إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)';
+    document.getElementById('exp1Date').innerHTML = 'أكتوبر 2024 – حتى الآن | القاهرة، مصر';
+    document.getElementById('exp1Desc').innerHTML = '<li>قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.</li><li>تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.</li><li>استخراج الرؤى من مجموعات البيانات المعقدة.</li>';
     document.getElementById('exp2Title').innerHTML = 'مبيعات';
     document.getElementById('exp2Company').innerHTML = 'لا بوار & أون ذي ران';
     document.getElementById('exp2Date').innerHTML = 'مارس 2024 – سبتمبر 2024 | القاهرة، مصر';
-    document.getElementById('exp2Desc').innerHTML = '<li>زيادة مبيعات الربع الأول بنسبة 20% من خلال استهداف العملاء واستراتيجيات الخدمة الشخصية.</li><li>تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10% باستخدام تحليل بيانات Excel.</li><li>تطوير عروض مبيعات مقنعة حسنت فهم العملاء، مما أدى إلى ارتفاع الرضا ومعدلات الاحتفاظ.</li>';
+    document.getElementById('exp2Desc').innerHTML = '<li>زيادة مبيعات الربع الأول بنسبة 20%.</li><li>تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10%.</li><li>تطوير عروض مبيعات مقنعة.</li>';
     document.getElementById('exp3Title').innerHTML = 'إدخال بيانات / محاسب';
     document.getElementById('exp3Company').innerHTML = 'وزارة الداخلية المصرية';
     document.getElementById('exp3Date').innerHTML = 'يوليو 2022 – مارس 2024 | القاهرة، مصر';
-    document.getElementById('exp3Desc').innerHTML = '<li>إدارة إدخال بيانات لأكثر من 500+ سجل يومياً بدقة 99% من خلال الاهتمام الدقيق بالتفاصيل.</li><li>إدارة المعاملات المالية وإنشاء تقارير مفصلة، تقليل الأخطاء بنسبة 5% وتحسين التتبع المالي.</li><li>تبسيط جمع البيانات، تحسين الكفاءة التشغيلية عبر الإدارات.</li>';
+    document.getElementById('exp3Desc').innerHTML = '<li>إدارة إدخال بيانات لأكثر من 500+ سجل يومياً بدقة 99%.</li><li>إدارة المعاملات المالية وإنشاء تقارير مفصلة.</li><li>تبسيط جمع البيانات، تحسين الكفاءة التشغيلية.</li>';
     document.getElementById('exp4Title').innerHTML = 'أمين صندوق';
     document.getElementById('exp4Company').innerHTML = 'مطعم';
     document.getElementById('exp4Date').innerHTML = 'يناير 2020 – يونيو 2022 | القاهرة، مصر';
-    document.getElementById('exp4Desc').innerHTML = '<li>التعامل مع المعاملات اليومية، وضمان الدقة وخدمة العملاء الممتازة.</li><li>إدارة درج النقد ودعم عمليات مراقبة المخزون.</li>';
+    document.getElementById('exp4Desc').innerHTML = '<li>التعامل مع المعاملات اليومية، وضمان الدقة وخدمة العملاء.</li><li>إدارة درج النقد ودعم عمليات مراقبة المخزون.</li>';
     document.getElementById('exp5Title').innerHTML = 'طاهي';
     document.getElementById('exp5Company').innerHTML = 'مطعم';
     document.getElementById('exp5Date').innerHTML = 'فبراير 2016 – ديسمبر 2019 | القاهرة، مصر';
-    document.getElementById('exp5Desc').innerHTML = '<li>تحضير وطهي الوجبات باتباع الوصفات، وضمان معايير الجودة والنظافة.</li><li>المساعدة في إدارة المطبخ ومراقبة المخزون.</li>';
+    document.getElementById('exp5Desc').innerHTML = '<li>تحضير وطهي الوجبات باتباع الوصفات.</li><li>المساعدة في إدارة المطبخ ومراقبة المخزون.</li>';
   } else {
-    document.getElementById('exp1Desc').innerHTML = '<li>Leading data analytics initiatives to support business decisions.</li><li>Developing dashboards and reports using Power BI and Python.</li><li>Extracting insights from complex datasets to drive operational improvements.</li>';
+    document.getElementById('exp1Title').innerHTML = 'Data Analyst';
+    document.getElementById('exp1Company').innerHTML = 'International Marathon United Technology (IMUT)';
+    document.getElementById('exp1Date').innerHTML = '10/2024 – present | Cairo, Egypt';
+    document.getElementById('exp1Desc').innerHTML = '<li>Leading data analytics initiatives to support business decisions.</li><li>Developing dashboards and reports using Power BI and Python.</li><li>Extracting insights from complex datasets.</li>';
     document.getElementById('exp2Title').innerHTML = 'Sales';
     document.getElementById('exp2Company').innerHTML = 'la poire & On The Run';
     document.getElementById('exp2Date').innerHTML = '03/2024 – 09/2024 | Cairo, Egypt';
-    document.getElementById('exp2Desc').innerHTML = '<li>Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.</li><li>Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.</li><li>Developed compelling sales presentations that improved customer understanding, leading to higher satisfaction and retention rates.</li>';
+    document.getElementById('exp2Desc').innerHTML = '<li>Increased Q1 sales by 20%.</li><li>Optimized stock levels, reducing excess inventory by 10%.</li><li>Developed compelling sales presentations.</li>';
     document.getElementById('exp3Title').innerHTML = 'Data Entry / Accountant';
     document.getElementById('exp3Company').innerHTML = 'Egyptian Ministry of Interior';
     document.getElementById('exp3Date').innerHTML = '07/2022 – 03/2024 | Cairo, Egypt';
-    document.getElementById('exp3Desc').innerHTML = '<li>Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.</li><li>Managed financial transactions and generated detailed reports, reducing errors by 5% and improving financial tracking.</li><li>Streamlined data collection, improving operational efficiency across departments.</li>';
+    document.getElementById('exp3Desc').innerHTML = '<li>Managed data entry of 500+ records daily with 99% accuracy.</li><li>Managed financial transactions and generated detailed reports.</li><li>Streamlined data collection, improving operational efficiency.</li>';
     document.getElementById('exp4Title').innerHTML = 'Cashier';
     document.getElementById('exp4Company').innerHTML = 'Restaurant';
     document.getElementById('exp4Date').innerHTML = '01/2020 – 06/2022 | Cairo, Egypt';
@@ -735,46 +734,23 @@ function updateLanguageUI() {
     document.getElementById('exp5Title').innerHTML = 'Chef';
     document.getElementById('exp5Company').innerHTML = 'Restaurant';
     document.getElementById('exp5Date').innerHTML = '02/2016 – 12/2019 | Cairo, Egypt';
-    document.getElementById('exp5Desc').innerHTML = '<li>Prepared and cooked meals following recipes, ensuring quality and hygiene standards.</li><li>Assisted in kitchen management and inventory control.</li>';
+    document.getElementById('exp5Desc').innerHTML = '<li>Prepared and cooked meals following recipes.</li><li>Assisted in kitchen management and inventory control.</li>';
   }
   
-  // Certifications
   document.getElementById('certsLabel').innerHTML = isAr ? 'الشهادات' : 'Certifications';
   document.getElementById('certsTitle').innerHTML = isAr ? 'الدورات والشهادات' : 'Courses & Certificates';
   document.getElementById('cert1Title').innerHTML = isAr ? 'تحليل البيانات' : 'Data Analysis';
-  document.getElementById('cert1Issuer').innerHTML = isAr ? 'مبادرة رواد مصر الرقمية - DEPI' : 'Digital Egypt Pioneers Initiative - DEPI';
-  document.getElementById('cert1Date').innerHTML = isAr ? 'أبريل 2024 – أكتوبر 2024 | القاهرة، مصر' : '04/2024 – 10/2024 | Cairo, Egypt';
-  document.getElementById('cert1Desc').innerHTML = isAr ? 'تحليل البيانات باستخدام Excel و Power BI و Tableau · SQL وإدارة قواعد البيانات · R studio · النمذجة التنبؤية' : 'Data analysis using Excel, Power BI, and Tableau · PowerBI · SQL & Database Management · R studio · Predictive Modeling';
   document.getElementById('cert2Title').innerHTML = isAr ? 'باور بي آي' : 'Power BI';
-  document.getElementById('cert2Issuer').innerHTML = isAr ? 'مايكروسوفت / Maven Analytics' : 'Microsoft / Maven Analytics';
-  document.getElementById('cert2Date').innerHTML = isAr ? '2023 – 2024 | القاهرة، مصر' : '2023 – 2024 | Cairo, Egypt';
-  document.getElementById('cert2Desc').innerHTML = isAr ? 'خبير في Power BI و DAX و Power Query ونمذجة البيانات. (بالإضافة إلى شهادة Maven Analytics)' : 'Expert in Power BI, DAX, Power Query, and data modeling. (Plus Maven Analytics certificate)';
   document.getElementById('cert3Title').innerHTML = isAr ? 'ICDL' : 'ICDL';
-  document.getElementById('cert3Issuer').innerHTML = isAr ? 'جامعة الأزهر' : 'Al-Azhar University';
-  document.getElementById('cert3Date').innerHTML = isAr ? 'مايو 2019 – سبتمبر 2019 | القاهرة، مصر' : '05/2019 – 09/2019 | Cairo, Egypt';
-  document.getElementById('cert3Desc').innerHTML = isAr ? 'إتقان Microsoft Office (Word، Excel، PowerPoint، Access) · مهارات تكنولوجيا المعلومات الأساسية، استخدام الإنترنت، وأمن الحاسوب' : 'Proficient in Microsoft Office (Word, Excel, PowerPoint, Access) · Basic IT skills, internet usage, and computer security';
-  document.getElementById('cert4Title').innerHTML = isAr ? 'شهادة الخدمة الوطنية - محاسب ومدخل بيانات' : 'Military Service Certificate - Data Entry & Accountant';
-  document.getElementById('cert4Issuer').innerHTML = isAr ? 'وزارة الداخلية المصرية (الشرطة)' : 'Egyptian Ministry of Interior (Police)';
-  document.getElementById('cert4Date').innerHTML = isAr ? '2022 – 2024 | القاهرة، مصر' : '2022 – 2024 | Cairo, Egypt';
-  document.getElementById('cert4Desc').innerHTML = isAr ? 'إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة. مسؤول عن إدارة السجلات المالية ومعالجة البيانات.' : 'Completion of military service with excellence in data entry and accounting roles. Responsible for managing financial records and data processing.';
+  document.getElementById('cert4Title').innerHTML = isAr ? 'شهادة الخدمة الوطنية' : 'Military Service Certificate';
   
-  // Projects
   document.getElementById('workLabel').innerHTML = isAr ? 'أعمال' : 'Work';
   document.getElementById('projectsTitle').innerHTML = isAr ? 'المشاريع المميزة' : 'Featured Projects';
-  document.getElementById('proj1Tag').innerHTML = isAr ? 'إكسل' : 'Excel';
   document.getElementById('proj1Title').innerHTML = isAr ? 'تحليل مبيعات السوق' : 'Market Sales Analysis';
-  document.getElementById('proj1Desc').innerHTML = isAr ? 'تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق المستهدفة وجهود اكتساب العملاء.' : 'Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.';
-  document.getElementById('proj2Tag').innerHTML = isAr ? 'بايثون وإكسل' : 'Python & Excel';
   document.getElementById('proj2Title').innerHTML = isAr ? 'تحليل حوادث الطرق' : 'Road Accident Analysis';
-  document.getElementById('proj2Desc').innerHTML = isAr ? 'تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث المتوقع.' : 'Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.';
-  document.getElementById('proj3Tag').innerHTML = isAr ? 'تعلم آلة' : 'Machine Learning';
   document.getElementById('proj3Title').innerHTML = isAr ? 'التنبؤ بنجاة التايتانيك' : 'Titanic Survival Prediction';
-  document.getElementById('proj3Desc').innerHTML = isAr ? 'تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات والمعالجة المسبقة.' : 'Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.';
-  document.getElementById('proj4Tag').innerHTML = isAr ? 'تابلو' : 'Tableau';
   document.getElementById('proj4Title').innerHTML = isAr ? 'تحليل بيانات الرحلات الجوية' : 'Flight Airplane Data Analysis';
-  document.getElementById('proj4Desc').innerHTML = isAr ? 'تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء في الوقت المحدد بنسبة 10%.' : 'Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.';
   
-  // Contact and Footer
   document.getElementById('contactTitle').innerHTML = isAr ? 'لنعمل معاً' : 'Let\'s work together';
   document.getElementById('contactSub').innerHTML = isAr ? 'متاح للمشاريع المستقلة والوظائف بدوام كامل' : 'Available for freelance projects & full-time roles';
   document.getElementById('callBtn').innerHTML = isAr ? '<i class="fas fa-phone-alt"></i> اتصل بي' : '<i class="fas fa-phone-alt"></i> Call Me';
@@ -784,7 +760,6 @@ function updateLanguageUI() {
   document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · ملف أعمال محلل بيانات ٢٠٢٥ · صنع بـ <i class="fas fa-heart"></i>' : 'Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i>';
   document.getElementById('openToWork').innerHTML = isAr ? 'متاح للعمل' : 'Open to work';
   
-  // Navigation Menu
   const navMap = {
     home: isAr ? '🏠 الرئيسية' : '🏠 Home',
     skills: isAr ? '📊 المهارات' : '📊 Skills',
@@ -800,7 +775,6 @@ function updateLanguageUI() {
   document.getElementById('navProjects').innerHTML = navMap.projects;
   document.getElementById('navContact').innerHTML = navMap.contact;
   
-  // Direction
   if(isAr) document.getElementById('app').setAttribute('dir', 'rtl');
   else document.getElementById('app').removeAttribute('dir');
 }
@@ -811,7 +785,6 @@ function toggleLanguage() {
 }
 langBtn.addEventListener('click', toggleLanguage);
 
-// Mobile adjustments
 function adjustForMobile() {
   const isMobile = window.innerWidth < 768;
   const btns = document.querySelectorAll('.btn-p, .btn-o, .cbtn, .nav-link, .lang-btn, .theme-toggle');
