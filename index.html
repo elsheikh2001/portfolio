@@ -1001,15 +1001,16 @@
     </div>
 
     <script>
-        // ================ البيانات ================
-        // المشاريع مع مسارات الصور (سيتم فحصها تلقائياً)
+        // ================ البيانات الكاملة ================
+        
+        // المشاريع
         const projectDetails = {
             marketSales: {
                 titleEn: "Market Sales Analysis",
                 titleAr: "تحليل مبيعات السوق",
                 images: ["supermarket.png", "supermarket_dash.png", "sales_chart.png"],
                 descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
-                descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق.",
+                descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق المستهدفة وجهود اكتساب العملاء.",
                 tech: ["Excel", "Pivot Tables", "Data Visualization"]
             },
             roadAccident: {
@@ -1017,7 +1018,7 @@
                 titleAr: "تحليل حوادث الطرق",
                 images: ["Roadaccident.png", "accident_dashboard.png", "accident_heatmap.png"],
                 descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
-                descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث.",
+                descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث المتوقع.",
                 tech: ["Python", "Pandas", "Excel", "Dashboard"]
             },
             titanic: {
@@ -1025,7 +1026,7 @@
                 titleAr: "التنبؤ بنجاة التايتانيك",
                 images: ["Titanic.png", "titanic_ml.png", "titanic_powerbi.png"],
                 descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
-                descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات.",
+                descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات والمعالجة المسبقة.",
                 tech: ["Python", "Scikit-learn", "Power BI", "Pandas"]
             },
             flightData: {
@@ -1033,12 +1034,12 @@
                 titleAr: "تحليل بيانات الرحلات الجوية",
                 images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
                 descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
-                descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء بنسبة 10%.",
+                descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء في المواعيد بنسبة 10%.",
                 tech: ["Python", "Tableau", "Data Cleaning"]
             }
         };
 
-        // الشهادات - نفس هيكل المشاريع (مع صور مصغرة)
+        // الشهادات
         const certDetails = {
             depi: {
                 titleEn: "Data Analysis Certificate - DEPI",
@@ -1047,62 +1048,144 @@
                 descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling.",
                 descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية.",
                 tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"],
-                issuerEn: "Digital Egypt Pioneers Initiative",
-                issuerAr: "مبادرة رواد مصر الرقمية"
+                issuerEn: "Digital Egypt Pioneers Initiative (DEPI)",
+                issuerAr: "مبادرة رواد مصر الرقمية (DEPI)",
+                dateEn: "04/2024 – 10/2024 | Cairo, Egypt",
+                dateAr: "أبريل 2024 – أكتوبر 2024 | القاهرة، مصر"
             },
             powerbi: {
-                titleEn: "Power BI Certificates",
-                titleAr: "شهادات Power BI",
+                titleEn: "Power BI Certificate",
+                titleAr: "شهادة Power BI",
                 images: ["PowerBi.png", "PowerBimaven.png", "pbi_advanced.png"],
-                descEn: "Microsoft Power BI Data Analyst certification and Maven Analytics Power BI certificate.",
-                descAr: "شهادة محلل بيانات Power BI من مايكروسوفت وشهادة Power BI من Maven Analytics.",
+                descEn: "Power BI certificate from Maven Analytics. Expert in Power BI, DAX, Power Query, and data modeling.",
+                descAr: "شهادة Power BI من Maven Analytics. خبير في Power BI و DAX و Power Query ونمذجة البيانات.",
                 tech: ["Power BI", "DAX", "Power Query", "Data Modeling"],
-                issuerEn: "Microsoft / Maven Analytics",
-                issuerAr: "مايكروسوفت / Maven Analytics"
+                issuerEn: "Maven Analytics",
+                issuerAr: "Maven Analytics",
+                dateEn: "10/2024 | Maven Analytics",
+                dateAr: "أكتوبر 2024 | Maven Analytics"
             },
             icdl: {
                 titleEn: "ICDL Certificate",
                 titleAr: "شهادة ICDL",
                 images: ["ICDL.png", "icdl_office.png"],
-                descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office (Word, Excel, PowerPoint, Access).",
-                descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office.",
+                descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office (Word, Excel, PowerPoint, Access), basic IT skills, internet usage, and computer security.",
+                descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office (Word، Excel، PowerPoint، Access)، ومهارات تكنولوجيا المعلومات الأساسية، واستخدام الإنترنت، وأمن الكمبيوتر.",
                 tech: ["Microsoft Word", "Excel", "PowerPoint", "Access", "IT Skills"],
                 issuerEn: "Al-Azhar University",
-                issuerAr: "جامعة الأزهر"
+                issuerAr: "جامعة الأزهر",
+                dateEn: "07/2020 – 08/2020 | Cairo, Egypt",
+                dateAr: "يوليو 2020 – أغسطس 2020 | القاهرة، مصر"
             },
             army: {
                 titleEn: "Military Service Certificate - Data Entry & Accountant",
                 titleAr: "شهادة الخدمة الوطنية - محاسب ومدخل بيانات",
                 images: ["Army1.png", "Army2.png", "army_account.jpg"],
-                descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior.",
-                descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية.",
+                descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior (Police). Responsible for managing financial records and data processing.",
+                descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية (الشرطة). مسؤول عن إدارة السجلات المالية ومعالجة البيانات.",
                 tech: ["Data Entry", "Accounting", "Financial Records", "Data Processing"],
-                issuerEn: "Egyptian Ministry of Interior",
-                issuerAr: "وزارة الداخلية المصرية"
+                issuerEn: "Egyptian Ministry of Interior (Police)",
+                issuerAr: "وزارة الداخلية المصرية (الشرطة)",
+                dateEn: "07/2022 – 03/2024 | Cairo, Egypt",
+                dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر"
             }
         };
 
+        // المهارات
         const skillsData = [
             { name: "Excel", nameAr: "إكسل", percent: 92, icon: "fas fa-file-excel", sub: "Pivot · VBA · Functions", subAr: "بيفوت · VBA · دوال", color: "#1d7240" },
             { name: "Power BI", nameAr: "باور بي آي", percent: 80, icon: "fas fa-chart-line", sub: "DAX · Power Query", subAr: "DAX · Power Query", color: "#f2c811" },
             { name: "Python", nameAr: "بايثون", percent: 90, icon: "fab fa-python", sub: "Pandas · Matplotlib · Seaborn", subAr: "Pandas · Matplotlib · Seaborn", color: "#306998" },
             { name: "Tableau", nameAr: "تابلو", percent: 75, icon: "fas fa-chart-pie", sub: "Dashboards · Storytelling", subAr: "لوحات تحكم · سرد قصصي", color: "#e97627" },
-            { name: "SQL", nameAr: "SQL وإدارة قواعد البيانات", percent: 85, icon: "fas fa-database", sub: "MySQL · PostgreSQL · BigQuery", subAr: "MySQL · PostgreSQL · BigQuery", color: "#f29111" },
+            { name: "SQL & Database Management", nameAr: "SQL وإدارة قواعد البيانات", percent: 85, icon: "fas fa-database", sub: "MySQL · PostgreSQL · BigQuery", subAr: "MySQL · PostgreSQL · BigQuery", color: "#f29111" },
             { name: "Statistical Analysis", nameAr: "التحليل الإحصائي", percent: 78, icon: "fas fa-chart-simple", sub: "Hypothesis Testing · Regression", subAr: "اختبار الفرضيات · الانحدار", color: "#276dc3" },
             { name: "Predictive Modeling", nameAr: "النمذجة التنبؤية", percent: 82, icon: "fas fa-brain", sub: "Scikit-learn · XGBoost · ML", subAr: "Scikit-learn · XGBoost · تعلم آلة", color: "#9b59b6" },
-            { name: "Microsoft Office", nameAr: "مايكروسوفت أوفيس (ICDL)", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Outlook", subAr: "وورد · باوربوينت · أوتلوك", color: "#e67e22" }
+            { name: "Microsoft Office (ICDL)", nameAr: "مايكروسوفت أوفيس (ICDL)", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Outlook", subAr: "وورد · باوربوينت · أوتلوك", color: "#e67e22" }
         ];
 
+        // الخبرات العملية (بعد التعديل - دمج الكاشير والمحاسب)
         const experienceData = [
-            { title: "Data Analyst", titleAr: "محلل بيانات", company: "International Marathon United Technology (IMUT)", companyAr: "إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)", date: "10/2024 – present | Cairo, Egypt", dateAr: "أكتوبر 2024 – حتى الآن | القاهرة، مصر", icon: "fas fa-chart-line", desc: ["Leading data analytics initiatives to support business decisions.", "Developing dashboards and reports using Power BI and Python.", "Extracting insights from complex datasets to drive operational improvements."], descAr: ["قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.", "تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.", "استخراج الرؤى من مجموعات البيانات المعقدة."] },
-            { title: "Sales", titleAr: "مبيعات", company: "la poire & On The Run", companyAr: "لا بوار & أون ذي ران", date: "03/2024 – 09/2024 | Cairo, Egypt", dateAr: "مارس 2024 – سبتمبر 2024 | القاهرة، مصر", icon: "fas fa-chart-simple", desc: ["Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.", "Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.", "Developed compelling sales presentations that improved customer understanding."], descAr: ["زيادة مبيعات الربع الأول بنسبة 20% من خلال التواصل المستهدف.", "تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10% باستخدام تحليل بيانات Excel.", "تطوير عروض مبيعات مقنعة."] },
-            { title: "Data Entry / Accountant", titleAr: "إدخال بيانات / محاسب", company: "Egyptian Ministry of Interior", companyAr: "وزارة الداخلية المصرية", date: "07/2022 – 03/2024 | Cairo, Egypt", dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر", icon: "fas fa-database", desc: ["Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.", "Managed financial transactions and generated detailed reports, reducing errors by 5%.", "Streamlined data collection, improving operational efficiency across departments."], descAr: ["إدارة إدخال بيانات لأكثر من 500 سجل يومياً بدقة 99%.", "إدارة المعاملات المالية وإنشاء تقارير مفصلة، تقليل الأخطاء بنسبة 5%.", "تبسيط جمع البيانات، تحسين الكفاءة التشغيلية."] },
-            { title: "Cashier", titleAr: "أمين صندوق", company: "Restaurant", companyAr: "مطعم", date: "01/2020 – 06/2022 | Cairo, Egypt", dateAr: "يناير 2020 – يونيو 2022 | القاهرة، مصر", icon: "fas fa-cash-register", desc: ["Handled daily transactions, ensuring accuracy and excellent customer service.", "Managed cash drawer and supported inventory control processes."], descAr: ["التعامل مع المعاملات اليومية، وضمان الدقة وخدمة العملاء.", "إدارة درج النقد ودعم عمليات مراقبة المخزون."] },
-            { title: "Chef", titleAr: "طاهي", company: "Restaurant", companyAr: "مطعم", date: "02/2016 – 12/2019 | Cairo, Egypt", dateAr: "فبراير 2016 – ديسمبر 2019 | القاهرة، مصر", icon: "fas fa-utensils", desc: ["Prepared and cooked meals following recipes, ensuring quality and hygiene standards.", "Assisted in kitchen management and inventory control."], descAr: ["تحضير وطهي الوجبات باتباع الوصفات، ضمان الجودة والنظافة.", "المساعدة في إدارة المطبخ ومراقبة المخزون."] }
+            { 
+                title: "Data Analyst", 
+                titleAr: "محلل بيانات", 
+                company: "International Marathon United Technology (IMUT)", 
+                companyAr: "إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)", 
+                date: "10/2024 – present | Cairo, Egypt", 
+                dateAr: "أكتوبر 2024 – حتى الآن | القاهرة، مصر", 
+                icon: "fas fa-chart-line", 
+                desc: [
+                    "Leading data analytics initiatives to support business decisions.",
+                    "Developing dashboards and reports using Power BI and Python.",
+                    "Extracting insights from complex datasets to drive operational improvements."
+                ], 
+                descAr: [
+                    "قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.",
+                    "تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.",
+                    "استخراج الرؤى من مجموعات البيانات المعقدة لدفع التحسينات التشغيلية."
+                ] 
+            },
+            { 
+                title: "Sales", 
+                titleAr: "مبيعات", 
+                company: "la poire & On The Run", 
+                companyAr: "لا بوار & أون ذي ران", 
+                date: "03/2024 – 09/2024 | Cairo, Egypt", 
+                dateAr: "مارس 2024 – سبتمبر 2024 | القاهرة، مصر", 
+                icon: "fas fa-chart-simple", 
+                desc: [
+                    "Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.",
+                    "Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.",
+                    "Developed compelling sales presentations that improved customer understanding, leading to higher satisfaction and retention rates."
+                ], 
+                descAr: [
+                    "زيادة مبيعات الربع الأول بنسبة 20% من خلال التواصل المستهدف مع العملاء واستراتيجيات الخدمة المخصصة.",
+                    "تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10% باستخدام تحليل بيانات Excel.",
+                    "تطوير عروض مبيعات مقنعة أدت إلى تحسين فهم العملاء، مما أدى إلى زيادة الرضا ومعدلات الاحتفاظ."
+                ] 
+            },
+            { 
+                title: "Data Entry / Accountant", 
+                titleAr: "إدخال بيانات / محاسب", 
+                company: "Egyptian Ministry of Interior", 
+                companyAr: "وزارة الداخلية المصرية", 
+                date: "07/2022 – 03/2024 | Cairo, Egypt", 
+                dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر", 
+                icon: "fas fa-database", 
+                desc: [
+                    "Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.",
+                    "Managed financial transactions and generated detailed reports, reducing errors by 5% and improving financial tracking.",
+                    "Streamlined data collection, improving operational efficiency across departments."
+                ], 
+                descAr: [
+                    "إدارة إدخال بيانات لأكثر من 500 سجل يومياً بدقة 99% من خلال ضمان الاهتمام الدقيق بالتفاصيل.",
+                    "إدارة المعاملات المالية وإنشاء تقارير مفصلة، تقليل الأخطاء بنسبة 5% وتحسين التتبع المالي.",
+                    "تبسيط جمع البيانات، تحسين الكفاءة التشغيلية عبر الأقسام."
+                ] 
+            },
+            { 
+                title: "Cashier & Accountant", 
+                titleAr: "كاشير ومحاسب", 
+                company: "Restaurant & Accounting Office", 
+                companyAr: "مطعم ومكتب محاسبة", 
+                date: "02/2016 – 06/2022 | Cairo, Egypt", 
+                dateAr: "فبراير 2016 – يونيو 2022 | القاهرة، مصر", 
+                icon: "fas fa-calculator", 
+                desc: [
+                    "Managed daily cash transactions, ensuring accuracy and excellent customer service.",
+                    "Prepared financial reports and managed accounts receivable/payable.",
+                    "Assisted in inventory control and monthly reconciliations.",
+                    "Handled data entry of financial records with high accuracy."
+                ], 
+                descAr: [
+                    "إدارة المعاملات النقدية اليومية، ضمان الدقة وخدمة العملاء الممتازة.",
+                    "إعداد التقارير المالية وإدارة حسابات المدينين والدائنين.",
+                    "المساعدة في مراقبة المخزون والتسويات الشهرية.",
+                    "إدخال البيانات المالية بدقة عالية."
+                ] 
+            }
         ];
 
         // ================ نظام AI لفحص الصور ================
-        // هذه الدالة تختبر الصور وتعيد فقط الصور الصالحة (التي تظهر بشكل صحيح)
         async function validateImage(url) {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -1126,7 +1209,7 @@
         // ================ متغيرات عامة ================
         let currentLang = 'en';
         let currentModalData = { images: [], currentIndex: 0 };
-        let cachedValidImages = {}; // لتخزين الصور الصالحة بعد الفحص
+        let cachedValidImages = {};
 
         // ================ دوال مساعدة ================
         function scrollToSection(sectionId) {
@@ -1169,7 +1252,6 @@
             const container = document.getElementById('certsGrid');
             const isAr = currentLang === 'ar';
             
-            // فحص الصور لكل شهادة
             for (const key of Object.keys(certDetails)) {
                 if (!cachedValidImages[`cert_${key}`]) {
                     const validImages = await filterValidImages(certDetails[key].images);
@@ -1193,6 +1275,7 @@
                             <div class="ptag">${isAr ? 'شهادة معتمدة' : 'Certificate'}</div>
                             <div class="ptitle">${isAr ? cert.titleAr : cert.titleEn}</div>
                             <div class="pdesc">${isAr ? cert.issuerAr : cert.issuerEn}</div>
+                            <div class="exp-date" style="margin-top: 5px;">${isAr ? cert.dateAr : cert.dateEn}</div>
                         </div>
                         <div class="pf">
                             ${cert.tech.slice(0, 3).map(t => `<span class="tb">${t}</span>`).join('')}
@@ -1206,7 +1289,6 @@
             const container = document.getElementById('projectsContainer');
             const isAr = currentLang === 'ar';
             
-            // فحص الصور لكل مشروع
             for (const key of Object.keys(projectDetails)) {
                 if (!cachedValidImages[`proj_${key}`]) {
                     const validImages = await filterValidImages(projectDetails[key].images);
@@ -1301,7 +1383,6 @@
             if (!p) return;
             const isAr = currentLang === 'ar';
             
-            // استخدام الصور الصالحة فقط
             let validImages = p.validImages;
             if (!validImages) {
                 validImages = await filterValidImages(p.images);
@@ -1331,7 +1412,6 @@
             if (!c) return;
             const isAr = currentLang === 'ar';
             
-            // استخدام الصور الصالحة فقط
             let validImages = c.validImages;
             if (!validImages) {
                 validImages = await filterValidImages(c.images);
@@ -1348,8 +1428,8 @@
             modalBody.innerHTML = `
                 <h2 class="modal-title">📜 ${title}</h2>
                 ${galleryHtml}
-                <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل:' : 'Details:'}</strong><br><br>${desc}</div>
-                <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات:' : 'Skills:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
+                <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل الشهادة:' : 'Certificate Details:'}</strong><br><br>${desc}</div>
+                <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات المكتسبة:' : 'Skills Covered:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
             `;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -1368,7 +1448,7 @@
             document.getElementById('langBtn').innerHTML = isAr ? 'En' : 'Ar';
             document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
             document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
-            document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling.';
+            document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية لدفع القرارات المبنية على البيانات.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.';
             document.getElementById('projectsBtn').innerHTML = isAr ? 'استعراض المشاريع' : 'View Projects';
             document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية' : '<i class="fas fa-file-pdf"></i> Download CV';
             document.getElementById('stat1Label').innerHTML = isAr ? 'مشاريع' : 'Projects';
