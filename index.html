@@ -1,800 +1,1471 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>أحمد رجب - محلل بيانات</title>
+    <title>Ahmed Ragab - Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    #app{
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        transition:background .4s,color .4s;
-        min-height:100vh;
-    }
-    #app.dark{
-      --bg:#0a0a0f;
-      --surface:#111118;
-      --surface2:#1a1a24;
-      --brd:#2a2a3a;
-      --acc:#00d4aa;
-      --acc2:#7c6aff;
-      --text:#e8e8f0;
-      --muted:#888899;
-      --card:#14141e;
-    }
-    #app.light{
-      --bg:#f0f4ff;
-      --surface:#ffffff;
-      --surface2:#e8edf8;
-      --brd:#cdd5f0;
-      --acc:#0066ff;
-      --acc2:#7c3aed;
-      --text:#1a1a2e;
-      --muted:#5a6080;
-      --card:#ffffff;
-    }
-    #app{background:var(--bg);color:var(--text)}
-    
-    /* Navigation */
-    nav{
-        background:var(--surface);
-        border-bottom:1px solid var(--brd);
-        padding:0 1.5rem;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        height:56px;
-        position:sticky;
-        top:0;
-        z-index:1000;
-        backdrop-filter:blur(10px);
-        background:var(--surface);
-    }
-    .nav-links{
-        display:flex;
-        gap:1.5rem;
-        align-items:center;
-    }
-    .nav-link{
-        background:transparent;
-        border:none;
-        color:var(--muted);
-        font-size:.8rem;
-        font-weight:600;
-        cursor:pointer;
-        transition:all .2s;
-        padding:5px 0;
-        letter-spacing:.05em;
-        white-space:nowrap;
-    }
-    .nav-link:hover{color:var(--acc)}
-    .nav-link.active{color:var(--acc);border-bottom:2px solid var(--acc)}
-    .brand{font-size:1.1rem;font-weight:800;letter-spacing:.05em;}
-    .brand span{color:var(--acc)}
-    .nav-r{
-        display:flex;
-        align-items:center;
-        gap:1rem;
-    }
-    .nav-badge{
-        background:var(--acc);
-        color:#fff;
-        font-size:.65rem;
-        font-weight:700;
-        padding:3px 10px;
-        border-radius:20px;
-        letter-spacing:.08em;
-        white-space:nowrap;
-    }
-    .theme-toggle{
-        background:var(--surface2);
-        border:1px solid var(--brd);
-        border-radius:30px;
-        padding:6px 14px;
-        font-size:1.2rem;
-        cursor:pointer;
-        color:var(--text);
-        transition:all .2s;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-    .theme-toggle:hover{background:var(--acc);color:#fff;border-color:var(--acc);}
-    .lang-btn{
-        background:var(--surface2);
-        border:1px solid var(--brd);
-        border-radius:30px;
-        padding:6px 14px;
-        font-size:.75rem;
-        font-weight:600;
-        cursor:pointer;
-        color:var(--text);
-        transition:all .2s;
-    }
-    .lang-btn:hover{background:var(--acc);color:#fff;border-color:var(--acc);}
-    
-    /* Sections */
-    sec{
-        display:block;
-        max-width:1200px;
-        margin:0 auto;
-        padding:2rem 1.5rem 3rem;
-        scroll-margin-top:70px;
-    }
-    .hero{
-        padding:2.5rem 1.5rem 2.5rem;
-        max-width:1200px;
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:1fr auto;
-        gap:2rem;
-        align-items:center;
-        scroll-margin-top:70px;
-    }
-    .hero-tag{
-        display:inline-block;
-        background:color-mix(in srgb,var(--acc) 15%,transparent);
-        border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);
-        color:var(--acc);
-        font-size:.7rem;
-        font-weight:700;
-        letter-spacing:.12em;
-        padding:5px 14px;
-        border-radius:20px;
-        margin-bottom:1.2rem;
-        text-transform:uppercase;
-    }
-    .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;line-height:1.05;margin-bottom:.8rem;}
-    .hero h1 em{color:var(--acc);font-style:normal}
-    .hero p{color:var(--muted);font-size:.9rem;line-height:1.7;max-width:440px;margin-bottom:1.5rem;}
-    .btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-    .btn-p{background:var(--acc);color:#fff;font-weight:700;font-size:.82rem;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;}
-    .btn-p:hover{filter:brightness(1.15);transform:translateY(-2px);}
-    .btn-o{background:transparent;color:var(--text);font-weight:600;font-size:.82rem;padding:12px 28px;border-radius:8px;border:1px solid var(--brd);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
-    .btn-o:hover{border-color:var(--acc);color:var(--acc);}
-    .avatar{width:clamp(100px, 15vw, 130px);height:clamp(100px, 15vw, 130px);border-radius:18px;background:var(--surface2);border:2px solid var(--brd);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .avatar img{width:100%;height:100%;object-fit:cover;}
-    .stats{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-bottom:2rem;}
-    .stat{background:var(--card);border:1px solid var(--brd);padding:1.25rem;text-align:center;transition:all .3s;}
-    .stat:first-child{border-radius:12px 0 0 12px;}
-    .stat:last-child{border-radius:0 12px 12px 0;}
-    .stat-n{font-size:1.7rem;font-weight:800;color:var(--acc);display:block;}
-    .stat-l{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px;display:block;}
-    .slabel{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);margin-bottom:.6rem;}
-    .stitle{font-size:clamp(1.3rem, 4vw, 1.5rem);font-weight:800;margin-bottom:1.5rem;}
-    
-    /* Skills */
-    .skills{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1rem;}
-    .sk{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.1rem;position:relative;overflow:hidden;transition:all .25s;text-align:center;}
-    .sk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--sc,var(--acc));}
-    .sk:hover{border-color:var(--sc,var(--acc));transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.1);}
-    .sk-icon{font-size:2rem;margin-bottom:.6rem;color:var(--sc,var(--acc));}
-    .sk-name{font-weight:700;font-size:.9rem;margin-bottom:.4rem;}
-    .sk-bar{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;margin:.5rem 0;}
-    .sk-fill{height:100%;border-radius:2px;background:var(--sc,var(--acc));}
-    .sk-sub{font-size:.7rem;color:var(--muted);margin-top:.35rem;}
-    
-    /* Projects Grid */
-    .projects{display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:1.5rem;}
-    .pc{background:var(--card);border:1px solid var(--brd);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;}
-    .pc:hover{border-color:var(--acc2);transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,0.15);}
-    .project-img{width:100%;height:clamp(160px, 20vw, 200px);object-fit:cover;background:var(--surface2);transition:transform .3s;}
-    .pc:hover .project-img{transform:scale(1.05);}
-    .ph{padding:1.25rem;}
-    .ptag{display:inline-block;background:color-mix(in srgb,var(--acc2) 15%,transparent);color:var(--acc2);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:.65rem;}
-    .ptitle{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
-    .pdesc{font-size:.82rem;color:var(--muted);line-height:1.6;}
-    .pf{padding:.6rem 1.25rem 1rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:1px solid var(--brd);}
-    .tb{background:var(--surface2);color:var(--muted);font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:6px;border:1px solid var(--brd);transition:all .2s;}
-    .tb:hover{background:var(--acc);color:#fff;border-color:var(--acc);transform:translateY(-1px);}
-    
-    /* Courses (Certifications) */
-    .certs-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:1rem;}
-    .cert-card{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:1.2rem;transition:all .25s;display:flex;gap:1rem;align-items:flex-start;text-decoration:none;color:inherit;cursor:pointer;}
-    .cert-card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 6px 15px rgba(0,0,0,0.1);}
-    .cert-icon{font-size:2rem;color:var(--acc);}
-    .cert-info{flex:1;}
-    .cert-title{font-weight:700;font-size:1rem;margin-bottom:.3rem;}
-    .cert-issuer{font-size:.75rem;color:var(--acc);margin-bottom:.5rem;}
-    .cert-date{font-size:.7rem;color:var(--muted);margin-bottom:.5rem;}
-    .cert-desc{font-size:.75rem;color:var(--muted);line-height:1.5;}
-    
-    /* Experience */
-    .exp-timeline{display:flex;flex-direction:column;gap:1.5rem;}
-    .exp-item{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:1.2rem;transition:all .25s;display:flex;gap:1rem;align-items:flex-start;}
-    .exp-item:hover{border-color:var(--acc);transform:translateX(5px);}
-    .exp-icon{font-size:2rem;color:var(--acc);}
-    .exp-info{flex:1;}
-    .exp-title{font-weight:700;font-size:1rem;margin-bottom:.3rem;}
-    .exp-company{font-size:.75rem;color:var(--acc);margin-bottom:.5rem;}
-    .exp-date{font-size:.7rem;color:var(--muted);margin-bottom:.5rem;}
-    .exp-desc{font-size:.75rem;color:var(--muted);line-height:1.5;list-style-position:inside;padding-left:0;}
-    .exp-desc li{margin-bottom:.3rem;}
-    
-    /* Contact Section */
-    .contact-c{background:var(--card);border:1px solid var(--brd);border-radius:18px;padding:2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;scroll-margin-top:70px;}
-    .ct{font-size:clamp(1.1rem, 4vw, 1.3rem);font-weight:800;margin-bottom:.4rem;}
-    .cs{color:var(--muted);font-size:.85rem;}
-    .cbtns{display:flex;gap:.6rem;flex-wrap:wrap;}
-    .cbtn{background:var(--surface2);border:1px solid var(--brd);color:var(--text);font-size:.78rem;font-weight:600;padding:10px 20px;border-radius:8px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
-    .cbtn:hover,.cbtn.p{background:var(--acc);color:#fff;border-color:var(--acc);transform:translateY(-2px);}
-    footer{max-width:1200px;margin:0 auto;padding:1.5rem;border-top:1px solid var(--brd);text-align:center;font-size:.78rem;color:var(--muted);}
-    
-    /* Modal styles */
-    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:2000;justify-content:center;align-items:center;overflow-y:auto;backdrop-filter:blur(5px);}
-    .modal-content{background:#1e1e2e;border-radius:24px;max-width:850px;width:90%;margin:2rem auto;padding:2rem;position:relative;border:1px solid rgba(255,255,255,0.1);box-shadow:0 25px 50px rgba(0,0,0,0.5);animation:modalFadeIn 0.3s ease;max-height:90vh;overflow-y:auto;}
-    @keyframes modalFadeIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
-    .modal-close{position:absolute;top:1rem;right:1.5rem;font-size:1.8rem;cursor:pointer;color:#888;transition:all .2s;z-index:10;background:#2a2a35;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-    .modal-close:hover{color:#00d4aa;transform:scale(1.1);background:#3a3a45;}
-    .modal-img{width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin:1rem 0;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);}
-    .modal-title{font-size:1.6rem;font-weight:800;margin-bottom:0.5rem;color:#00d4aa;}
-    .modal-desc{color:#e8e8f0;line-height:1.8;margin:1rem 0;background:#2a2a35;padding:1.5rem;border-radius:16px;border-left:4px solid #00d4aa;font-size:0.95rem;}
-    .modal-desc strong{color:#00d4aa;}
-    .modal-tech{background:#252530;border-radius:16px;padding:1.2rem;margin-top:1rem;border:1px solid rgba(255,255,255,0.08);}
-    .modal-tech strong{color:#00d4aa;}
-    .modal-tech .pf{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.8rem;padding:0;}
-    #app.light .modal-content{background:#ffffff;border:1px solid #e0e0e0;}
-    #app.light .modal-close{background:#f0f0f0;color:#666;}
-    #app.light .modal-close:hover{color:#0066ff;background:#e8e8e8;}
-    #app.light .modal-title{color:#0066ff;}
-    #app.light .modal-desc{background:#f5f7ff;color:#1a1a2e;border-left-color:#0066ff;}
-    #app.light .modal-desc strong{color:#0066ff;}
-    #app.light .modal-tech{background:#f0f4ff;border:1px solid #ddd;}
-    #app.light .modal-tech strong{color:#0066ff;}
-    #app.dark .modal-content{background:#1a1a2e;border:1px solid #2a2a3a;}
-    #app.dark .modal-desc{background:#16213e;}
-    #app.dark .modal-tech{background:#0f3460;}
-    
-    /* Responsive */
-    @media (max-width: 768px){
-        nav{flex-wrap:wrap;height:auto;padding:0.8rem 1rem;gap:0.8rem;}
-        .nav-links{order:3;width:100%;justify-content:flex-start;overflow-x:auto;gap:0.8rem;margin-top:0.5rem;padding-bottom:0.5rem;}
-        .nav-link{white-space:nowrap;font-size:0.75rem;}
-        .hero{grid-template-columns:1fr;text-align:center;gap:1.5rem;padding:1.5rem 1rem;}
-        .hero p{margin-left:auto;margin-right:auto;}
-        .btns{justify-content:center;}
-        .stats{grid-template-columns:repeat(2,1fr);gap:0.75rem;padding:0 1rem;}
-        .stat{border-radius:12px !important;padding:1rem;}
-        .skills{grid-template-columns:1fr;}
-        .projects{grid-template-columns:1fr;}
-        .certs-grid{grid-template-columns:1fr;}
-        .cert-card{flex-direction:column;text-align:center;align-items:center;}
-        .exp-item{flex-direction:column;text-align:center;align-items:center;}
-        .contact-c{grid-template-columns:1fr;text-align:center;gap:1rem;padding:1.5rem;}
-        .cbtns{justify-content:center;}
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        /* Dark Theme (default) */
+        body {
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --surface2: #1a1a24;
+            --brd: #2a2a3a;
+            --acc: #00d4aa;
+            --acc2: #7c6aff;
+            --text: #e8e8f0;
+            --muted: #888899;
+            --card: #14141e;
+        }
+
+        body.light {
+            --bg: #f0f4ff;
+            --surface: #ffffff;
+            --surface2: #e8edf8;
+            --brd: #cdd5f0;
+            --acc: #0066ff;
+            --acc2: #7c3aed;
+            --text: #1a1a2e;
+            --muted: #5a6080;
+            --card: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--brd);
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--acc);
+            border-bottom: 2px solid var(--acc);
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .brand span {
+            color: var(--acc);
+        }
+
+        .nav-r {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle,
+        .lang-btn {
+            background: var(--surface2);
+            border: 1px solid var(--brd);
+            border-radius: 30px;
+            padding: 6px 14px;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover,
+        .lang-btn:hover {
+            background: var(--acc);
+            color: #fff;
+        }
+
+        .nav-badge {
+            background: var(--acc);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* Sections */
+        section {
+            display: block;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            scroll-margin-top: 70px;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: color-mix(in srgb, var(--acc) 15%, transparent);
+            border: 1px solid color-mix(in srgb, var(--acc) 35%, transparent);
+            color: var(--acc);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero h1 em {
+            color: var(--acc);
+            font-style: normal;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 440px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btns {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-p {
+            background: var(--acc);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-p:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-o {
+            background: transparent;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 1px solid var(--brd);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-o:hover {
+            border-color: var(--acc);
+            color: var(--acc);
+        }
+
+        .avatar {
+            width: clamp(100px, 15vw, 130px);
+            height: clamp(100px, 15vw, 130px);
+            border-radius: 18px;
+            background: var(--surface2);
+            border: 2px solid var(--brd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar .avatar-icon {
+            font-size: 4rem;
+            color: var(--acc);
+        }
+
+        /* Stats */
+        .stats {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--brd);
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .stat:last-child {
+            border-radius: 0 12px 12px 0;
+        }
+
+        .stat-n {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--acc);
+            display: block;
+        }
+
+        .stat-l {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            margin-top: 3px;
+            display: block;
+        }
+
+        .slabel {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--acc);
+            margin-bottom: 0.6rem;
+        }
+
+        .stitle {
+            font-size: clamp(1.3rem, 4vw, 1.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .sk {
+            background: var(--card);
+            border: 1px solid var(--brd);
+            border-radius: 12px;
+            padding: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .sk::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--sc, var(--acc));
+        }
+
+        .sk:hover {
+            border-color: var(--sc, var(--acc));
+            transform: translateY(-3px);
+        }
+
+        .sk-icon {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: var(--sc, var(--acc));
+        }
+
+        .sk-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .sk-bar {
+            height: 4px;
+            background: var(--surface2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .sk-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: var(--sc, var(--acc));
+        }
+
+        .sk-sub {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 0.35rem;
+        }
+
+        /* Projects & Certifications Cards */
+        .projects, .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pc, .cert-card {
+            background: var(--card);
+            border: 1px solid var(--brd);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .pc:hover, .cert-card:hover {
+            border-color: var(--acc2);
+            transform: translateY(-5px);
+        }
+
+        .project-img, .cert-img {
+            width: 100%;
+            height: clamp(160px, 20vw, 200px);
+            object-fit: cover;
+            background: var(--surface2);
+            transition: transform 0.3s;
+        }
+
+        .pc:hover .project-img, .cert-card:hover .cert-img {
+            transform: scale(1.05);
+        }
+
+        .project-placeholder, .cert-placeholder {
+            width: 100%;
+            height: clamp(160px, 20vw, 200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface2);
+            color: var(--acc);
+            font-size: 3rem;
+        }
+
+        .ph {
+            padding: 1.25rem;
+        }
+
+        .ptag {
+            display: inline-block;
+            background: color-mix(in srgb, var(--acc2) 15%, transparent);
+            color: var(--acc2);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 6px;
+            margin-bottom: 0.65rem;
+        }
+
+        .ptitle {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .pdesc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .pf {
+            padding: 0.6rem 1.25rem 1rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--brd);
+        }
+
+        .tb {
+            background: var(--surface2);
+            color: var(--muted);
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--brd);
+            transition: all 0.2s;
+        }
+
+        .tb:hover {
+            background: var(--acc);
+            color: #fff;
+            border-color: var(--acc);
+        }
+
+        /* Experience */
+        .exp-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .exp-item {
+            background: var(--card);
+            border: 1px solid var(--brd);
+            border-radius: 14px;
+            padding: 1.2rem;
+            transition: all 0.25s;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .exp-item:hover {
+            border-color: var(--acc);
+            transform: translateX(5px);
+        }
+
+        .exp-icon {
+            font-size: 2rem;
+            color: var(--acc);
+        }
+
+        .exp-info {
+            flex: 1;
+        }
+
+        .exp-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-company {
+            font-size: 0.75rem;
+            color: var(--acc);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-date {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-desc {
+            font-size: 0.75rem;
+            color: var(--muted);
+            line-height: 1.5;
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        .exp-desc li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Contact */
+        .contact-c {
+            background: var(--card);
+            border: 1px solid var(--brd);
+            border-radius: 18px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .ct {
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .cs {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .cbtns {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .cbtn {
+            background: var(--surface2);
+            border: 1px solid var(--brd);
+            color: var(--text);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .cbtn:hover,
+        .cbtn.p {
+            background: var(--acc);
+            color: #fff;
+            border-color: var(--acc);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            border-top: 1px solid var(--brd);
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        /* Modal Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: 28px;
+            max-width: 1000px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            position: relative;
+            border: 1px solid var(--brd);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: all 0.2s;
+            z-index: 10;
+            background: var(--surface2);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--acc);
+            transform: scale(1.1);
+        }
+
+        /* Gallery */
+        .gallery-container {
+            position: relative;
+            margin: 1rem 0 1.5rem;
+            background: var(--surface2);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .gallery-main {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00000020;
+            min-height: 320px;
+        }
+
+        .gallery-img-main {
+            max-width: 100%;
+            max-height: 460px;
+            object-fit: contain;
+            border-radius: 16px;
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 15;
+        }
+
+        .gallery-nav:hover {
+            background: var(--acc);
+            color: #000;
+        }
+
+        .nav-prev {
+            left: 12px;
+        }
+
+        .nav-next {
+            right: 12px;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            padding: 10px 5px;
+            overflow-x: auto;
+            background: var(--surface);
+            border-radius: 16px;
+        }
+
+        .thumb-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .thumb-img.active {
+            border-color: var(--acc);
+            opacity: 1;
+        }
+
+        .thumb-img:hover {
+            opacity: 1;
+            border-color: var(--acc2);
+        }
+
+        /* Fullscreen */
+        .fullscreen-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .fullscreen-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .fullscreen-close:hover {
+            background: var(--acc);
+            color: #000;
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--acc);
+        }
+
+        .modal-desc {
+            color: var(--text);
+            line-height: 1.8;
+            margin: 1rem 0;
+            background: var(--surface2);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--acc);
+            font-size: 0.95rem;
+        }
+
+        .modal-tech {
+            background: var(--surface2);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            border: 1px solid var(--brd);
+        }
+
+        .modal-tech strong {
+            color: var(--acc);
+        }
+
+        .modal-tech .pf {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+            padding: 0;
+        }
+
+        body.light .modal-content {
+            background: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 0.8rem 1rem;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: flex-start;
+                overflow-x: auto;
+                gap: 0.8rem;
+                margin-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .btns {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .stat {
+                border-radius: 12px !important;
+            }
+
+            .thumb-img {
+                width: 55px;
+                height: 55px;
+            }
+
+            .gallery-nav {
+                width: 34px;
+                height: 34px;
+                font-size: 1.2rem;
+            }
+
+            .contact-c {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .cbtns {
+                justify-content: center;
+            }
+
+            .exp-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
-<div id="app" class="dark">
-<nav>
-  <div class="brand">ElSheikh<span>.</span>Data</div>
-  <div class="nav-links">
-    <button class="nav-link" data-section="home" id="navHome">🏠 Home</button>
-    <button class="nav-link" data-section="skills" id="navSkills">📊 Skills</button>
-    <button class="nav-link" data-section="experience" id="navExp">💼 Experience</button>
-    <button class="nav-link" data-section="certifications" id="navCourses">📜 Courses</button>
-    <button class="nav-link" data-section="projects" id="navProjects">🚀 Projects</button>
-    <button class="nav-link" data-section="contact" id="navContact">📧 Contact</button>
-  </div>
-  <div class="nav-r">
-    <button class="theme-toggle" id="themeToggle">🌙</button>
-    <button class="lang-btn" id="langBtn">Ar</button>
-    <div class="nav-badge" id="openToWork">Open to work</div>
-  </div>
-</nav>
+    <nav>
+        <div class="brand">ElSheikh<span>.</span>Data</div>
+        <div class="nav-links">
+            <button class="nav-link" data-section="home">🏠 Home</button>
+            <button class="nav-link" data-section="skills">📊 Skills</button>
+            <button class="nav-link" data-section="experience">💼 Experience</button>
+            <button class="nav-link" data-section="certifications">📜 Certifications</button>
+            <button class="nav-link" data-section="projects">🚀 Projects</button>
+            <button class="nav-link" data-section="contact">📧 Contact</button>
+        </div>
+        <div class="nav-r">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <button class="lang-btn" id="langBtn">Ar</button>
+            <div class="nav-badge" id="openToWork">Open to work</div>
+        </div>
+    </nav>
 
-<div class="hero" id="home">
-  <div>
-    <div class="hero-tag" id="heroTag">Data Analyst</div>
-    <h1 id="heroName">Ahmed<br><em>Ragab</em></h1>
-    <p id="heroDesc">Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.</p>
-    <div class="btns">
-      <button class="btn-p" id="projectsBtn" onclick="scrollToSection('projects')">View Projects</button>
-      <a href="https://drive.google.com/file/d/1kdbtlttelr4tZB_HVd13UFXpC79_ly1X/view?usp=sharing" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i> Download CV</a>
+    <div class="hero" id="home">
+        <div>
+            <div class="hero-tag" id="heroTag">Data Analyst</div>
+            <h1 id="heroName">Ahmed<br><em>Ragab</em></h1>
+            <p id="heroDesc">Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.</p>
+            <div class="btns">
+                <button class="btn-p" id="projectsBtn" onclick="scrollToSection('projects')">View Projects</button>
+                <a href="https://drive.google.com/file/d/1kdbtlttelr4tZB_HVd13UFXpC79_ly1X/view?usp=sharing" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i> Download CV</a>
+            </div>
+        </div>
+        <div class="avatar" id="avatarContainer">
+            <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-user-circle avatar-icon\'></i>'">
+        </div>
     </div>
-  </div>
-  <div class="avatar">
-    <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.src='https://via.placeholder.com/130x130?text=AR'">
-  </div>
-</div>
 
-<div class="stats">
-  <div class="stat"><span class="stat-n">4+</span><span class="stat-l" id="stat1Label">Projects</span></div>
-  <div class="stat"><span class="stat-n">2+</span><span class="stat-l" id="stat2Label">Years Exp.</span></div>
-  <div class="stat"><span class="stat-n">8</span><span class="stat-l" id="stat3Label">Tools</span></div>
-  <div class="stat"><span class="stat-n">100%</span><span class="stat-l" id="stat4Label">Data Driven</span></div>
-</div>
-
-<sec id="skills">
-  <div class="slabel" id="expertiseLabel">Expertise</div>
-  <div class="stitle" id="skillsTitle">Technical Skills</div>
-  <div class="skills" id="skillsContainer">
-    <div class="sk" style="--sc:#1d7240"><div class="sk-icon"><i class="fas fa-file-excel"></i></div><div class="sk-name" id="skill1Name">Excel</div><div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div><div class="sk-sub" id="skill1Sub">Pivot · VBA · Functions</div></div>
-    <div class="sk" style="--sc:#f2c811"><div class="sk-icon"><i class="fas fa-chart-line"></i></div><div class="sk-name" id="skill2Name">Power BI</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><div class="sk-sub" id="skill2Sub">DAX · Power Query</div></div>
-    <div class="sk" style="--sc:#306998"><div class="sk-icon"><i class="fab fa-python"></i></div><div class="sk-name" id="skill3Name">Python</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-sub" id="skill3Sub">Pandas · Matplotlib · Seaborn</div></div>
-    <div class="sk" style="--sc:#e97627"><div class="sk-icon"><i class="fas fa-chart-pie"></i></div><div class="sk-name" id="skill4Name">Tableau</div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div><div class="sk-sub" id="skill4Sub">Dashboards · Storytelling</div></div>
-    <div class="sk" style="--sc:#f29111"><div class="sk-icon"><i class="fas fa-database"></i></div><div class="sk-name" id="skill5Name">SQL & Database Management</div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div><div class="sk-sub" id="skill5Sub">MySQL · PostgreSQL · BigQuery</div></div>
-    <div class="sk" style="--sc:#276dc3"><div class="sk-icon"><i class="fas fa-chart-simple"></i></div><div class="sk-name" id="skill6Name">Statistical Analysis</div><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div><div class="sk-sub" id="skill6Sub">Hypothesis Testing · Regression</div></div>
-    <div class="sk" style="--sc:#9b59b6"><div class="sk-icon"><i class="fas fa-brain"></i></div><div class="sk-name" id="skill7Name">Predictive Modeling</div><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div><div class="sk-sub" id="skill7Sub">Scikit-learn · XGBoost · ML</div></div>
-    <div class="sk" style="--sc:#e67e22"><div class="sk-icon"><i class="fas fa-microsoft"></i></div><div class="sk-name" id="skill8Name">Microsoft Office (ICDL)</div><div class="sk-bar"><div class="sk-fill" style="width:95%"></div></div><div class="sk-sub" id="skill8Sub">Word · PowerPoint · Outlook</div></div>
-  </div>
-</sec>
-
-<sec id="experience">
-  <div class="slabel" id="expLabel">Experience</div>
-  <div class="stitle" id="expTitle">Work Experience</div>
-  <div class="exp-timeline" id="expContainer">
-    <div class="exp-item">
-      <div class="exp-icon"><i class="fas fa-chart-line"></i></div>
-      <div class="exp-info">
-        <div class="exp-title" id="exp1Title">Data Analyst</div>
-        <div class="exp-company" id="exp1Company">International Marathon United Technology (IMUT)</div>
-        <div class="exp-date" id="exp1Date">10/2024 – present | Cairo, Egypt</div>
-        <ul class="exp-desc" id="exp1Desc">
-          <li>Leading data analytics initiatives to support business decisions.</li>
-          <li>Developing dashboards and reports using Power BI and Python.</li>
-          <li>Extracting insights from complex datasets to drive operational improvements.</li>
-        </ul>
-      </div>
+    <div class="stats">
+        <div class="stat"><span class="stat-n">4+</span><span class="stat-l" id="stat1Label">Projects</span></div>
+        <div class="stat"><span class="stat-n">2+</span><span class="stat-l" id="stat2Label">Years Exp.</span></div>
+        <div class="stat"><span class="stat-n">8</span><span class="stat-l" id="stat3Label">Tools</span></div>
+        <div class="stat"><span class="stat-n">100%</span><span class="stat-l" id="stat4Label">Data Driven</span></div>
     </div>
-    <div class="exp-item">
-      <div class="exp-icon"><i class="fas fa-chart-simple"></i></div>
-      <div class="exp-info">
-        <div class="exp-title" id="exp2Title">Sales</div>
-        <div class="exp-company" id="exp2Company">la poire & On The Run</div>
-        <div class="exp-date" id="exp2Date">03/2024 – 09/2024 | Cairo, Egypt</div>
-        <ul class="exp-desc" id="exp2Desc">
-          <li>Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.</li>
-          <li>Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.</li>
-          <li>Developed compelling sales presentations that improved customer understanding, leading to higher satisfaction and retention rates.</li>
-        </ul>
-      </div>
+
+    <section id="skills">
+        <div class="slabel" id="expertiseLabel">Expertise</div>
+        <div class="stitle" id="skillsTitle">Technical Skills</div>
+        <div class="skills" id="skillsContainer"></div>
+    </section>
+
+    <section id="experience">
+        <div class="slabel" id="expLabel">Experience</div>
+        <div class="stitle" id="expTitle">Work Experience</div>
+        <div class="exp-timeline" id="expContainer"></div>
+    </section>
+
+    <section id="certifications">
+        <div class="slabel" id="certsLabel">Certifications</div>
+        <div class="stitle" id="certsTitle">Courses & Certificates</div>
+        <div class="certs-grid" id="certsGrid"></div>
+    </section>
+
+    <section id="projects">
+        <div class="slabel" id="workLabel">Work</div>
+        <div class="stitle" id="projectsTitle">Featured Projects</div>
+        <div class="projects" id="projectsContainer"></div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-c">
+            <div>
+                <div class="ct" id="contactTitle">Let's work together</div>
+                <div class="cs" id="contactSub">Available for freelance projects & full-time roles</div>
+            </div>
+            <div class="cbtns">
+                <a href="tel:+201119880367" class="cbtn p" id="callBtn"><i class="fas fa-phone-alt"></i> Call Me</a>
+                <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="mailto:elsheikh1721@gmail.com" class="cbtn" id="emailBtn"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://wa.me/+201119880367" target="_blank" class="cbtn" id="whatsappBtn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i></footer>
+
+    <!-- Modals -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeProjectModal()">&times;</div>
+            <div id="modalBody"></div>
+        </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-icon"><i class="fas fa-database"></i></div>
-      <div class="exp-info">
-        <div class="exp-title" id="exp3Title">Data Entry / Accountant</div>
-        <div class="exp-company" id="exp3Company">Egyptian Ministry of Interior</div>
-        <div class="exp-date" id="exp3Date">07/2022 – 03/2024 | Cairo, Egypt</div>
-        <ul class="exp-desc" id="exp3Desc">
-          <li>Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.</li>
-          <li>Managed financial transactions and generated detailed reports, reducing errors by 5% and improving financial tracking.</li>
-          <li>Streamlined data collection, improving operational efficiency across departments.</li>
-        </ul>
-      </div>
+
+    <div id="fullscreenViewer" class="fullscreen-viewer" onclick="closeFullscreen()">
+        <span class="fullscreen-close" onclick="closeFullscreen()">&times;</span>
+        <img id="fullscreenImage" class="fullscreen-img" src="" alt="Enlarged">
     </div>
-    <div class="exp-item">
-      <div class="exp-icon"><i class="fas fa-cash-register"></i></div>
-      <div class="exp-info">
-        <div class="exp-title" id="exp4Title">Cashier</div>
-        <div class="exp-company" id="exp4Company">Restaurant</div>
-        <div class="exp-date" id="exp4Date">01/2020 – 06/2022 | Cairo, Egypt</div>
-        <ul class="exp-desc" id="exp4Desc">
-          <li>Handled daily transactions, ensuring accuracy and excellent customer service.</li>
-          <li>Managed cash drawer and supported inventory control processes.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-icon"><i class="fas fa-utensils"></i></div>
-      <div class="exp-info">
-        <div class="exp-title" id="exp5Title">Chef</div>
-        <div class="exp-company" id="exp5Company">Restaurant</div>
-        <div class="exp-date" id="exp5Date">02/2016 – 12/2019 | Cairo, Egypt</div>
-        <ul class="exp-desc" id="exp5Desc">
-          <li>Prepared and cooked meals following recipes, ensuring quality and hygiene standards.</li>
-          <li>Assisted in kitchen management and inventory control.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</sec>
 
-<sec id="certifications">
-  <div class="slabel" id="certsLabel">Certifications</div>
-  <div class="stitle" id="certsTitle">Courses & Certificates</div>
-  <div class="certs-grid" id="certsGrid">
-    <!-- DEPI Certificate -->
-    <div class="cert-card" onclick="openCertModal('depi')">
-      <div class="cert-icon"><i class="fas fa-chart-line"></i></div>
-      <div class="cert-info">
-        <div class="cert-title" id="cert1Title">Data Analysis</div>
-        <div class="cert-issuer" id="cert1Issuer">Digital Egypt Pioneers Initiative - DEPI</div>
-        <div class="cert-date" id="cert1Date">04/2024 – 10/2024 | Cairo, Egypt</div>
-        <div class="cert-desc" id="cert1Desc">Data analysis using Excel, Power BI, and Tableau · PowerBI · SQL & Database Management · R studio · Predictive Modeling</div>
-      </div>
-    </div>
-    <!-- Power BI Certificate -->
-    <div class="cert-card" onclick="openCertModal('powerbi')">
-      <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
-      <div class="cert-info">
-        <div class="cert-title" id="cert2Title">Power BI</div>
-        <div class="cert-issuer" id="cert2Issuer">Microsoft / Maven Analytics</div>
-        <div class="cert-date" id="cert2Date">2023 – 2024 | Cairo, Egypt</div>
-        <div class="cert-desc" id="cert2Desc">Expert in Power BI, DAX, Power Query, and data modeling. (Plus Maven Analytics certificate)</div>
-      </div>
-    </div>
-    <!-- ICDL Certificate -->
-    <div class="cert-card" onclick="openCertModal('icdl')">
-      <div class="cert-icon"><i class="fas fa-microsoft"></i></div>
-      <div class="cert-info">
-        <div class="cert-title" id="cert3Title">ICDL</div>
-        <div class="cert-issuer" id="cert3Issuer">Al-Azhar University</div>
-        <div class="cert-date" id="cert3Date">05/2019 – 09/2019 | Cairo, Egypt</div>
-        <div class="cert-desc" id="cert3Desc">Proficient in Microsoft Office (Word, Excel, PowerPoint, Access) · Basic IT skills, internet usage, and computer security</div>
-      </div>
-    </div>
-    <!-- Military Service Certificate (New) -->
-    <div class="cert-card" onclick="openCertModal('army')">
-      <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-      <div class="cert-info">
-        <div class="cert-title" id="cert4Title">Military Service Certificate - Data Entry & Accountant</div>
-        <div class="cert-issuer" id="cert4Issuer">Egyptian Ministry of Interior (Police)</div>
-        <div class="cert-date" id="cert4Date">2022 – 2024 | Cairo, Egypt</div>
-        <div class="cert-desc" id="cert4Desc">Completion of military service with excellence in data entry and accounting roles. Responsible for managing financial records and data processing.</div>
-      </div>
-    </div>
-  </div>
-</sec>
+    <script>
+        // ================ البيانات ================
+        // المشاريع مع مسارات الصور (سيتم فحصها تلقائياً)
+        const projectDetails = {
+            marketSales: {
+                titleEn: "Market Sales Analysis",
+                titleAr: "تحليل مبيعات السوق",
+                images: ["supermarket.png", "supermarket_dash.png", "sales_chart.png"],
+                descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
+                descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق.",
+                tech: ["Excel", "Pivot Tables", "Data Visualization"]
+            },
+            roadAccident: {
+                titleEn: "Road Accident Analysis",
+                titleAr: "تحليل حوادث الطرق",
+                images: ["Roadaccident.png", "accident_dashboard.png", "accident_heatmap.png"],
+                descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
+                descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث.",
+                tech: ["Python", "Pandas", "Excel", "Dashboard"]
+            },
+            titanic: {
+                titleEn: "Titanic Survival Prediction",
+                titleAr: "التنبؤ بنجاة التايتانيك",
+                images: ["Titanic.png", "titanic_ml.png", "titanic_powerbi.png"],
+                descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
+                descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات.",
+                tech: ["Python", "Scikit-learn", "Power BI", "Pandas"]
+            },
+            flightData: {
+                titleEn: "Flight Airplane Data Analysis",
+                titleAr: "تحليل بيانات الرحلات الجوية",
+                images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
+                descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
+                descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء بنسبة 10%.",
+                tech: ["Python", "Tableau", "Data Cleaning"]
+            }
+        };
 
-<sec id="projects">
-  <div class="slabel" id="workLabel">Work</div>
-  <div class="stitle" id="projectsTitle">Featured Projects</div>
-  <div class="projects" id="projectsContainer">
-    <div class="pc" onclick="openProjectModal('marketSales')">
-      <img src="supermarket.png" class="project-img" alt="Market Sales Analysis" onerror="this.src='https://via.placeholder.com/600x200/00d4aa/1a1a24?text=Market+Sales+Analysis'">
-      <div class="ph">
-        <div class="ptag" id="proj1Tag">Excel</div>
-        <div class="ptitle" id="proj1Title">Market Sales Analysis</div>
-        <div class="pdesc" id="proj1Desc">Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.</div>
-      </div>
-      <div class="pf"><span class="tb">Excel</span><span class="tb">Data Analysis</span></div>
-    </div>
-    <div class="pc" onclick="openProjectModal('roadAccident')">
-      <img src="Roadaccident.png" class="project-img" alt="Road Accident Analysis" onerror="this.src='https://via.placeholder.com/600x200/7c6aff/1a1a24?text=Road+Accident+Analysis'">
-      <div class="ph">
-        <div class="ptag" id="proj2Tag">Python & Excel</div>
-        <div class="ptitle" id="proj2Title">Road Accident Analysis</div>
-        <div class="pdesc" id="proj2Desc">Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.</div>
-      </div>
-      <div class="pf"><span class="tb">Python</span><span class="tb">Excel</span><span class="tb">Dashboard</span></div>
-    </div>
-    <div class="pc" onclick="openProjectModal('titanic')">
-      <img src="Titanic.png" class="project-img" alt="Titanic Survival Prediction" onerror="this.src='https://via.placeholder.com/600x200/ff9f43/1a1a24?text=Titanic+Prediction'">
-      <div class="ph">
-        <div class="ptag" id="proj3Tag">Machine Learning</div>
-        <div class="ptitle" id="proj3Title">Titanic Survival Prediction</div>
-        <div class="pdesc" id="proj3Desc">Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.</div>
-      </div>
-      <div class="pf"><span class="tb">Python</span><span class="tb">Power BI</span><span class="tb">Scikit-learn</span></div>
-    </div>
-    <div class="pc" onclick="openProjectModal('flightData')">
-      <img src="FlightAirplane1.png" class="project-img" alt="Flight Airplane Data Analysis" onerror="this.src='https://via.placeholder.com/600x200/e67e22/1a1a24?text=Flight+Data+Analysis'">
-      <div class="ph">
-        <div class="ptag" id="proj4Tag">Tableau</div>
-        <div class="ptitle" id="proj4Title">Flight Airplane Data Analysis</div>
-        <div class="pdesc" id="proj4Desc">Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.</div>
-      </div>
-      <div class="pf"><span class="tb">Python</span><span class="tb">Tableau</span><span class="tb">DataPrep</span></div>
-    </div>
-  </div>
-</sec>
+        // الشهادات - نفس هيكل المشاريع (مع صور مصغرة)
+        const certDetails = {
+            depi: {
+                titleEn: "Data Analysis Certificate - DEPI",
+                titleAr: "شهادة تحليل البيانات - مبادرة رواد مصر الرقمية",
+                images: ["depi1.png", "depi2.png", "depi_cert.png"],
+                descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling.",
+                descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية.",
+                tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"],
+                issuerEn: "Digital Egypt Pioneers Initiative",
+                issuerAr: "مبادرة رواد مصر الرقمية"
+            },
+            powerbi: {
+                titleEn: "Power BI Certificates",
+                titleAr: "شهادات Power BI",
+                images: ["PowerBi.png", "PowerBimaven.png", "pbi_advanced.png"],
+                descEn: "Microsoft Power BI Data Analyst certification and Maven Analytics Power BI certificate.",
+                descAr: "شهادة محلل بيانات Power BI من مايكروسوفت وشهادة Power BI من Maven Analytics.",
+                tech: ["Power BI", "DAX", "Power Query", "Data Modeling"],
+                issuerEn: "Microsoft / Maven Analytics",
+                issuerAr: "مايكروسوفت / Maven Analytics"
+            },
+            icdl: {
+                titleEn: "ICDL Certificate",
+                titleAr: "شهادة ICDL",
+                images: ["ICDL.png", "icdl_office.png"],
+                descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office (Word, Excel, PowerPoint, Access).",
+                descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office.",
+                tech: ["Microsoft Word", "Excel", "PowerPoint", "Access", "IT Skills"],
+                issuerEn: "Al-Azhar University",
+                issuerAr: "جامعة الأزهر"
+            },
+            army: {
+                titleEn: "Military Service Certificate - Data Entry & Accountant",
+                titleAr: "شهادة الخدمة الوطنية - محاسب ومدخل بيانات",
+                images: ["Army1.png", "Army2.png", "army_account.jpg"],
+                descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior.",
+                descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية.",
+                tech: ["Data Entry", "Accounting", "Financial Records", "Data Processing"],
+                issuerEn: "Egyptian Ministry of Interior",
+                issuerAr: "وزارة الداخلية المصرية"
+            }
+        };
 
-<sec id="contact">
-  <div class="contact-c">
-    <div>
-      <div class="ct" id="contactTitle">Let's work together</div>
-      <div class="cs" id="contactSub">Available for freelance projects & full-time roles</div>
-    </div>
-    <div class="cbtns">
-      <a href="tel:+201119880367" class="cbtn p" id="callBtn"><i class="fas fa-phone-alt"></i> Call Me</a>
-      <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="mailto:elsheikh1721@gmail.com" class="cbtn" id="emailBtn"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://wa.me/+201119880367" target="_blank" class="cbtn" id="whatsappBtn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    </div>
-  </div>
-</sec>
+        const skillsData = [
+            { name: "Excel", nameAr: "إكسل", percent: 92, icon: "fas fa-file-excel", sub: "Pivot · VBA · Functions", subAr: "بيفوت · VBA · دوال", color: "#1d7240" },
+            { name: "Power BI", nameAr: "باور بي آي", percent: 80, icon: "fas fa-chart-line", sub: "DAX · Power Query", subAr: "DAX · Power Query", color: "#f2c811" },
+            { name: "Python", nameAr: "بايثون", percent: 90, icon: "fab fa-python", sub: "Pandas · Matplotlib · Seaborn", subAr: "Pandas · Matplotlib · Seaborn", color: "#306998" },
+            { name: "Tableau", nameAr: "تابلو", percent: 75, icon: "fas fa-chart-pie", sub: "Dashboards · Storytelling", subAr: "لوحات تحكم · سرد قصصي", color: "#e97627" },
+            { name: "SQL", nameAr: "SQL وإدارة قواعد البيانات", percent: 85, icon: "fas fa-database", sub: "MySQL · PostgreSQL · BigQuery", subAr: "MySQL · PostgreSQL · BigQuery", color: "#f29111" },
+            { name: "Statistical Analysis", nameAr: "التحليل الإحصائي", percent: 78, icon: "fas fa-chart-simple", sub: "Hypothesis Testing · Regression", subAr: "اختبار الفرضيات · الانحدار", color: "#276dc3" },
+            { name: "Predictive Modeling", nameAr: "النمذجة التنبؤية", percent: 82, icon: "fas fa-brain", sub: "Scikit-learn · XGBoost · ML", subAr: "Scikit-learn · XGBoost · تعلم آلة", color: "#9b59b6" },
+            { name: "Microsoft Office", nameAr: "مايكروسوفت أوفيس (ICDL)", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Outlook", subAr: "وورد · باوربوينت · أوتلوك", color: "#e67e22" }
+        ];
 
-<footer id="footer">Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i></footer>
-</div>
+        const experienceData = [
+            { title: "Data Analyst", titleAr: "محلل بيانات", company: "International Marathon United Technology (IMUT)", companyAr: "إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)", date: "10/2024 – present | Cairo, Egypt", dateAr: "أكتوبر 2024 – حتى الآن | القاهرة، مصر", icon: "fas fa-chart-line", desc: ["Leading data analytics initiatives to support business decisions.", "Developing dashboards and reports using Power BI and Python.", "Extracting insights from complex datasets to drive operational improvements."], descAr: ["قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.", "تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.", "استخراج الرؤى من مجموعات البيانات المعقدة."] },
+            { title: "Sales", titleAr: "مبيعات", company: "la poire & On The Run", companyAr: "لا بوار & أون ذي ران", date: "03/2024 – 09/2024 | Cairo, Egypt", dateAr: "مارس 2024 – سبتمبر 2024 | القاهرة، مصر", icon: "fas fa-chart-simple", desc: ["Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.", "Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.", "Developed compelling sales presentations that improved customer understanding."], descAr: ["زيادة مبيعات الربع الأول بنسبة 20% من خلال التواصل المستهدف.", "تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10% باستخدام تحليل بيانات Excel.", "تطوير عروض مبيعات مقنعة."] },
+            { title: "Data Entry / Accountant", titleAr: "إدخال بيانات / محاسب", company: "Egyptian Ministry of Interior", companyAr: "وزارة الداخلية المصرية", date: "07/2022 – 03/2024 | Cairo, Egypt", dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر", icon: "fas fa-database", desc: ["Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.", "Managed financial transactions and generated detailed reports, reducing errors by 5%.", "Streamlined data collection, improving operational efficiency across departments."], descAr: ["إدارة إدخال بيانات لأكثر من 500 سجل يومياً بدقة 99%.", "إدارة المعاملات المالية وإنشاء تقارير مفصلة، تقليل الأخطاء بنسبة 5%.", "تبسيط جمع البيانات، تحسين الكفاءة التشغيلية."] },
+            { title: "Cashier", titleAr: "أمين صندوق", company: "Restaurant", companyAr: "مطعم", date: "01/2020 – 06/2022 | Cairo, Egypt", dateAr: "يناير 2020 – يونيو 2022 | القاهرة، مصر", icon: "fas fa-cash-register", desc: ["Handled daily transactions, ensuring accuracy and excellent customer service.", "Managed cash drawer and supported inventory control processes."], descAr: ["التعامل مع المعاملات اليومية، وضمان الدقة وخدمة العملاء.", "إدارة درج النقد ودعم عمليات مراقبة المخزون."] },
+            { title: "Chef", titleAr: "طاهي", company: "Restaurant", companyAr: "مطعم", date: "02/2016 – 12/2019 | Cairo, Egypt", dateAr: "فبراير 2016 – ديسمبر 2019 | القاهرة، مصر", icon: "fas fa-utensils", desc: ["Prepared and cooked meals following recipes, ensuring quality and hygiene standards.", "Assisted in kitchen management and inventory control."], descAr: ["تحضير وطهي الوجبات باتباع الوصفات، ضمان الجودة والنظافة.", "المساعدة في إدارة المطبخ ومراقبة المخزون."] }
+        ];
 
-<!-- Modal -->
-<div id="projectModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-close" onclick="closeProjectModal()">&times;</div>
-    <div id="modalBody"></div>
-  </div>
-</div>
+        // ================ نظام AI لفحص الصور ================
+        // هذه الدالة تختبر الصور وتعيد فقط الصور الصالحة (التي تظهر بشكل صحيح)
+        async function validateImage(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url + '?v=' + Date.now();
+            });
+        }
 
-<script>
-// Helper function to get image with cache buster
-function getImageSrc(filename) {
-    return filename + '?v=' + Date.now();
-}
+        async function filterValidImages(imageUrls) {
+            const validImages = [];
+            for (const url of imageUrls) {
+                const isValid = await validateImage(url);
+                if (isValid) {
+                    validImages.push(url);
+                }
+            }
+            return validImages;
+        }
 
-// Project details
-const projectDetails = {
-  marketSales: {
-    titleEn: "Market Sales Analysis", titleAr: "تحليل مبيعات السوق",
-    images: ["supermarket.png"],
-    descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
-    descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق.",
-    tech: ["Excel", "Pivot Tables", "Data Visualization"]
-  },
-  roadAccident: {
-    titleEn: "Road Accident Analysis", titleAr: "تحليل حوادث الطرق",
-    images: ["Roadaccident.png"],
-    descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
-    descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث.",
-    tech: ["Python", "Pandas", "Excel", "Dashboard"]
-  },
-  titanic: {
-    titleEn: "Titanic Survival Prediction", titleAr: "التنبؤ بنجاة التايتانيك",
-    images: ["Titanic.png"],
-    descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
-    descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات.",
-    tech: ["Python", "Scikit-learn", "Power BI", "Pandas"]
-  },
-  flightData: {
-    titleEn: "Flight Airplane Data Analysis", titleAr: "تحليل بيانات الرحلات الجوية",
-    images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
-    descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
-    descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء بنسبة 10%.",
-    tech: ["Python", "Tableau", "Data Cleaning"]
-  }
-};
+        // ================ متغيرات عامة ================
+        let currentLang = 'en';
+        let currentModalData = { images: [], currentIndex: 0 };
+        let cachedValidImages = {}; // لتخزين الصور الصالحة بعد الفحص
 
-const certDetails = {
-  depi: {
-    titleEn: "Data Analysis Certificate - DEPI", titleAr: "شهادة تحليل البيانات - مبادرة رواد مصر الرقمية",
-    images: ["depi1.png", "depi2.png"],
-    descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling.",
-    descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية.",
-    tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"]
-  },
-  powerbi: {
-    titleEn: "Power BI Certificates", titleAr: "شهادات Power BI",
-    images: ["PowerBi.png", "PowerBimaven.png"],
-    descEn: "Microsoft Power BI Data Analyst certification and Maven Analytics Power BI certificate.",
-    descAr: "شهادة محلل بيانات Power BI من مايكروسوفت وشهادة Power BI من Maven Analytics.",
-    tech: ["Power BI", "DAX", "Power Query", "Data Modeling"]
-  },
-  icdl: {
-    titleEn: "ICDL Certificate", titleAr: "شهادة ICDL",
-    images: ["ICDL.png"],
-    descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office.",
-    descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office.",
-    tech: ["Microsoft Word", "Excel", "PowerPoint", "Access", "IT Skills"]
-  },
-  army: {
-    titleEn: "Military Service Certificate - Data Entry & Accountant", titleAr: "شهادة الخدمة الوطنية - محاسب ومدخل بيانات",
-    images: ["Army1.png", "Army2.png"],
-    descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior.",
-    descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية.",
-    tech: ["Data Entry", "Accounting", "Financial Records", "Data Processing"]
-  }
-};
+        // ================ دوال مساعدة ================
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        }
 
-function openProjectModal(projectId) {
-  const p = projectDetails[projectId];
-  if(!p) return;
-  const modal = document.getElementById('projectModal');
-  const body = document.getElementById('modalBody');
-  const isAr = currentLang === 'ar';
-  let imagesHtml = '';
-  for(let img of p.images) imagesHtml += `<img src="${img}?v=${Date.now()}" class="modal-img" alt="Project Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
-  let techHtml = '';
-  for(let t of p.tech) techHtml += `<span class="tb">${t}</span>`;
-  const title = isAr ? p.titleAr : p.titleEn;
-  const desc = isAr ? p.descAr : p.descEn;
-  body.innerHTML = `
-    <h2 class="modal-title">🚀 ${title}</h2>
-    ${imagesHtml}
-    <div class="modal-desc"><strong>📋 ${isAr ? 'نظرة عامة على المشروع:' : 'Project Overview:'}</strong><br><br>${desc}</div>
-    <div class="modal-tech"><strong>🛠 ${isAr ? 'التقنيات المستخدمة:' : 'Technologies Used:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
-  `;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+        // ================ عرض المحتوى ================
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            const isAr = currentLang === 'ar';
+            container.innerHTML = skillsData.map(skill => `
+                <div class="sk" style="--sc:${skill.color}">
+                    <div class="sk-icon"><i class="${skill.icon}"></i></div>
+                    <div class="sk-name">${isAr ? skill.nameAr : skill.name}</div>
+                    <div class="sk-bar"><div class="sk-fill" style="width:${skill.percent}%"></div></div>
+                    <div class="sk-sub">${isAr ? skill.subAr : skill.sub}</div>
+                </div>
+            `).join('');
+        }
 
-function openCertModal(certId) {
-  const c = certDetails[certId];
-  if(!c) return;
-  const modal = document.getElementById('projectModal');
-  const body = document.getElementById('modalBody');
-  const isAr = currentLang === 'ar';
-  let imagesHtml = '';
-  for(let img of c.images) imagesHtml += `<img src="${img}?v=${Date.now()}" class="modal-img" alt="Certificate Image" onerror="this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">`;
-  let techHtml = '';
-  for(let t of c.tech) techHtml += `<span class="tb">${t}</span>`;
-  const title = isAr ? c.titleAr : c.titleEn;
-  const desc = isAr ? c.descAr : c.descEn;
-  body.innerHTML = `
-    <h2 class="modal-title">📜 ${title}</h2>
-    ${imagesHtml}
-    <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل الشهادة:' : 'Certificate Details:'}</strong><br><br>${desc}</div>
-    <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات المكتسبة:' : 'Skills Covered:'}</strong><div class="pf" style="padding:0.8rem 0 0;margin-top:0.5rem;">${techHtml}</div></div>
-  `;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+        function renderExperience() {
+            const container = document.getElementById('expContainer');
+            const isAr = currentLang === 'ar';
+            container.innerHTML = experienceData.map(exp => `
+                <div class="exp-item">
+                    <div class="exp-icon"><i class="${exp.icon}"></i></div>
+                    <div class="exp-info">
+                        <div class="exp-title">${isAr ? exp.titleAr : exp.title}</div>
+                        <div class="exp-company">${isAr ? exp.companyAr : exp.company}</div>
+                        <div class="exp-date">${isAr ? exp.dateAr : exp.date}</div>
+                        <ul class="exp-desc">
+                            ${(isAr ? exp.descAr : exp.desc).map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-function closeProjectModal() {
-  document.getElementById('projectModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-window.onclick = function(e) { if(e.target === document.getElementById('projectModal')) closeProjectModal(); }
+        async function renderCertifications() {
+            const container = document.getElementById('certsGrid');
+            const isAr = currentLang === 'ar';
+            
+            // فحص الصور لكل شهادة
+            for (const key of Object.keys(certDetails)) {
+                if (!cachedValidImages[`cert_${key}`]) {
+                    const validImages = await filterValidImages(certDetails[key].images);
+                    cachedValidImages[`cert_${key}`] = validImages;
+                    certDetails[key].validImages = validImages;
+                }
+            }
+            
+            container.innerHTML = Object.keys(certDetails).map(key => {
+                const cert = certDetails[key];
+                const validImages = cert.validImages || [];
+                const firstValidImage = validImages.length > 0 ? validImages[0] : null;
+                const imageHtml = firstValidImage ? 
+                    `<img src="${firstValidImage}" class="cert-img" alt="${cert.titleEn}" onerror="this.style.display='none'; this.parentNode.insertBefore(document.createElement('div'), this); this.previousSibling.className='cert-placeholder'; this.previousSibling.innerHTML='<i class=\\'fas fa-certificate\\' style=\\'font-size: 3rem; color: var(--acc);\\'></i>';">` :
+                    `<div class="cert-placeholder"><i class="fas fa-certificate" style="font-size: 3rem; color: var(--acc);"></i></div>`;
+                
+                return `
+                    <div class="cert-card" onclick="openCertModal('${key}')">
+                        ${imageHtml}
+                        <div class="ph">
+                            <div class="ptag">${isAr ? 'شهادة معتمدة' : 'Certificate'}</div>
+                            <div class="ptitle">${isAr ? cert.titleAr : cert.titleEn}</div>
+                            <div class="pdesc">${isAr ? cert.issuerAr : cert.issuerEn}</div>
+                        </div>
+                        <div class="pf">
+                            ${cert.tech.slice(0, 3).map(t => `<span class="tb">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-function scrollToSection(sectionId) {
-  const el = document.getElementById(sectionId);
-  if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function updateActiveNavLink() {
-  const sections = ['home','skills','experience','certifications','projects','contact'];
-  const scrollPos = window.scrollY + 100;
-  for(let s of sections){
-    const el = document.getElementById(s);
-    if(el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight){
-      document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-      document.querySelector(`.nav-link[data-section="${s}"]`)?.classList.add('active');
-      break;
-    }
-  }
-}
-document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>scrollToSection(l.dataset.section)));
-window.addEventListener('scroll',updateActiveNavLink);
-window.addEventListener('load',updateActiveNavLink);
+        async function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            const isAr = currentLang === 'ar';
+            
+            // فحص الصور لكل مشروع
+            for (const key of Object.keys(projectDetails)) {
+                if (!cachedValidImages[`proj_${key}`]) {
+                    const validImages = await filterValidImages(projectDetails[key].images);
+                    cachedValidImages[`proj_${key}`] = validImages;
+                    projectDetails[key].validImages = validImages;
+                }
+            }
+            
+            container.innerHTML = Object.keys(projectDetails).map(key => {
+                const project = projectDetails[key];
+                const validImages = project.validImages || [];
+                const firstValidImage = validImages.length > 0 ? validImages[0] : null;
+                const imageHtml = firstValidImage ? 
+                    `<img src="${firstValidImage}" class="project-img" alt="${project.titleEn}" onerror="this.style.display='none'; this.parentNode.insertBefore(document.createElement('div'), this); this.previousSibling.className='project-placeholder'; this.previousSibling.innerHTML='<i class=\\'fas fa-chart-line\\' style=\\'font-size: 3rem; color: var(--acc);\\'></i>';">` :
+                    `<div class="project-placeholder"><i class="fas fa-chart-line" style="font-size: 3rem; color: var(--acc);"></i></div>`;
+                
+                return `
+                    <div class="pc" onclick="openProjectModal('${key}')">
+                        ${imageHtml}
+                        <div class="ph">
+                            <div class="ptag">${project.tech[0]}</div>
+                            <div class="ptitle">${isAr ? project.titleAr : project.titleEn}</div>
+                            <div class="pdesc">${(isAr ? project.descAr : project.descEn).substring(0, 80)}...</div>
+                        </div>
+                        <div class="pf">
+                            ${project.tech.map(t => `<span class="tb">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-function setTheme(theme) {
-  document.getElementById('app').className = theme;
-  themeToggle.innerHTML = theme === 'dark' ? '🌙' : '☀️';
-}
-themeToggle.addEventListener('click', () => {
-  const current = document.getElementById('app').classList.contains('dark') ? 'dark' : 'light';
-  setTheme(current === 'dark' ? 'light' : 'dark');
-});
-setTheme('dark');
+        // ================ معرض الصور ================
+        function buildGalleryUI(imagesArray, startIdx) {
+            if (!imagesArray.length) {
+                return `<div class="project-placeholder" style="height: 300px;"><i class="fas fa-image" style="font-size: 4rem; color: var(--acc);"></i><p style="margin-top: 1rem;">No images available</p></div>`;
+            }
+            return `
+                <div class="gallery-container">
+                    <div class="gallery-main">
+                        <button class="gallery-nav nav-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <img id="galleryMainImg" class="gallery-img-main" src="${imagesArray[startIdx]}?v=${Date.now()}" alt="gallery" onclick="openFullscreenFromGallery()">
+                        <button class="gallery-nav nav-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="thumbnails" id="thumbnailsContainer"></div>
+                </div>
+            `;
+        }
 
-// Language toggle
-let currentLang = 'en';
-const langBtn = document.getElementById('langBtn');
+        function renderThumbnails(images, activeIdx) {
+            const container = document.getElementById('thumbnailsContainer');
+            if (!container) return;
+            container.innerHTML = images.map((img, idx) => `
+                <img src="${img}?v=${Date.now()}" class="thumb-img ${idx === activeIdx ? 'active' : ''}" onclick="setGalleryImage(${idx})" alt="thumb">
+            `).join('');
+        }
 
-function updateLanguageUI() {
-  const isAr = currentLang === 'ar';
-  langBtn.innerHTML = isAr ? 'En' : 'Ar';
-  
-  document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
-  document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
-  document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling.';
-  document.getElementById('projectsBtn').innerHTML = isAr ? 'استعراض المشاريع' : 'View Projects';
-  document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية' : '<i class="fas fa-file-pdf"></i> Download CV';
-  
-  document.getElementById('stat1Label').innerHTML = isAr ? 'مشاريع' : 'Projects';
-  document.getElementById('stat2Label').innerHTML = isAr ? 'سنوات خبرة' : 'Years Exp.';
-  document.getElementById('stat3Label').innerHTML = isAr ? 'أدوات' : 'Tools';
-  document.getElementById('stat4Label').innerHTML = isAr ? 'قائم على البيانات' : 'Data Driven';
-  
-  document.getElementById('expertiseLabel').innerHTML = isAr ? 'الخبرات' : 'Expertise';
-  document.getElementById('skillsTitle').innerHTML = isAr ? 'المهارات التقنية' : 'Technical Skills';
-  document.getElementById('skill1Name').innerHTML = isAr ? 'إكسل' : 'Excel';
-  document.getElementById('skill2Name').innerHTML = isAr ? 'باور بي آي' : 'Power BI';
-  document.getElementById('skill3Name').innerHTML = isAr ? 'بايثون' : 'Python';
-  document.getElementById('skill4Name').innerHTML = isAr ? 'تابلو' : 'Tableau';
-  document.getElementById('skill5Name').innerHTML = isAr ? 'SQL وإدارة قواعد البيانات' : 'SQL & Database Management';
-  document.getElementById('skill6Name').innerHTML = isAr ? 'التحليل الإحصائي' : 'Statistical Analysis';
-  document.getElementById('skill7Name').innerHTML = isAr ? 'النمذجة التنبؤية' : 'Predictive Modeling';
-  document.getElementById('skill8Name').innerHTML = isAr ? 'مايكروسوفت أوفيس (ICDL)' : 'Microsoft Office (ICDL)';
-  
-  document.getElementById('expLabel').innerHTML = isAr ? 'الخبرات' : 'Experience';
-  document.getElementById('expTitle').innerHTML = isAr ? 'الخبرة العملية' : 'Work Experience';
-  
-  if(isAr) {
-    document.getElementById('exp1Title').innerHTML = 'محلل بيانات';
-    document.getElementById('exp1Company').innerHTML = 'إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)';
-    document.getElementById('exp1Date').innerHTML = 'أكتوبر 2024 – حتى الآن | القاهرة، مصر';
-    document.getElementById('exp1Desc').innerHTML = '<li>قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.</li><li>تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.</li><li>استخراج الرؤى من مجموعات البيانات المعقدة.</li>';
-    document.getElementById('exp2Title').innerHTML = 'مبيعات';
-    document.getElementById('exp2Company').innerHTML = 'لا بوار & أون ذي ران';
-    document.getElementById('exp2Date').innerHTML = 'مارس 2024 – سبتمبر 2024 | القاهرة، مصر';
-    document.getElementById('exp2Desc').innerHTML = '<li>زيادة مبيعات الربع الأول بنسبة 20%.</li><li>تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10%.</li><li>تطوير عروض مبيعات مقنعة.</li>';
-    document.getElementById('exp3Title').innerHTML = 'إدخال بيانات / محاسب';
-    document.getElementById('exp3Company').innerHTML = 'وزارة الداخلية المصرية';
-    document.getElementById('exp3Date').innerHTML = 'يوليو 2022 – مارس 2024 | القاهرة، مصر';
-    document.getElementById('exp3Desc').innerHTML = '<li>إدارة إدخال بيانات لأكثر من 500+ سجل يومياً بدقة 99%.</li><li>إدارة المعاملات المالية وإنشاء تقارير مفصلة.</li><li>تبسيط جمع البيانات، تحسين الكفاءة التشغيلية.</li>';
-    document.getElementById('exp4Title').innerHTML = 'أمين صندوق';
-    document.getElementById('exp4Company').innerHTML = 'مطعم';
-    document.getElementById('exp4Date').innerHTML = 'يناير 2020 – يونيو 2022 | القاهرة، مصر';
-    document.getElementById('exp4Desc').innerHTML = '<li>التعامل مع المعاملات اليومية، وضمان الدقة وخدمة العملاء.</li><li>إدارة درج النقد ودعم عمليات مراقبة المخزون.</li>';
-    document.getElementById('exp5Title').innerHTML = 'طاهي';
-    document.getElementById('exp5Company').innerHTML = 'مطعم';
-    document.getElementById('exp5Date').innerHTML = 'فبراير 2016 – ديسمبر 2019 | القاهرة، مصر';
-    document.getElementById('exp5Desc').innerHTML = '<li>تحضير وطهي الوجبات باتباع الوصفات.</li><li>المساعدة في إدارة المطبخ ومراقبة المخزون.</li>';
-  } else {
-    document.getElementById('exp1Title').innerHTML = 'Data Analyst';
-    document.getElementById('exp1Company').innerHTML = 'International Marathon United Technology (IMUT)';
-    document.getElementById('exp1Date').innerHTML = '10/2024 – present | Cairo, Egypt';
-    document.getElementById('exp1Desc').innerHTML = '<li>Leading data analytics initiatives to support business decisions.</li><li>Developing dashboards and reports using Power BI and Python.</li><li>Extracting insights from complex datasets.</li>';
-    document.getElementById('exp2Title').innerHTML = 'Sales';
-    document.getElementById('exp2Company').innerHTML = 'la poire & On The Run';
-    document.getElementById('exp2Date').innerHTML = '03/2024 – 09/2024 | Cairo, Egypt';
-    document.getElementById('exp2Desc').innerHTML = '<li>Increased Q1 sales by 20%.</li><li>Optimized stock levels, reducing excess inventory by 10%.</li><li>Developed compelling sales presentations.</li>';
-    document.getElementById('exp3Title').innerHTML = 'Data Entry / Accountant';
-    document.getElementById('exp3Company').innerHTML = 'Egyptian Ministry of Interior';
-    document.getElementById('exp3Date').innerHTML = '07/2022 – 03/2024 | Cairo, Egypt';
-    document.getElementById('exp3Desc').innerHTML = '<li>Managed data entry of 500+ records daily with 99% accuracy.</li><li>Managed financial transactions and generated detailed reports.</li><li>Streamlined data collection, improving operational efficiency.</li>';
-    document.getElementById('exp4Title').innerHTML = 'Cashier';
-    document.getElementById('exp4Company').innerHTML = 'Restaurant';
-    document.getElementById('exp4Date').innerHTML = '01/2020 – 06/2022 | Cairo, Egypt';
-    document.getElementById('exp4Desc').innerHTML = '<li>Handled daily transactions, ensuring accuracy and excellent customer service.</li><li>Managed cash drawer and supported inventory control processes.</li>';
-    document.getElementById('exp5Title').innerHTML = 'Chef';
-    document.getElementById('exp5Company').innerHTML = 'Restaurant';
-    document.getElementById('exp5Date').innerHTML = '02/2016 – 12/2019 | Cairo, Egypt';
-    document.getElementById('exp5Desc').innerHTML = '<li>Prepared and cooked meals following recipes.</li><li>Assisted in kitchen management and inventory control.</li>';
-  }
-  
-  document.getElementById('certsLabel').innerHTML = isAr ? 'الشهادات' : 'Certifications';
-  document.getElementById('certsTitle').innerHTML = isAr ? 'الدورات والشهادات' : 'Courses & Certificates';
-  document.getElementById('cert1Title').innerHTML = isAr ? 'تحليل البيانات' : 'Data Analysis';
-  document.getElementById('cert2Title').innerHTML = isAr ? 'باور بي آي' : 'Power BI';
-  document.getElementById('cert3Title').innerHTML = isAr ? 'ICDL' : 'ICDL';
-  document.getElementById('cert4Title').innerHTML = isAr ? 'شهادة الخدمة الوطنية' : 'Military Service Certificate';
-  
-  document.getElementById('workLabel').innerHTML = isAr ? 'أعمال' : 'Work';
-  document.getElementById('projectsTitle').innerHTML = isAr ? 'المشاريع المميزة' : 'Featured Projects';
-  document.getElementById('proj1Title').innerHTML = isAr ? 'تحليل مبيعات السوق' : 'Market Sales Analysis';
-  document.getElementById('proj2Title').innerHTML = isAr ? 'تحليل حوادث الطرق' : 'Road Accident Analysis';
-  document.getElementById('proj3Title').innerHTML = isAr ? 'التنبؤ بنجاة التايتانيك' : 'Titanic Survival Prediction';
-  document.getElementById('proj4Title').innerHTML = isAr ? 'تحليل بيانات الرحلات الجوية' : 'Flight Airplane Data Analysis';
-  
-  document.getElementById('contactTitle').innerHTML = isAr ? 'لنعمل معاً' : 'Let\'s work together';
-  document.getElementById('contactSub').innerHTML = isAr ? 'متاح للمشاريع المستقلة والوظائف بدوام كامل' : 'Available for freelance projects & full-time roles';
-  document.getElementById('callBtn').innerHTML = isAr ? '<i class="fas fa-phone-alt"></i> اتصل بي' : '<i class="fas fa-phone-alt"></i> Call Me';
-  document.getElementById('linkedinBtn').innerHTML = isAr ? '<i class="fab fa-linkedin"></i> لينكد إن' : '<i class="fab fa-linkedin"></i> LinkedIn';
-  document.getElementById('emailBtn').innerHTML = isAr ? '<i class="fas fa-envelope"></i> بريد إلكتروني' : '<i class="fas fa-envelope"></i> Email';
-  document.getElementById('whatsappBtn').innerHTML = isAr ? '<i class="fab fa-whatsapp"></i> واتساب' : '<i class="fab fa-whatsapp"></i> WhatsApp';
-  document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · ملف أعمال محلل بيانات ٢٠٢٥ · صنع بـ <i class="fas fa-heart"></i>' : 'Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i>';
-  document.getElementById('openToWork').innerHTML = isAr ? 'متاح للعمل' : 'Open to work';
-  
-  const navMap = {
-    home: isAr ? '🏠 الرئيسية' : '🏠 Home',
-    skills: isAr ? '📊 المهارات' : '📊 Skills',
-    experience: isAr ? '💼 الخبرات' : '💼 Experience',
-    certifications: isAr ? '📜 الدورات' : '📜 Courses',
-    projects: isAr ? '🚀 المشاريع' : '🚀 Projects',
-    contact: isAr ? '📧 التواصل' : '📧 Contact'
-  };
-  document.getElementById('navHome').innerHTML = navMap.home;
-  document.getElementById('navSkills').innerHTML = navMap.skills;
-  document.getElementById('navExp').innerHTML = navMap.experience;
-  document.getElementById('navCourses').innerHTML = navMap.certifications;
-  document.getElementById('navProjects').innerHTML = navMap.projects;
-  document.getElementById('navContact').innerHTML = navMap.contact;
-  
-  if(isAr) document.getElementById('app').setAttribute('dir', 'rtl');
-  else document.getElementById('app').removeAttribute('dir');
-}
+        function setGalleryImage(idx) {
+            if (!currentModalData.images.length) return;
+            currentModalData.currentIndex = idx;
+            const mainImg = document.getElementById('galleryMainImg');
+            if (mainImg) mainImg.src = currentModalData.images[idx] + '?v=' + Date.now();
+            document.querySelectorAll('.thumb-img').forEach((thumb, i) => {
+                if (i === idx) thumb.classList.add('active');
+                else thumb.classList.remove('active');
+            });
+        }
 
-function toggleLanguage() {
-  currentLang = currentLang === 'en' ? 'ar' : 'en';
-  updateLanguageUI();
-}
-langBtn.addEventListener('click', toggleLanguage);
+        function changeImage(direction) {
+            let newIdx = currentModalData.currentIndex + direction;
+            if (newIdx < 0) newIdx = currentModalData.images.length - 1;
+            if (newIdx >= currentModalData.images.length) newIdx = 0;
+            setGalleryImage(newIdx);
+        }
 
-function adjustForMobile() {
-  const isMobile = window.innerWidth < 768;
-  const btns = document.querySelectorAll('.btn-p, .btn-o, .cbtn, .nav-link, .lang-btn, .theme-toggle');
-  btns.forEach(btn => {
-    if(isMobile) btn.style.minHeight = '44px';
-    else btn.style.minHeight = '';
-  });
-}
-window.addEventListener('load', adjustForMobile);
-window.addEventListener('resize', adjustForMobile);
-</script>
+        function openFullscreenFromGallery() {
+            const imgSrc = document.getElementById('galleryMainImg')?.src;
+            if (imgSrc) {
+                document.getElementById('fullscreenImage').src = imgSrc;
+                document.getElementById('fullscreenViewer').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenViewer').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        async function openProjectModal(projectId) {
+            const p = projectDetails[projectId];
+            if (!p) return;
+            const isAr = currentLang === 'ar';
+            
+            // استخدام الصور الصالحة فقط
+            let validImages = p.validImages;
+            if (!validImages) {
+                validImages = await filterValidImages(p.images);
+                p.validImages = validImages;
+                cachedValidImages[`proj_${projectId}`] = validImages;
+            }
+            
+            currentModalData = { images: [...validImages], currentIndex: 0 };
+            const title = isAr ? p.titleAr : p.titleEn;
+            const desc = isAr ? p.descAr : p.descEn;
+            const techHtml = p.tech.map(t => `<span class="tb">${t}</span>`).join('');
+            const galleryHtml = buildGalleryUI(validImages, 0);
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h2 class="modal-title">🚀 ${title}</h2>
+                ${galleryHtml}
+                <div class="modal-desc"><strong>📋 ${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br><br>${desc}</div>
+                <div class="modal-tech"><strong>🛠 ${isAr ? 'التقنيات:' : 'Technologies:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
+            `;
+            document.getElementById('projectModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => renderThumbnails(validImages, 0), 50);
+        }
+
+        async function openCertModal(certId) {
+            const c = certDetails[certId];
+            if (!c) return;
+            const isAr = currentLang === 'ar';
+            
+            // استخدام الصور الصالحة فقط
+            let validImages = c.validImages;
+            if (!validImages) {
+                validImages = await filterValidImages(c.images);
+                c.validImages = validImages;
+                cachedValidImages[`cert_${certId}`] = validImages;
+            }
+            
+            currentModalData = { images: [...validImages], currentIndex: 0 };
+            const title = isAr ? c.titleAr : c.titleEn;
+            const desc = isAr ? c.descAr : c.descEn;
+            const techHtml = c.tech.map(t => `<span class="tb">${t}</span>`).join('');
+            const galleryHtml = buildGalleryUI(validImages, 0);
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h2 class="modal-title">📜 ${title}</h2>
+                ${galleryHtml}
+                <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل:' : 'Details:'}</strong><br><br>${desc}</div>
+                <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات:' : 'Skills:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
+            `;
+            document.getElementById('projectModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => renderThumbnails(validImages, 0), 50);
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentModalData = { images: [], currentIndex: 0 };
+        }
+
+        // ================ الترجمة ================
+        async function updateLanguageUI() {
+            const isAr = currentLang === 'ar';
+            document.getElementById('langBtn').innerHTML = isAr ? 'En' : 'Ar';
+            document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
+            document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
+            document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling.';
+            document.getElementById('projectsBtn').innerHTML = isAr ? 'استعراض المشاريع' : 'View Projects';
+            document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية' : '<i class="fas fa-file-pdf"></i> Download CV';
+            document.getElementById('stat1Label').innerHTML = isAr ? 'مشاريع' : 'Projects';
+            document.getElementById('stat2Label').innerHTML = isAr ? 'سنوات خبرة' : 'Years Exp.';
+            document.getElementById('stat3Label').innerHTML = isAr ? 'أدوات' : 'Tools';
+            document.getElementById('stat4Label').innerHTML = isAr ? 'قائم على البيانات' : 'Data Driven';
+            document.getElementById('expertiseLabel').innerHTML = isAr ? 'الخبرات' : 'Expertise';
+            document.getElementById('skillsTitle').innerHTML = isAr ? 'المهارات التقنية' : 'Technical Skills';
+            document.getElementById('expLabel').innerHTML = isAr ? 'الخبرات' : 'Experience';
+            document.getElementById('expTitle').innerHTML = isAr ? 'الخبرة العملية' : 'Work Experience';
+            document.getElementById('certsLabel').innerHTML = isAr ? 'الشهادات' : 'Certifications';
+            document.getElementById('certsTitle').innerHTML = isAr ? 'الدورات والشهادات' : 'Courses & Certificates';
+            document.getElementById('workLabel').innerHTML = isAr ? 'أعمال' : 'Work';
+            document.getElementById('projectsTitle').innerHTML = isAr ? 'المشاريع المميزة' : 'Featured Projects';
+            document.getElementById('contactTitle').innerHTML = isAr ? 'لنعمل معاً' : 'Let\'s work together';
+            document.getElementById('contactSub').innerHTML = isAr ? 'متاح للمشاريع المستقلة والوظائف بدوام كامل' : 'Available for freelance projects & full-time roles';
+            document.getElementById('callBtn').innerHTML = isAr ? '<i class="fas fa-phone-alt"></i> اتصل بي' : '<i class="fas fa-phone-alt"></i> Call Me';
+            document.getElementById('linkedinBtn').innerHTML = isAr ? '<i class="fab fa-linkedin"></i> لينكد إن' : '<i class="fab fa-linkedin"></i> LinkedIn';
+            document.getElementById('emailBtn').innerHTML = isAr ? '<i class="fas fa-envelope"></i> بريد إلكتروني' : '<i class="fas fa-envelope"></i> Email';
+            document.getElementById('whatsappBtn').innerHTML = isAr ? '<i class="fab fa-whatsapp"></i> واتساب' : '<i class="fab fa-whatsapp"></i> WhatsApp';
+            document.getElementById('openToWork').innerHTML = isAr ? 'متاح للعمل' : 'Open to work';
+            document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · ملف أعمال محلل بيانات 2025 · صنع بـ <i class="fas fa-heart"></i>' : 'Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i>';
+            
+            const navTexts = {
+                home: isAr ? '🏠 الرئيسية' : '🏠 Home',
+                skills: isAr ? '📊 المهارات' : '📊 Skills',
+                experience: isAr ? '💼 الخبرات' : '💼 Experience',
+                certifications: isAr ? '📜 الشهادات' : '📜 Certifications',
+                projects: isAr ? '🚀 المشاريع' : '🚀 Projects',
+                contact: isAr ? '📧 التواصل' : '📧 Contact'
+            };
+            document.querySelectorAll('.nav-link').forEach((btn) => {
+                if (btn.dataset.section) btn.innerHTML = navTexts[btn.dataset.section];
+            });
+            
+            renderSkills();
+            renderExperience();
+            await renderCertifications();
+            await renderProjects();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateLanguageUI();
+        }
+
+        // ================ الثيم ================
+        function setTheme(theme) {
+            if (theme === 'light') document.body.classList.add('light');
+            else document.body.classList.remove('light');
+            document.getElementById('themeToggle').innerHTML = theme === 'dark' ? '🌙' : '☀️';
+        }
+
+        function toggleTheme() {
+            const isLight = document.body.classList.contains('light');
+            setTheme(isLight ? 'dark' : 'light');
+        }
+
+        // ================ التنقل الفعال ================
+        function updateActiveNavLink() {
+            const sections = ['home', 'skills', 'experience', 'certifications', 'projects', 'contact'];
+            const scrollPos = window.scrollY + 100;
+            for (let s of sections) {
+                const el = document.getElementById(s);
+                if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    document.querySelector(`.nav-link[data-section="${s}"]`)?.classList.add('active');
+                    break;
+                }
+            }
+        }
+
+        // ================ تهيئة ================
+        window.scrollToSection = scrollToSection;
+        window.openProjectModal = openProjectModal;
+        window.openCertModal = openCertModal;
+        window.closeProjectModal = closeProjectModal;
+        window.changeImage = changeImage;
+        window.setGalleryImage = setGalleryImage;
+        window.openFullscreenFromGallery = openFullscreenFromGallery;
+        window.closeFullscreen = closeFullscreen;
+
+        document.querySelectorAll('.nav-link').forEach(btn => {
+            btn.addEventListener('click', () => scrollToSection(btn.dataset.section));
+        });
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('langBtn').addEventListener('click', toggleLanguage);
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', () => {
+            updateActiveNavLink();
+            updateLanguageUI();
+        });
+        window.onclick = function(e) {
+            if (e.target === document.getElementById('projectModal')) closeProjectModal();
+        };
+
+        setTheme('dark');
+    </script>
 </body>
 </html>
