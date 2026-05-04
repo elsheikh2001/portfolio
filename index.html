@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Ahmed Ragab - Data Analyst Portfolio</title>
+    <title>ElSheikh - Data Analyst</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * {
@@ -23,6 +23,32 @@
             transition: all 0.3s;
         }
 
+        /* RTL Support - تحسين الخط العربي */
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body.rtl * {
+            letter-spacing: normal;
+        }
+
+        /* تكبير الخط العربي قليلاً لتحسين القراءة */
+        body.rtl p, 
+        body.rtl .pdesc, 
+        body.rtl .exp-desc,
+        body.rtl .modal-desc,
+        body.rtl .sk-sub,
+        body.rtl .cs,
+        body.rtl .challenge-text,
+        body.rtl .insight-text {
+            font-size: 0.95rem;
+        }
+
+        body.rtl .hero h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+        }
+
         /* Dark Theme (default) */
         body {
             --bg: #0a0a0f;
@@ -34,6 +60,7 @@
             --text: #e8e8f0;
             --muted: #888899;
             --card: #14141e;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body.light {
@@ -48,6 +75,56 @@
             --card: #ffffff;
         }
 
+        /* Side Social Bar - شريط التواصل الجانبي */
+        .social-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+            background: var(--surface);
+            padding: 12px 8px;
+            border-radius: 30px;
+            border: 1px solid var(--brd);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        body.rtl .social-sidebar {
+            right: auto;
+            left: 20px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface2);
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+            border: 1px solid var(--brd);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            background: var(--acc);
+            color: #fff;
+            border-color: var(--acc);
+        }
+
+        .social-icon.linkedin:hover { background: #0077b5; color: #fff; }
+        .social-icon.whatsapp:hover { background: #25D366; color: #fff; }
+        .social-icon.phone:hover { background: #00d4aa; color: #fff; }
+        .social-icon.email:hover { background: #ea4335; color: #fff; }
+
         /* Navigation */
         nav {
             background: var(--surface);
@@ -61,6 +138,10 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+        }
+
+        body.rtl nav {
+            direction: rtl;
         }
 
         .nav-links {
@@ -144,6 +225,10 @@
             grid-template-columns: 1fr auto;
             gap: 2rem;
             align-items: center;
+        }
+
+        body.rtl .hero {
+            direction: rtl;
         }
 
         .hero-tag {
@@ -273,6 +358,14 @@
             border-radius: 0 12px 12px 0;
         }
 
+        body.rtl .stat:first-child {
+            border-radius: 0 12px 12px 0;
+        }
+
+        body.rtl .stat:last-child {
+            border-radius: 12px 0 0 12px;
+        }
+
         .stat-n {
             font-size: 1.7rem;
             font-weight: 800;
@@ -372,8 +465,8 @@
         /* Projects & Certifications Cards */
         .projects, .certs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.8rem;
         }
 
         .pc, .cert-card {
@@ -392,19 +485,19 @@
 
         .project-img, .cert-img {
             width: 100%;
-            height: clamp(160px, 20vw, 200px);
+            height: clamp(180px, 20vw, 220px);
             object-fit: cover;
             background: var(--surface2);
             transition: transform 0.3s;
         }
 
         .pc:hover .project-img, .cert-card:hover .cert-img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .project-placeholder, .cert-placeholder {
             width: 100%;
-            height: clamp(160px, 20vw, 200px);
+            height: clamp(180px, 20vw, 220px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -431,15 +524,78 @@
         }
 
         .ptitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .pdesc {
             font-size: 0.82rem;
             color: var(--muted);
             line-height: 1.6;
+        }
+
+        /* قسم التحديات والحلول */
+        .challenge-section {
+            background: var(--surface2);
+            border-radius: 12px;
+            margin-top: 1rem;
+            padding: 0;
+            overflow: hidden;
+            border-top: 1px solid var(--brd);
+        }
+
+        .challenge-header {
+            background: color-mix(in srgb, var(--acc) 10%, transparent);
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--acc);
+            border-bottom: 1px solid var(--brd);
+        }
+
+        .challenge-content {
+            padding: 1rem 1.25rem;
+        }
+
+        .challenge-item {
+            margin-bottom: 1rem;
+        }
+
+        .challenge-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--acc2);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .challenge-text, .insight-text {
+            font-size: 0.75rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .insight-item {
+            background: color-mix(in srgb, var(--acc) 5%, transparent);
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            margin-top: 0.5rem;
+            border-right: 3px solid var(--acc);
+        }
+
+        body.rtl .insight-item {
+            border-right: none;
+            border-left: 3px solid var(--acc);
         }
 
         .pf {
@@ -490,6 +646,10 @@
             transform: translateX(5px);
         }
 
+        body.rtl .exp-item:hover {
+            transform: translateX(-5px);
+        }
+
         .exp-icon {
             font-size: 2rem;
             color: var(--acc);
@@ -523,6 +683,10 @@
             line-height: 1.5;
             list-style-position: inside;
             padding-left: 0;
+        }
+
+        body.rtl .exp-desc {
+            padding-right: 0;
         }
 
         .exp-desc li {
@@ -651,6 +815,11 @@
             justify-content: center;
         }
 
+        body.rtl .modal-close {
+            right: auto;
+            left: 1.2rem;
+        }
+
         .modal-close:hover {
             color: var(--acc);
             transform: scale(1.1);
@@ -715,6 +884,16 @@
 
         .nav-next {
             right: 12px;
+        }
+
+        body.rtl .nav-prev {
+            left: auto;
+            right: 12px;
+        }
+
+        body.rtl .nav-next {
+            right: auto;
+            left: 12px;
         }
 
         .thumbnails {
@@ -789,6 +968,11 @@
             transition: 0.2s;
         }
 
+        body.rtl .fullscreen-close {
+            right: auto;
+            left: 35px;
+        }
+
         .fullscreen-close:hover {
             background: var(--acc);
             color: #000;
@@ -810,6 +994,11 @@
             border-radius: 16px;
             border-left: 4px solid var(--acc);
             font-size: 0.95rem;
+        }
+
+        body.rtl .modal-desc {
+            border-left: none;
+            border-right: 4px solid var(--acc);
         }
 
         .modal-tech {
@@ -838,6 +1027,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .social-sidebar {
+                right: 10px;
+                padding: 8px 6px;
+                gap: 8px;
+            }
+            
+            body.rtl .social-sidebar {
+                right: auto;
+                left: 10px;
+            }
+            
+            .social-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            
             nav {
                 flex-wrap: wrap;
                 height: auto;
@@ -903,10 +1109,28 @@
                 text-align: center;
                 align-items: center;
             }
+            
+            .projects, .certs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Side Social Bar -->
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/+201119880367" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+201119880367" class="social-icon phone"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:elsheikh1721@gmail.com" class="social-icon email"><i class="fas fa-envelope"></i></a>
+    </div>
+
     <nav>
         <div class="brand">ElSheikh<span>.</span>Data</div>
         <div class="nav-links">
@@ -935,7 +1159,7 @@
             </div>
         </div>
         <div class="avatar" id="avatarContainer">
-            <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-user-circle avatar-icon\'></i>'">
+            <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\\'fas fa-user-circle avatar-icon\\'></i>'">
         </div>
     </div>
 
@@ -1003,7 +1227,6 @@
     <script>
         // ================ البيانات الكاملة ================
         
-        // المشاريع
         const projectDetails = {
             marketSales: {
                 titleEn: "Market Sales Analysis",
@@ -1011,7 +1234,17 @@
                 images: ["supermarket.png", "supermarket_dash.png", "sales_chart.png"],
                 descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
                 descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق المستهدفة وجهود اكتساب العملاء.",
-                tech: ["Excel", "Pivot Tables", "Data Visualization"]
+                tech: ["Excel", "Pivot Tables", "Data Visualization"],
+                challengesEn: {
+                    problem: "Raw sales data was scattered across multiple sheets with inconsistent formatting and missing values.",
+                    solution: "Used Excel Power Query to consolidate data, created standardized pivot tables, and developed automated dashboards.",
+                    insights: "Identified that weekend promotions increased sales by 40%, and specific product categories showed 60% higher growth potential."
+                },
+                challengesAr: {
+                    problem: "بيانات المبيعات الخام كانت موزعة عبر أوراق متعددة بتنسيق غير متسق وقيم مفقودة.",
+                    solution: "تم استخدام Excel Power Query لتجميع البيانات، وإنشاء جداول محورية موحدة، وتطوير لوحات تحكم آلية.",
+                    insights: "تم تحديد أن العروض الترويجية في عطلة نهاية الأسبوع زادت المبيعات بنسبة 40%، وأظهرت فئات منتجات معينة إمكانات نمو أعلى بنسبة 60%."
+                }
             },
             roadAccident: {
                 titleEn: "Road Accident Analysis",
@@ -1019,7 +1252,17 @@
                 images: ["Roadaccident.png", "accident_dashboard.png", "accident_heatmap.png"],
                 descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
                 descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث المتوقع.",
-                tech: ["Python", "Pandas", "Excel", "Dashboard"]
+                tech: ["Python", "Pandas", "Excel", "Dashboard"],
+                challengesEn: {
+                    problem: "Large dataset with 500K+ records had duplicates, outliers, and missing timestamps that affected analysis accuracy.",
+                    solution: "Implemented Python scripts using Pandas for automated data cleaning, outlier detection using IQR method, and time-series interpolation.",
+                    insights: "Discovered that 70% of accidents occur during evening hours and identified 5 high-risk zones requiring immediate intervention."
+                },
+                challengesAr: {
+                    problem: "مجموعة بيانات كبيرة تحتوي على أكثر من 500 ألف سجل بها تكرارات وقيم متطرفة وتواريخ زمنية مفقودة أثرت على دقة التحليل.",
+                    solution: "تم تنفيذ سكريبتات بايثون باستخدام Pandas لتنظيف البيانات آلياً، واكتشاف القيم المتطرفة باستخدام طريقة IQR، واستكمال السلاسل الزمنية.",
+                    insights: "تم اكتشاف أن 70% من الحوادث تحدث خلال ساعات المساء وتحديد 5 مناطق عالية الخطورة تتطلب تدخلاً فورياً."
+                }
             },
             titanic: {
                 titleEn: "Titanic Survival Prediction",
@@ -1027,7 +1270,17 @@
                 images: ["Titanic.png", "titanic_ml.png", "titanic_powerbi.png"],
                 descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
                 descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات والمعالجة المسبقة.",
-                tech: ["Python", "Scikit-learn", "Power BI", "Pandas"]
+                tech: ["Python", "Scikit-learn", "Power BI", "Pandas"],
+                challengesEn: {
+                    problem: "Missing data in Age and Cabin columns, categorical variables needed encoding, and class imbalance affected model performance.",
+                    solution: "Used median imputation for Age, created 'Cabin_Letter' feature, applied one-hot encoding, and used Random Forest with balanced class weights.",
+                    insights: "Social class and gender were the strongest predictors; feature engineering improved accuracy from 72% to 80%."
+                },
+                challengesAr: {
+                    problem: "بيانات مفقودة في عمودي العمر والمقصورة، ومتغيرات فئوية تحتاج إلى ترميز، وعدم توازن الفئات أثر على أداء النموذج.",
+                    solution: "تم استخدام الوسيط لتعويض العمر، وإنشاء ميزة 'حرف المقصورة'، وتطبيق الترميز الأحادي، واستخدام الغابة العشوائية بأوزان متوازنة للفئات.",
+                    insights: "كانت الطبقة الاجتماعية والجنس أقوى المؤشرات؛ أدت هندسة الميزات إلى تحسين الدقة من 72% إلى 80%."
+                }
             },
             flightData: {
                 titleEn: "Flight Airplane Data Analysis",
@@ -1035,11 +1288,20 @@
                 images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
                 descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
                 descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء في المواعيد بنسبة 10%.",
-                tech: ["Python", "Tableau", "Data Cleaning"]
+                tech: ["Python", "Tableau", "Data Cleaning"],
+                challengesEn: {
+                    problem: "Inconsistent airport codes, time zone differences across 20,000+ flights, and large JSON files required efficient processing.",
+                    solution: "Created mapping dictionary for airport codes, standardized all timestamps to UTC using Python datetime, and optimized JSON parsing with incremental loading.",
+                    insights: "Identified that flights departing before 8 AM have 90% on-time rate, while afternoon flights show 40% delay probability."
+                },
+                challengesAr: {
+                    problem: "رموز مطارات غير متناسقة، فروق في المناطق الزمنية عبر أكثر من 20 ألف رحلة، وملفات JSON كبيرة تطلبت معالجة فعالة.",
+                    solution: "تم إنشاء قاموس تعيين لرموز المطارات، وتوحيد جميع الطوابع الزمنية إلى UTC باستخدام Python datetime، وتحسين تحليل JSON مع التحميل التدريجي.",
+                    insights: "تم تحديد أن الرحلات التي تغادر قبل الساعة 8 صباحاً لديها معدل التزام بنسبة 90%، بينما تظهر رحلات بعد الظهر احتمال تأخير بنسبة 40%."
+                }
             }
         };
 
-        // الشهادات
         const certDetails = {
             depi: {
                 titleEn: "Data Analysis Certificate - DEPI",
@@ -1091,7 +1353,6 @@
             }
         };
 
-        // المهارات
         const skillsData = [
             { name: "Excel", nameAr: "إكسل", percent: 92, icon: "fas fa-file-excel", sub: "Pivot · VBA · Functions", subAr: "بيفوت · VBA · دوال", color: "#1d7240" },
             { name: "Power BI", nameAr: "باور بي آي", percent: 80, icon: "fas fa-chart-line", sub: "DAX · Power Query", subAr: "DAX · Power Query", color: "#f2c811" },
@@ -1103,7 +1364,6 @@
             { name: "Microsoft Office (ICDL)", nameAr: "مايكروسوفت أوفيس (ICDL)", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Outlook", subAr: "وورد · باوربوينت · أوتلوك", color: "#e67e22" }
         ];
 
-        // الخبرات العملية (بعد التعديل - دمج الكاشير والمحاسب)
         const experienceData = [
             { 
                 title: "Data Analyst", 
@@ -1185,38 +1445,28 @@
             }
         ];
 
-        // ================ نظام AI لفحص الصور ================
-        async function validateImage(url) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url + '?v=' + Date.now();
-            });
-        }
-
-        async function filterValidImages(imageUrls) {
-            const validImages = [];
-            for (const url of imageUrls) {
-                const isValid = await validateImage(url);
-                if (isValid) {
-                    validImages.push(url);
-                }
-            }
-            return validImages;
-        }
-
         // ================ متغيرات عامة ================
         let currentLang = 'en';
         let currentModalData = { images: [], currentIndex: 0 };
-        let cachedValidImages = {};
 
         // ================ دوال مساعدة ================
         function scrollToSection(sectionId) {
             document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ================ عرض المحتوى ================
+        function setRTL(isRTL) {
+            if (isRTL) {
+                document.body.classList.add('rtl');
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.body.classList.remove('rtl');
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+            }
+        }
+
+        // ================ عرض المحتوى الفوري ================
         function renderSkills() {
             const container = document.getElementById('skillsContainer');
             const isAr = currentLang === 'ar';
@@ -1248,25 +1498,98 @@
             `).join('');
         }
 
-        async function renderCertifications() {
+        function renderChallengeSection(project, isAr) {
+            const challenges = isAr ? project.challengesAr : project.challengesEn;
+            if (!challenges) return '';
+            
+            return `
+                <div class="challenge-section">
+                    <div class="challenge-header">
+                        <i class="fas fa-bullseye"></i>
+                        ${isAr ? 'التحديات والحلول' : 'Challenges & Solutions'}
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-item">
+                            <div class="challenge-title">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                ${isAr ? 'التحدي:' : 'Challenge:'}
+                            </div>
+                            <div class="challenge-text">${challenges.problem}</div>
+                        </div>
+                        <div class="challenge-item">
+                            <div class="challenge-title">
+                                <i class="fas fa-lightbulb"></i>
+                                ${isAr ? 'الحل:' : 'Solution:'}
+                            </div>
+                            <div class="challenge-text">${challenges.solution}</div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="challenge-title">
+                                <i class="fas fa-chart-line"></i>
+                                ${isAr ? 'الرؤى المستخلصة:' : 'Key Insights:'}
+                            </div>
+                            <div class="insight-text">${challenges.insights}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            const isAr = currentLang === 'ar';
+            
+            container.innerHTML = Object.keys(projectDetails).map(key => {
+                const project = projectDetails[key];
+                // استخدم الصورة الأولى مباشرة - بدون فحص
+                const firstImage = project.images[0];
+                const imageHtml = `
+                    <img src="${firstImage}" 
+                         class="project-img" 
+                         alt="${project.titleEn}"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.parentNode.querySelector('.project-placeholder').style.display='flex';">
+                    <div class="project-placeholder" style="display:none;">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--acc);"></i>
+                    </div>
+                `;
+                
+                const challengeHtml = renderChallengeSection(project, isAr);
+                
+                return `
+                    <div class="pc" onclick="openProjectModal('${key}')">
+                        ${imageHtml}
+                        <div class="ph">
+                            <div class="ptag">${project.tech[0]}</div>
+                            <div class="ptitle">${isAr ? project.titleAr : project.titleEn}</div>
+                            <div class="pdesc">${(isAr ? project.descAr : project.descEn).substring(0, 100)}...</div>
+                        </div>
+                        ${challengeHtml}
+                        <div class="pf">
+                            ${project.tech.map(t => `<span class="tb">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderCertifications() {
             const container = document.getElementById('certsGrid');
             const isAr = currentLang === 'ar';
             
-            for (const key of Object.keys(certDetails)) {
-                if (!cachedValidImages[`cert_${key}`]) {
-                    const validImages = await filterValidImages(certDetails[key].images);
-                    cachedValidImages[`cert_${key}`] = validImages;
-                    certDetails[key].validImages = validImages;
-                }
-            }
-            
             container.innerHTML = Object.keys(certDetails).map(key => {
                 const cert = certDetails[key];
-                const validImages = cert.validImages || [];
-                const firstValidImage = validImages.length > 0 ? validImages[0] : null;
-                const imageHtml = firstValidImage ? 
-                    `<img src="${firstValidImage}" class="cert-img" alt="${cert.titleEn}" onerror="this.style.display='none'; this.parentNode.insertBefore(document.createElement('div'), this); this.previousSibling.className='cert-placeholder'; this.previousSibling.innerHTML='<i class=\\'fas fa-certificate\\' style=\\'font-size: 3rem; color: var(--acc);\\'></i>';">` :
-                    `<div class="cert-placeholder"><i class="fas fa-certificate" style="font-size: 3rem; color: var(--acc);"></i></div>`;
+                const firstImage = cert.images[0];
+                const imageHtml = `
+                    <img src="${firstImage}" 
+                         class="cert-img" 
+                         alt="${cert.titleEn}"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.parentNode.querySelector('.cert-placeholder').style.display='flex';">
+                    <div class="cert-placeholder" style="display:none;">
+                        <i class="fas fa-certificate" style="font-size: 3rem; color: var(--acc);"></i>
+                    </div>
+                `;
                 
                 return `
                     <div class="cert-card" onclick="openCertModal('${key}')">
@@ -1285,42 +1608,6 @@
             }).join('');
         }
 
-        async function renderProjects() {
-            const container = document.getElementById('projectsContainer');
-            const isAr = currentLang === 'ar';
-            
-            for (const key of Object.keys(projectDetails)) {
-                if (!cachedValidImages[`proj_${key}`]) {
-                    const validImages = await filterValidImages(projectDetails[key].images);
-                    cachedValidImages[`proj_${key}`] = validImages;
-                    projectDetails[key].validImages = validImages;
-                }
-            }
-            
-            container.innerHTML = Object.keys(projectDetails).map(key => {
-                const project = projectDetails[key];
-                const validImages = project.validImages || [];
-                const firstValidImage = validImages.length > 0 ? validImages[0] : null;
-                const imageHtml = firstValidImage ? 
-                    `<img src="${firstValidImage}" class="project-img" alt="${project.titleEn}" onerror="this.style.display='none'; this.parentNode.insertBefore(document.createElement('div'), this); this.previousSibling.className='project-placeholder'; this.previousSibling.innerHTML='<i class=\\'fas fa-chart-line\\' style=\\'font-size: 3rem; color: var(--acc);\\'></i>';">` :
-                    `<div class="project-placeholder"><i class="fas fa-chart-line" style="font-size: 3rem; color: var(--acc);"></i></div>`;
-                
-                return `
-                    <div class="pc" onclick="openProjectModal('${key}')">
-                        ${imageHtml}
-                        <div class="ph">
-                            <div class="ptag">${project.tech[0]}</div>
-                            <div class="ptitle">${isAr ? project.titleAr : project.titleEn}</div>
-                            <div class="pdesc">${(isAr ? project.descAr : project.descEn).substring(0, 80)}...</div>
-                        </div>
-                        <div class="pf">
-                            ${project.tech.map(t => `<span class="tb">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
         // ================ معرض الصور ================
         function buildGalleryUI(imagesArray, startIdx) {
             if (!imagesArray.length) {
@@ -1330,7 +1617,7 @@
                 <div class="gallery-container">
                     <div class="gallery-main">
                         <button class="gallery-nav nav-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
-                        <img id="galleryMainImg" class="gallery-img-main" src="${imagesArray[startIdx]}?v=${Date.now()}" alt="gallery" onclick="openFullscreenFromGallery()">
+                        <img id="galleryMainImg" class="gallery-img-main" src="${imagesArray[startIdx]}" alt="gallery" onclick="openFullscreenFromGallery()" loading="lazy">
                         <button class="gallery-nav nav-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="thumbnails" id="thumbnailsContainer"></div>
@@ -1342,7 +1629,7 @@
             const container = document.getElementById('thumbnailsContainer');
             if (!container) return;
             container.innerHTML = images.map((img, idx) => `
-                <img src="${img}?v=${Date.now()}" class="thumb-img ${idx === activeIdx ? 'active' : ''}" onclick="setGalleryImage(${idx})" alt="thumb">
+                <img src="${img}" class="thumb-img ${idx === activeIdx ? 'active' : ''}" onclick="setGalleryImage(${idx})" alt="thumb" loading="lazy">
             `).join('');
         }
 
@@ -1350,7 +1637,7 @@
             if (!currentModalData.images.length) return;
             currentModalData.currentIndex = idx;
             const mainImg = document.getElementById('galleryMainImg');
-            if (mainImg) mainImg.src = currentModalData.images[idx] + '?v=' + Date.now();
+            if (mainImg) mainImg.src = currentModalData.images[idx];
             document.querySelectorAll('.thumb-img').forEach((thumb, i) => {
                 if (i === idx) thumb.classList.add('active');
                 else thumb.classList.remove('active');
@@ -1378,52 +1665,44 @@
             document.body.style.overflow = 'auto';
         }
 
-        async function openProjectModal(projectId) {
+        function openProjectModal(projectId) {
             const p = projectDetails[projectId];
             if (!p) return;
             const isAr = currentLang === 'ar';
             
-            let validImages = p.validImages;
-            if (!validImages) {
-                validImages = await filterValidImages(p.images);
-                p.validImages = validImages;
-                cachedValidImages[`proj_${projectId}`] = validImages;
-            }
-            
-            currentModalData = { images: [...validImages], currentIndex: 0 };
+            const images = p.images;
+            currentModalData = { images: [...images], currentIndex: 0 };
             const title = isAr ? p.titleAr : p.titleEn;
             const desc = isAr ? p.descAr : p.descEn;
             const techHtml = p.tech.map(t => `<span class="tb">${t}</span>`).join('');
-            const galleryHtml = buildGalleryUI(validImages, 0);
+            const galleryHtml = buildGalleryUI(images, 0);
+            const challengeHtml = renderChallengeSection(p, isAr);
+            
             const modalBody = document.getElementById('modalBody');
             modalBody.innerHTML = `
                 <h2 class="modal-title">🚀 ${title}</h2>
                 ${galleryHtml}
                 <div class="modal-desc"><strong>📋 ${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br><br>${desc}</div>
+                ${challengeHtml}
                 <div class="modal-tech"><strong>🛠 ${isAr ? 'التقنيات:' : 'Technologies:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
             `;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            setTimeout(() => renderThumbnails(validImages, 0), 50);
+            setTimeout(() => renderThumbnails(images, 0), 50);
         }
 
-        async function openCertModal(certId) {
+        function openCertModal(certId) {
             const c = certDetails[certId];
             if (!c) return;
             const isAr = currentLang === 'ar';
             
-            let validImages = c.validImages;
-            if (!validImages) {
-                validImages = await filterValidImages(c.images);
-                c.validImages = validImages;
-                cachedValidImages[`cert_${certId}`] = validImages;
-            }
-            
-            currentModalData = { images: [...validImages], currentIndex: 0 };
+            const images = c.images;
+            currentModalData = { images: [...images], currentIndex: 0 };
             const title = isAr ? c.titleAr : c.titleEn;
             const desc = isAr ? c.descAr : c.descEn;
             const techHtml = c.tech.map(t => `<span class="tb">${t}</span>`).join('');
-            const galleryHtml = buildGalleryUI(validImages, 0);
+            const galleryHtml = buildGalleryUI(images, 0);
+            
             const modalBody = document.getElementById('modalBody');
             modalBody.innerHTML = `
                 <h2 class="modal-title">📜 ${title}</h2>
@@ -1433,7 +1712,7 @@
             `;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            setTimeout(() => renderThumbnails(validImages, 0), 50);
+            setTimeout(() => renderThumbnails(images, 0), 50);
         }
 
         function closeProjectModal() {
@@ -1443,8 +1722,11 @@
         }
 
         // ================ الترجمة ================
-        async function updateLanguageUI() {
+        function updateLanguageUI() {
             const isAr = currentLang === 'ar';
+            
+            setRTL(isAr);
+            
             document.getElementById('langBtn').innerHTML = isAr ? 'En' : 'Ar';
             document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
             document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
@@ -1486,8 +1768,8 @@
             
             renderSkills();
             renderExperience();
-            await renderCertifications();
-            await renderProjects();
+            renderCertifications();
+            renderProjects();
         }
 
         function toggleLanguage() {
@@ -1495,16 +1777,31 @@
             updateLanguageUI();
         }
 
-        // ================ الثيم ================
+        // ================ الثيم مع LocalStorage ================
         function setTheme(theme) {
-            if (theme === 'light') document.body.classList.add('light');
-            else document.body.classList.remove('light');
-            document.getElementById('themeToggle').innerHTML = theme === 'dark' ? '🌙' : '☀️';
+            if (theme === 'light') {
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                document.getElementById('themeToggle').innerHTML = '☀️';
+            } else {
+                document.body.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+                document.getElementById('themeToggle').innerHTML = '🌙';
+            }
         }
 
         function toggleTheme() {
             const isLight = document.body.classList.contains('light');
             setTheme(isLight ? 'dark' : 'light');
+        }
+
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
         }
 
         // ================ التنقل الفعال ================
@@ -1537,15 +1834,15 @@
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         document.getElementById('langBtn').addEventListener('click', toggleLanguage);
         window.addEventListener('scroll', updateActiveNavLink);
-        window.addEventListener('load', () => {
-            updateActiveNavLink();
-            updateLanguageUI();
-        });
+        
+        // بدء التشغيل الفوري
+        loadSavedTheme();
+        updateActiveNavLink();
+        updateLanguageUI();
+        
         window.onclick = function(e) {
             if (e.target === document.getElementById('projectModal')) closeProjectModal();
         };
-
-        setTheme('dark');
     </script>
 </body>
 </html>
