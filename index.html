@@ -23,17 +23,14 @@
             transition: all 0.3s;
         }
 
-        /* RTL Support - تحسين الخط العربي */
         body.rtl {
             direction: rtl;
-            text-align: right;
-        }
+            text-align: right;}
 
         body.rtl * {
             letter-spacing: normal;
         }
 
-        /* تكبير الخط العربي قليلاً لتحسين القراءة */
         body.rtl p, 
         body.rtl .pdesc, 
         body.rtl .exp-desc,
@@ -49,7 +46,6 @@
             font-size: clamp(2.2rem, 4.5vw, 3.5rem);
         }
 
-        /* Dark Theme (default) */
         body {
             --bg: #0a0a0f;
             --surface: #111118;
@@ -60,7 +56,6 @@
             --text: #e8e8f0;
             --muted: #888899;
             --card: #14141e;
-            transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body.light {
@@ -75,7 +70,7 @@
             --card: #ffffff;
         }
 
-        /* Side Social Bar - شريط التواصل الجانبي */
+        /* Side Social Bar */
         .social-sidebar {
             position: fixed;
             right: 20px;
@@ -90,7 +85,6 @@
             border-radius: 30px;
             border: 1px solid var(--brd);
             backdrop-filter: blur(10px);
-            transition: all 0.3s;
         }
 
         body.rtl .social-sidebar {
@@ -120,10 +114,10 @@
             border-color: var(--acc);
         }
 
-        .social-icon.linkedin:hover { background: #0077b5; color: #fff; }
-        .social-icon.whatsapp:hover { background: #25D366; color: #fff; }
-        .social-icon.phone:hover { background: #00d4aa; color: #fff; }
-        .social-icon.email:hover { background: #ea4335; color: #fff; }
+        .social-icon.linkedin:hover { background: #0077b5; }
+        .social-icon.whatsapp:hover { background: #25D366; }
+        .social-icon.phone:hover { background: #00d4aa; }
+        .social-icon.email:hover { background: #ea4335; }
 
         /* Navigation */
         nav {
@@ -138,10 +132,6 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-        }
-
-        body.rtl nav {
-            direction: rtl;
         }
 
         .nav-links {
@@ -208,7 +198,6 @@
             border-radius: 20px;
         }
 
-        /* Sections */
         section {
             display: block;
             max-width: 1200px;
@@ -225,10 +214,6 @@
             grid-template-columns: 1fr auto;
             gap: 2rem;
             align-items: center;
-        }
-
-        body.rtl .hero {
-            direction: rtl;
         }
 
         .hero-tag {
@@ -347,24 +332,12 @@
             border: 1px solid var(--brd);
             padding: 1.25rem;
             text-align: center;
-            transition: all 0.3s;
         }
 
-        .stat:first-child {
-            border-radius: 12px 0 0 12px;
-        }
-
-        .stat:last-child {
-            border-radius: 0 12px 12px 0;
-        }
-
-        body.rtl .stat:first-child {
-            border-radius: 0 12px 12px 0;
-        }
-
-        body.rtl .stat:last-child {
-            border-radius: 12px 0 0 12px;
-        }
+        .stat:first-child { border-radius: 12px 0 0 12px; }
+        .stat:last-child { border-radius: 0 12px 12px 0; }
+        body.rtl .stat:first-child { border-radius: 0 12px 12px 0; }
+        body.rtl .stat:last-child { border-radius: 12px 0 0 12px; }
 
         .stat-n {
             font-size: 1.7rem;
@@ -379,7 +352,6 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             margin-top: 3px;
-            display: block;
         }
 
         .slabel {
@@ -410,8 +382,6 @@
             border-radius: 12px;
             padding: 1.1rem;
             position: relative;
-            overflow: hidden;
-            transition: all 0.25s;
             text-align: center;
         }
 
@@ -423,11 +393,6 @@
             right: 0;
             height: 3px;
             background: var(--sc, var(--acc));
-        }
-
-        .sk:hover {
-            border-color: var(--sc, var(--acc));
-            transform: translateY(-3px);
         }
 
         .sk-icon {
@@ -459,33 +424,32 @@
         .sk-sub {
             font-size: 0.7rem;
             color: var(--muted);
-            margin-top: 0.35rem;
         }
 
         /* Projects & Certifications Cards */
         .projects, .certs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
         }
 
         .pc, .cert-card {
             background: var(--card);
             border: 1px solid var(--brd);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.25s;
+            transition: all 0.2s;
             cursor: pointer;
         }
 
         .pc:hover, .cert-card:hover {
             border-color: var(--acc2);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .project-img, .cert-img {
             width: 100%;
-            height: clamp(180px, 20vw, 220px);
+            height: 140px;
             object-fit: cover;
             background: var(--surface2);
             transition: transform 0.3s;
@@ -497,111 +461,52 @@
 
         .project-placeholder, .cert-placeholder {
             width: 100%;
-            height: clamp(180px, 20vw, 220px);
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--surface2);
             color: var(--acc);
-            font-size: 3rem;
+            font-size: 2rem;
         }
 
         .ph {
-            padding: 1.25rem;
+            padding: 0.8rem;
         }
 
         .ptag {
             display: inline-block;
             background: color-mix(in srgb, var(--acc2) 15%, transparent);
             color: var(--acc2);
-            font-size: 0.68rem;
+            font-size: 0.6rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 6px;
-            margin-bottom: 0.65rem;
-        }
-
-        .ptitle {
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
             margin-bottom: 0.5rem;
         }
 
+        .ptitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
         .pdesc {
-            font-size: 0.82rem;
+            font-size: 0.7rem;
             color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* قسم التحديات والحلول */
-        .challenge-section {
-            background: var(--surface2);
-            border-radius: 12px;
-            margin-top: 1rem;
-            padding: 0;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            border-top: 1px solid var(--brd);
-        }
-
-        .challenge-header {
-            background: color-mix(in srgb, var(--acc) 10%, transparent);
-            padding: 0.75rem 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--acc);
-            border-bottom: 1px solid var(--brd);
-        }
-
-        .challenge-content {
-            padding: 1rem 1.25rem;
-        }
-
-        .challenge-item {
-            margin-bottom: 1rem;
-        }
-
-        .challenge-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .challenge-title {
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--acc2);
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .challenge-text, .insight-text {
-            font-size: 0.75rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .insight-item {
-            background: color-mix(in srgb, var(--acc) 5%, transparent);
-            border-radius: 8px;
-            padding: 0.6rem 0.8rem;
-            margin-top: 0.5rem;
-            border-right: 3px solid var(--acc);
-        }
-
-        body.rtl .insight-item {
-            border-right: none;
-            border-left: 3px solid var(--acc);
         }
 
         .pf {
-            padding: 0.6rem 1.25rem 1rem;
+            padding: 0.5rem 0.8rem 0.8rem;
             display: flex;
-            gap: 0.4rem;
+            gap: 0.3rem;
             flex-wrap: wrap;
             border-top: 1px solid var(--brd);
         }
@@ -609,18 +514,56 @@
         .tb {
             background: var(--surface2);
             color: var(--muted);
-            font-size: 0.68rem;
+            font-size: 0.6rem;
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* أيقونات المشاريع والشهادات */
+        .project-icons, .cert-icons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        body.rtl .project-icons,
+        body.rtl .cert-icons {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .project-icon-link, .cert-icon-link {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface2);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
             border: 1px solid var(--brd);
             transition: all 0.2s;
         }
 
-        .tb:hover {
-            background: var(--acc);
-            color: #fff;
-            border-color: var(--acc);
+        .project-icon-link:hover, .cert-icon-link:hover {
+            transform: scale(1.1);
+        }
+
+        .project-icon-link.linkedin-icon:hover { background: #0077b5; color: #fff; }
+        .project-icon-link.powerbi-icon:hover { background: #f2c811; color: #000; }
+        .cert-icon-link.linkedin-icon:hover { background: #0077b5; color: #fff; }
+        .cert-icon-link.drive-icon:hover { background: #4285f4; color: #fff; }
+
+        .pf-with-icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         /* Experience */
@@ -635,7 +578,6 @@
             border: 1px solid var(--brd);
             border-radius: 14px;
             padding: 1.2rem;
-            transition: all 0.25s;
             display: flex;
             gap: 1rem;
             align-items: flex-start;
@@ -646,52 +588,17 @@
             transform: translateX(5px);
         }
 
-        body.rtl .exp-item:hover {
-            transform: translateX(-5px);
-        }
-
         .exp-icon {
             font-size: 2rem;
             color: var(--acc);
         }
 
-        .exp-info {
-            flex: 1;
-        }
-
-        .exp-title {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .exp-company {
-            font-size: 0.75rem;
-            color: var(--acc);
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-date {
-            font-size: 0.7rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-desc {
-            font-size: 0.75rem;
-            color: var(--muted);
-            line-height: 1.5;
-            list-style-position: inside;
-            padding-left: 0;
-        }
-
-        body.rtl .exp-desc {
-            padding-right: 0;
-        }
-
-        .exp-desc li {
-            margin-bottom: 0.3rem;
-        }
+        .exp-info { flex: 1; }
+        .exp-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
+        .exp-company { font-size: 0.75rem; color: var(--acc); margin-bottom: 0.5rem; }
+        .exp-date { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; }
+        .exp-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.5; padding-left: 1.2rem; }
+        body.rtl .exp-desc { padding-right: 1.2rem; padding-left: 0; }
 
         /* Contact */
         .contact-c {
@@ -705,16 +612,8 @@
             gap: 2rem;
         }
 
-        .ct {
-            font-size: clamp(1.1rem, 4vw, 1.3rem);
-            font-weight: 800;
-            margin-bottom: 0.4rem;
-        }
-
-        .cs {
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
+        .ct { font-size: clamp(1.1rem, 4vw, 1.3rem); font-weight: 800; margin-bottom: 0.4rem; }
+        .cs { color: var(--muted); font-size: 0.85rem; }
 
         .cbtns {
             display: flex;
@@ -731,15 +630,13 @@
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
         }
 
-        .cbtn:hover,
-        .cbtn.p {
+        .cbtn:hover, .cbtn.p {
             background: var(--acc);
             color: #fff;
             border-color: var(--acc);
@@ -756,7 +653,7 @@
             color: var(--muted);
         }
 
-        /* Modal Gallery */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -773,28 +670,15 @@
 
         .modal-content {
             background: var(--surface);
-            border-radius: 28px;
-            max-width: 1000px;
+            border-radius: 24px;
+            max-width: 900px;
             width: 90%;
             margin: 2rem auto;
             padding: 1.5rem;
             position: relative;
             border: 1px solid var(--brd);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            animation: modalFadeIn 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
 
         .modal-close {
@@ -804,8 +688,6 @@
             font-size: 1.8rem;
             cursor: pointer;
             color: var(--muted);
-            transition: all 0.2s;
-            z-index: 10;
             background: var(--surface2);
             width: 38px;
             height: 38px;
@@ -815,24 +697,15 @@
             justify-content: center;
         }
 
-        body.rtl .modal-close {
-            right: auto;
-            left: 1.2rem;
-        }
-
-        .modal-close:hover {
-            color: var(--acc);
-            transform: scale(1.1);
-        }
+        .modal-close:hover { color: var(--acc); transform: scale(1.1); }
 
         /* Gallery */
         .gallery-container {
             position: relative;
             margin: 1rem 0 1.5rem;
             background: var(--surface2);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            padding: 0;
         }
 
         .gallery-main {
@@ -840,37 +713,39 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #00000020;
-            min-height: 320px;
+            min-height: 300px;
         }
 
         .gallery-img-main {
             max-width: 100%;
-            max-height: 460px;
+            max-height: 400px;
             object-fit: contain;
-            border-radius: 16px;
+            border-radius: 12px;
             cursor: zoom-in;
-            transition: transform 0.2s;
         }
 
         .gallery-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
             color: white;
             border: none;
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
             z-index: 15;
+        }
+
+        body.light .gallery-nav {
+            background: rgba(255, 255, 255, 0.85);
+            color: #1a1a2e;
         }
 
         .gallery-nav:hover {
@@ -878,58 +753,37 @@
             color: #000;
         }
 
-        .nav-prev {
-            left: 12px;
-        }
-
-        .nav-next {
-            right: 12px;
-        }
-
-        body.rtl .nav-prev {
-            left: auto;
-            right: 12px;
-        }
-
-        body.rtl .nav-next {
-            right: auto;
-            left: 12px;
-        }
+        .nav-prev { left: 12px; }
+        .nav-next { right: 12px; }
+        body.rtl .nav-prev { left: auto; right: 12px; }
+        body.rtl .nav-next { right: auto; left: 12px; }
 
         .thumbnails {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 15px;
-            padding: 10px 5px;
-            overflow-x: auto;
+            margin-top: 12px;
+            padding: 8px;
             background: var(--surface);
-            border-radius: 16px;
+            border-radius: 12px;
         }
 
         .thumb-img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: all 0.2s;
             opacity: 0.7;
         }
 
-        .thumb-img.active {
+        .thumb-img.active, .thumb-img:hover {
             border-color: var(--acc);
             opacity: 1;
         }
 
-        .thumb-img:hover {
-            opacity: 1;
-            border-color: var(--acc2);
-        }
-
-        /* Fullscreen */
         .fullscreen-viewer {
             display: none;
             position: fixed;
@@ -965,167 +819,86 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s;
-        }
-
-        body.rtl .fullscreen-close {
-            right: auto;
-            left: 35px;
-        }
-
-        .fullscreen-close:hover {
-            background: var(--acc);
-            color: #000;
         }
 
         .modal-title {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             color: var(--acc);
         }
 
         .modal-desc {
-            color: var(--text);
-            line-height: 1.8;
-            margin: 1rem 0;
             background: var(--surface2);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border-left: 4px solid var(--acc);
-            font-size: 0.95rem;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--acc);
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
-        body.rtl .modal-desc {
-            border-left: none;
-            border-right: 4px solid var(--acc);
+        .challenge-section {
+            background: var(--surface2);
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .challenge-header {
+            background: color-mix(in srgb, var(--acc) 10%, transparent);
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--acc);
+        }
+
+        .challenge-content { padding: 0.8rem 1rem; }
+        .challenge-item { margin-bottom: 0.8rem; }
+        .challenge-title { font-weight: 700; font-size: 0.7rem; color: var(--acc2); margin-bottom: 0.3rem; display: flex; gap: 6px; }
+        .challenge-text, .insight-text { font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
+        .insight-item {
+            background: color-mix(in srgb, var(--acc) 5%, transparent);
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            margin-top: 0.5rem;
+            border-right: 3px solid var(--acc);
         }
 
         .modal-tech {
             background: var(--surface2);
-            border-radius: 16px;
-            padding: 1.2rem;
+            border-radius: 12px;
+            padding: 1rem;
             margin-top: 1rem;
-            border: 1px solid var(--brd);
         }
 
-        .modal-tech strong {
-            color: var(--acc);
-        }
-
-        .modal-tech .pf {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            margin-top: 0.8rem;
-            padding: 0;
-        }
-
-        body.light .modal-content {
-            background: #ffffff;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .social-sidebar {
-                right: 10px;
-                padding: 8px 6px;
-                gap: 8px;
-            }
-            
-            body.rtl .social-sidebar {
-                right: auto;
-                left: 10px;
-            }
-            
-            .social-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                height: auto;
-                padding: 0.8rem 1rem;
-                gap: 0.8rem;
-            }
-
-            .nav-links {
-                order: 3;
-                width: 100%;
-                justify-content: flex-start;
-                overflow-x: auto;
-                gap: 0.8rem;
-                margin-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .btns {
-                justify-content: center;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
-            }
-
-            .stat {
-                border-radius: 12px !important;
-            }
-
-            .thumb-img {
-                width: 55px;
-                height: 55px;
-            }
-
-            .gallery-nav {
-                width: 34px;
-                height: 34px;
-                font-size: 1.2rem;
-            }
-
-            .contact-c {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .cbtns {
-                justify-content: center;
-            }
-
-            .exp-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-            
-            .projects, .certs-grid {
-                grid-template-columns: 1fr;
-            }
+            .social-sidebar { right: 10px; padding: 8px 6px; gap: 8px; }
+            body.rtl .social-sidebar { right: auto; left: 10px; }
+            .social-icon { width: 36px; height: 36px; font-size: 1rem; }
+            nav { flex-wrap: wrap; height: auto; padding: 0.8rem 1rem; gap: 0.8rem; }
+            .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 0.8rem; }
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin: 0 auto 1.5rem; }
+            .btns { justify-content: center; }
+            .stats { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .stat { border-radius: 12px !important; }
+            .contact-c { grid-template-columns: 1fr; text-align: center; }
+            .cbtns { justify-content: center; }
+            .exp-item { flex-direction: column; text-align: center; align-items: center; }
+            .projects, .certs-grid { grid-template-columns: 1fr; }
+            .pf-with-icons { flex-direction: column; align-items: flex-start; }
+            .project-icons, .cert-icons { margin-left: 0; margin-top: 0.5rem; }
         }
-        
+
         @media (max-width: 480px) {
-            .social-sidebar {
-                display: none;
-            }
+            .social-sidebar { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Side Social Bar -->
     <div class="social-sidebar">
-        <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" class="social-icon linkedin" id="sidebarLinkedin"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://wa.me/+201119880367" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
         <a href="tel:+201119880367" class="social-icon phone"><i class="fas fa-phone-alt"></i></a>
         <a href="mailto:elsheikh1721@gmail.com" class="social-icon email"><i class="fas fa-envelope"></i></a>
@@ -1158,8 +931,8 @@
                 <a href="https://drive.google.com/file/d/1kdbtlttelr4tZB_HVd13UFXpC79_ly1X/view?usp=sharing" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i> Download CV</a>
             </div>
         </div>
-        <div class="avatar" id="avatarContainer">
-            <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\\'fas fa-user-circle avatar-icon\\'></i>'">
+        <div class="avatar">
+            <img src="AhmedRagabnew.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-user-circle avatar-icon\'></i>'">
         </div>
     </div>
 
@@ -1202,16 +975,15 @@
             </div>
             <div class="cbtns">
                 <a href="tel:+201119880367" class="cbtn p" id="callBtn"><i class="fas fa-phone-alt"></i> Call Me</a>
-                <a href="https://www.linkedin.com/in/ahmed-ragab2001" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <a href="mailto:elsheikh1721@gmail.com" class="cbtn" id="emailBtn"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://wa.me/+201119880367" target="_blank" class="cbtn" id="whatsappBtn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <footer id="footer">Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i></footer>
+    <footer id="footer">Ahmed Ragab · Data Analyst Portfolio · Made with <i class="fas fa-heart"></i></footer>
 
-    <!-- Modals -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeProjectModal()">&times;</div>
@@ -1225,79 +997,97 @@
     </div>
 
     <script>
-        // ================ البيانات الكاملة ================
+        // روابط LinkedIn و Drive المطلوبة
+        const MY_LINKEDIN_URL = "https://www.linkedin.com/in/ahmed-ragab-a4727226b/";
+        const MY_POWERBI_URL = "https://app.powerbi.com/";
         
+        // روابط تحميل الشهادات من Google Drive
+        const CERT_DRIVE_LINKS = {
+            depi: "https://drive.google.com/file/d/1depi_certificate_id/view",
+            powerbi: "https://drive.google.com/file/d/1powerbi_certificate_id/view",
+            icdl: "https://drive.google.com/file/d/1icdl_certificate_id/view",
+            army: "https://drive.google.com/file/d/1army_certificate_id/view"
+        };
+
         const projectDetails = {
-            marketSales: {
-                titleEn: "Market Sales Analysis",
-                titleAr: "تحليل مبيعات السوق",
-                images: ["supermarket.png", "supermarket_dash.png", "sales_chart.png"],
-                descEn: "Conducted comprehensive trend analysis using Excel, leading to a 25% improvement in targeted marketing strategies and customer acquisition efforts.",
-                descAr: "تم إجراء تحليل شامل للاتجاهات باستخدام Excel، مما أدى إلى تحسن بنسبة 25% في استراتيجيات التسويق المستهدفة وجهود اكتساب العملاء.",
-                tech: ["Excel", "Pivot Tables", "Data Visualization"],
+            supermarket: {
+                titleEn: "Supermarket Sales Analysis",
+                titleAr: "تحليل مبيعات السوبر ماركت",
+                images: ["supermarket.png"],
+                descEn: "Analyzed supermarket sales data across 3 branches (A, B, C) to identify revenue patterns and customer behavior.",
+                descAr: "تم تحليل بيانات مبيعات السوبر ماركت عبر 3 فروع (A، B، C) لتحديد أنماط الإيرادات وسلوك العملاء.",
+                tech: ["Excel", "Power Query", "Pivot Tables", "Dashboard"],
+                linkedinUrl: MY_LINKEDIN_URL,
+                powerbiUrl: MY_POWERBI_URL,
                 challengesEn: {
-                    problem: "Raw sales data was scattered across multiple sheets with inconsistent formatting and missing values.",
-                    solution: "Used Excel Power Query to consolidate data, created standardized pivot tables, and developed automated dashboards.",
-                    insights: "Identified that weekend promotions increased sales by 40%, and specific product categories showed 60% higher growth potential."
+                    problem: "Sales data was scattered across 3 branches with no clear performance indicators.",
+                    solution: "Cleaned data using Excel Power Query, used Pivot Tables to calculate total revenue ($322,967) and gross income ($15,379) per branch. Created interactive dashboard with Slicers.",
+                    insights: "1. Branch C generates the highest revenue ($110,568)\n2. Saturday is the peak sales day\n3. E-wallet is the most used payment method\n4. Members achieve higher sales than normal customers"
                 },
                 challengesAr: {
-                    problem: "بيانات المبيعات الخام كانت موزعة عبر أوراق متعددة بتنسيق غير متسق وقيم مفقودة.",
-                    solution: "تم استخدام Excel Power Query لتجميع البيانات، وإنشاء جداول محورية موحدة، وتطوير لوحات تحكم آلية.",
-                    insights: "تم تحديد أن العروض الترويجية في عطلة نهاية الأسبوع زادت المبيعات بنسبة 40%، وأظهرت فئات منتجات معينة إمكانات نمو أعلى بنسبة 60%."
+                    problem: "بيانات المبيعات كانت موزعة على 3 فروع بدون مؤشرات أداء واضحة.",
+                    solution: "قمت بتنظيف البيانات باستخدام Excel Power Query، واستخدمت Pivot Tables لحساب إجمالي الإيرادات. صممت Dashboard تفاعلي.",
+                    insights: "1. الفرع C هو الأعلى إيرادات ($110,568)\n2. يوم السبت هو أعلى أيام المبيعات\n3. طريقة الدفع E-wallet هي الأكثر استخداماً\n4. الأعضاء يحققون مبيعات أعلى"
+                }
+            },
+            titanic: {
+                titleEn: "Titanic Survival Analysis",
+                titleAr: "تحليل نجاة ركاب التايتانيك",
+                images: ["Titanic.png"],
+                descEn: "Analyzed Titanic passenger data to identify factors affecting survival rates (38.38% overall survival).",
+                descAr: "تم تحليل بيانات ركاب التايتانيك لتحديد العوامل المؤثرة على معدلات النجاة.",
+                tech: ["Python", "Pandas", "Power BI", "Dashboard"],
+                linkedinUrl: MY_LINKEDIN_URL,
+                powerbiUrl: MY_POWERBI_URL,
+                challengesEn: {
+                    problem: "Dataset contained 891 passengers with missing values in Age and Cabin columns.",
+                    solution: "Cleaned data using Excel, filled missing Age values using median. Designed Power BI dashboard showing relationships between survival rate and other factors.",
+                    insights: "1. Overall survival rate is 38.38%\n2. First class has the highest survival rate\n3. Cherbourg port has highest survival rate (55.36%)\n4. Females survived more than males"
+                },
+                challengesAr: {
+                    problem: "مجموعة البيانات تحتوي على 891 راكباً مع قيم مفقودة في عمودي العمر والمقصورة.",
+                    solution: "قمت بتنظيف البيانات باستخدام Excel، وعوضت القيم المفقودة. صممت Dashboard في Power BI.",
+                    insights: "1. نسبة النجاة الإجمالية 38.38%\n2. الدرجة الأولى أعلى نسبة نجاة\n3. ميناء Cherbourg أعلى نسبة نجاة (55.36%)\n4. الإناث نجاة أكثر من الذكور"
                 }
             },
             roadAccident: {
                 titleEn: "Road Accident Analysis",
                 titleAr: "تحليل حوادث الطرق",
-                images: ["Roadaccident.png", "accident_dashboard.png", "accident_heatmap.png"],
-                descEn: "Utilized Python for data cleaning and developed insights. Created an Excel dashboard, leading to a 15% reduction in predicted accident rate.",
-                descAr: "تم استخدام بايثون لتنظيف البيانات وتطوير الرؤى. تم إنشاء لوحة تحكم في Excel، مما أدى إلى تقليل بنسبة 15% في معدل الحوادث المتوقع.",
-                tech: ["Python", "Pandas", "Excel", "Dashboard"],
+                images: ["Roadaccident.png"],
+                descEn: "Analyzed road accident data across 3 years (2021-2023) with over 300,000 accidents.",
+                descAr: "تم تحليل بيانات حوادث الطرق على مدار 3 سنوات مع أكثر من 300,000 حادث.",
+                tech: ["Excel", "Pivot Tables", "Dashboard", "Data Cleaning"],
+                linkedinUrl: MY_LINKEDIN_URL,
+                powerbiUrl: MY_POWERBI_URL,
                 challengesEn: {
-                    problem: "Large dataset with 500K+ records had duplicates, outliers, and missing timestamps that affected analysis accuracy.",
-                    solution: "Implemented Python scripts using Pandas for automated data cleaning, outlier detection using IQR method, and time-series interpolation.",
-                    insights: "Discovered that 70% of accidents occur during evening hours and identified 5 high-risk zones requiring immediate intervention."
+                    problem: "Large dataset containing over 300,000 accidents across 3 years.",
+                    solution: "Used Excel Pivot Tables to analyze casualties by vehicle type and road type. Designed comparative dashboard.",
+                    insights: "1. Cars cause 79.8% of total casualties\n2. Urban areas have higher casualties\n3. Dry roads are most common accident condition\n4. January has highest casualties"
                 },
                 challengesAr: {
-                    problem: "مجموعة بيانات كبيرة تحتوي على أكثر من 500 ألف سجل بها تكرارات وقيم متطرفة وتواريخ زمنية مفقودة أثرت على دقة التحليل.",
-                    solution: "تم تنفيذ سكريبتات بايثون باستخدام Pandas لتنظيف البيانات آلياً، واكتشاف القيم المتطرفة باستخدام طريقة IQR، واستكمال السلاسل الزمنية.",
-                    insights: "تم اكتشاف أن 70% من الحوادث تحدث خلال ساعات المساء وتحديد 5 مناطق عالية الخطورة تتطلب تدخلاً فورياً."
+                    problem: "مجموعة بيانات ضخمة تحتوي على أكثر من 300,000 حادث على مدار 3 سنوات.",
+                    solution: "استخدمت Excel Pivot Tables لتحليل الإصابات حسب نوع المركبة ونوع الطريق.",
+                    insights: "1. السيارات تسبب 79.8% من الإصابات\n2. المناطق الحضرية أعلى في الإصابات\n3. الطريق الجاف هو الأكثر تسبباً في الحوادث\n4. شهر يناير الأعلى في الإصابات"
                 }
             },
-            titanic: {
-                titleEn: "Titanic Survival Prediction",
-                titleAr: "التنبؤ بنجاة التايتانيك",
-                images: ["Titanic.png", "titanic_ml.png", "titanic_powerbi.png"],
-                descEn: "Developed a predictive ML model using Python and Power BI, achieving 80% accuracy through feature engineering and preprocessing.",
-                descAr: "تم تطوير نموذج تعلم آلة تنبؤي باستخدام بايثون وPower BI، وحقق دقة 80% من خلال هندسة الميزات والمعالجة المسبقة.",
-                tech: ["Python", "Scikit-learn", "Power BI", "Pandas"],
-                challengesEn: {
-                    problem: "Missing data in Age and Cabin columns, categorical variables needed encoding, and class imbalance affected model performance.",
-                    solution: "Used median imputation for Age, created 'Cabin_Letter' feature, applied one-hot encoding, and used Random Forest with balanced class weights.",
-                    insights: "Social class and gender were the strongest predictors; feature engineering improved accuracy from 72% to 80%."
-                },
-                challengesAr: {
-                    problem: "بيانات مفقودة في عمودي العمر والمقصورة، ومتغيرات فئوية تحتاج إلى ترميز، وعدم توازن الفئات أثر على أداء النموذج.",
-                    solution: "تم استخدام الوسيط لتعويض العمر، وإنشاء ميزة 'حرف المقصورة'، وتطبيق الترميز الأحادي، واستخدام الغابة العشوائية بأوزان متوازنة للفئات.",
-                    insights: "كانت الطبقة الاجتماعية والجنس أقوى المؤشرات؛ أدت هندسة الميزات إلى تحسين الدقة من 72% إلى 80%."
-                }
-            },
-            flightData: {
+            flightAirplane: {
                 titleEn: "Flight Airplane Data Analysis",
                 titleAr: "تحليل بيانات الرحلات الجوية",
                 images: ["FlightAirplane1.png", "FlightAirplane2.png", "FlightAirplane3.png"],
-                descEn: "Conducted data preprocessing using Python, developed interactive Tableau dashboard that improved on-time performance by 10%.",
-                descAr: "تم إجراء معالجة بيانات باستخدام بايثون، وتم تطوير لوحة تحكم تفاعلية باستخدام Tableau أدت إلى تحسين الأداء في المواعيد بنسبة 10%.",
-                tech: ["Python", "Tableau", "Data Cleaning"],
+                descEn: "Team project analyzing flight data across 20,000+ flights to identify on-time performance patterns.",
+                descAr: "مشروع جماعي لتحليل بيانات الرحلات الجوية لأكثر من 20,000 رحلة.",
+                tech: ["Python", "Pandas", "Tableau", "Team Work"],
+                linkedinUrl: MY_LINKEDIN_URL,
+                powerbiUrl: MY_POWERBI_URL,
                 challengesEn: {
-                    problem: "Inconsistent airport codes, time zone differences across 20,000+ flights, and large JSON files required efficient processing.",
-                    solution: "Created mapping dictionary for airport codes, standardized all timestamps to UTC using Python datetime, and optimized JSON parsing with incremental loading.",
-                    insights: "Identified that flights departing before 8 AM have 90% on-time rate, while afternoon flights show 40% delay probability."
+                    problem: "Challenges with inconsistent airport codes and time zone differences across 20,000+ flights.",
+                    solution: "Developed Python scripts to standardize airport codes and timestamps to UTC. Optimized JSON parsing.",
+                    insights: "1. Flights before 8 AM have 90% on-time rate\n2. Afternoon flights show 40% delay probability\n3. Presented findings suggesting schedule adjustments"
                 },
                 challengesAr: {
-                    problem: "رموز مطارات غير متناسقة، فروق في المناطق الزمنية عبر أكثر من 20 ألف رحلة، وملفات JSON كبيرة تطلبت معالجة فعالة.",
-                    solution: "تم إنشاء قاموس تعيين لرموز المطارات، وتوحيد جميع الطوابع الزمنية إلى UTC باستخدام Python datetime، وتحسين تحليل JSON مع التحميل التدريجي.",
-                    insights: "تم تحديد أن الرحلات التي تغادر قبل الساعة 8 صباحاً لديها معدل التزام بنسبة 90%، بينما تظهر رحلات بعد الظهر احتمال تأخير بنسبة 40%."
+                    problem: "تحديات مع رموز المطارات غير المتناسقة وفروق المناطق الزمنية عبر أكثر من 20,000 رحلة.",
+                    solution: "طورنا سكريبتات Python لتوحيد رموز المطارات والتوقيتات.",
+                    insights: "1. الرحلات قبل 8 صباحاً لديها معدل التزام 90%\n2. رحلات بعد الظهر تظهر احتمال تأخير 40%"
                 }
             }
         };
@@ -1305,434 +1095,172 @@
         const certDetails = {
             depi: {
                 titleEn: "Data Analysis Certificate - DEPI",
-                titleAr: "شهادة تحليل البيانات - مبادرة رواد مصر الرقمية",
-                images: ["depi1.png", "depi2.png", "depi_cert.png"],
-                descEn: "This certificate from Digital Egypt Pioneers Initiative (DEPI) covers data analysis using Excel, Power BI, Tableau, SQL & Database Management, R Studio, and Predictive Modeling.",
-                descAr: "تغطي هذه الشهادة من مبادرة رواد مصر الرقمية (DEPI) تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL وإدارة قواعد البيانات و R Studio والنمذجة التنبؤية.",
-                tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"],
-                issuerEn: "Digital Egypt Pioneers Initiative (DEPI)",
-                issuerAr: "مبادرة رواد مصر الرقمية (DEPI)",
-                dateEn: "04/2024 – 10/2024 | Cairo, Egypt",
-                dateAr: "أبريل 2024 – أكتوبر 2024 | القاهرة، مصر"
+                titleAr: "شهادة تحليل البيانات - DEPI",
+                images: ["depi1.png", "depi2.png"],
+                descEn: "Certificate from Digital Egypt Pioneers Initiative covering data analysis using Excel, Power BI, Tableau, SQL, R, and Predictive Modeling.",
+                descAr: "شهادة من مبادرة رواد مصر الرقمية تغطي تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL و R والنمذجة التنبؤية.",
+                tech: ["Excel", "Power BI", "Tableau", "SQL", "R"],
+                issuerEn: "DEPI",
+                issuerAr: "مبادرة رواد مصر الرقمية",
+                dateEn: "04/2024 – 10/2024",
+                dateAr: "أبريل 2024 – أكتوبر 2024",
+                linkedinUrl: MY_LINKEDIN_URL,
+                driveUrl: CERT_DRIVE_LINKS.depi
             },
             powerbi: {
                 titleEn: "Power BI Certificate",
                 titleAr: "شهادة Power BI",
-                images: ["PowerBi.png", "PowerBimaven.png", "pbi_advanced.png"],
-                descEn: "Power BI certificate from Maven Analytics. Expert in Power BI, DAX, Power Query, and data modeling.",
-                descAr: "شهادة Power BI من Maven Analytics. خبير في Power BI و DAX و Power Query ونمذجة البيانات.",
-                tech: ["Power BI", "DAX", "Power Query", "Data Modeling"],
+                images: ["PowerBi.png", "PowerBimaven.png"],
+                descEn: "Power BI certificate from Maven Analytics. Expert in DAX, Power Query, and data modeling.",
+                descAr: "شهادة Power BI من Maven Analytics. خبير في DAX و Power Query ونمذجة البيانات.",
+                tech: ["Power BI", "DAX", "Power Query"],
                 issuerEn: "Maven Analytics",
                 issuerAr: "Maven Analytics",
-                dateEn: "10/2024 | Maven Analytics",
-                dateAr: "أكتوبر 2024 | Maven Analytics"
-            },
+                dateEn: "10/2024",
+                dateAr: "أكتوبر 2024",
+                linkedinUrl: MY_LINKEDIN_URL,
+                driveUrl: CERT_DRIVE_LINKS.powerbi},
             icdl: {
                 titleEn: "ICDL Certificate",
                 titleAr: "شهادة ICDL",
-                images: ["ICDL.png", "icdl_office.png"],
-                descEn: "International Computer Driving License (ICDL) from Al-Azhar University. Proficient in Microsoft Office (Word, Excel, PowerPoint, Access), basic IT skills, internet usage, and computer security.",
-                descAr: "رخصة القيادة الدولية للحاسوب (ICDL) من جامعة الأزهر. إتقان Microsoft Office (Word، Excel، PowerPoint، Access)، ومهارات تكنولوجيا المعلومات الأساسية، واستخدام الإنترنت، وأمن الكمبيوتر.",
-                tech: ["Microsoft Word", "Excel", "PowerPoint", "Access", "IT Skills"],
+                images: ["ICDL.png"],
+                descEn: "International Computer Driving License from Al-Azhar University.",
+                descAr: "رخصة القيادة الدولية للحاسوب من جامعة الأزهر.",
+                tech: ["Word", "Excel", "PowerPoint", "Access"],
                 issuerEn: "Al-Azhar University",
                 issuerAr: "جامعة الأزهر",
-                dateEn: "07/2020 – 08/2020 | Cairo, Egypt",
-                dateAr: "يوليو 2020 – أغسطس 2020 | القاهرة، مصر"
-            },
+                dateEn: "07/2020 – 08/2020",
+                dateAr: "يوليو 2020 – أغسطس 2020",
+                linkedinUrl: MY_LINKEDIN_URL,
+                driveUrl: CERT_DRIVE_LINKS.icdl},
             army: {
-                titleEn: "Military Service Certificate - Data Entry & Accountant",
-                titleAr: "شهادة الخدمة الوطنية - محاسب ومدخل بيانات",
-                images: ["Army1.png", "Army2.png", "army_account.jpg"],
-                descEn: "Completion of military service with excellence in data entry and accounting roles at the Egyptian Ministry of Interior (Police). Responsible for managing financial records and data processing.",
-                descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية المصرية (الشرطة). مسؤول عن إدارة السجلات المالية ومعالجة البيانات.",
-                tech: ["Data Entry", "Accounting", "Financial Records", "Data Processing"],
-                issuerEn: "Egyptian Ministry of Interior (Police)",
-                issuerAr: "وزارة الداخلية المصرية (الشرطة)",
-                dateEn: "07/2022 – 03/2024 | Cairo, Egypt",
-                dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر"
-            }
-        };
+                titleEn: "Military Service Certificate",
+                titleAr: "شهادة الخدمة الوطنية",
+                images: ["Army1.png", "Army2.png"],
+                descEn: "Military service with excellence in data entry and accounting roles at Ministry of Interior.",
+                descAr: "إتمام الخدمة الوطنية بتفوق في أدوار إدخال البيانات والمحاسبة في وزارة الداخلية.",
+                tech: ["Data Entry", "Accounting"],
+                issuerEn: "Ministry of Interior",
+                issuerAr: "وزارة الداخلية",
+                dateEn: "07/2022 – 03/2024",
+                dateAr: "يوليو 2022 – مارس 2024",
+                linkedinUrl: MY_LINKEDIN_URL,
+                driveUrl: CERT_DRIVE_LINKS.army}};
 
         const skillsData = [
-            { name: "Excel", nameAr: "إكسل", percent: 92, icon: "fas fa-file-excel", sub: "Pivot · VBA · Functions", subAr: "بيفوت · VBA · دوال", color: "#1d7240" },
-            { name: "Power BI", nameAr: "باور بي آي", percent: 80, icon: "fas fa-chart-line", sub: "DAX · Power Query", subAr: "DAX · Power Query", color: "#f2c811" },
-            { name: "Python", nameAr: "بايثون", percent: 90, icon: "fab fa-python", sub: "Pandas · Matplotlib · Seaborn", subAr: "Pandas · Matplotlib · Seaborn", color: "#306998" },
-            { name: "Tableau", nameAr: "تابلو", percent: 75, icon: "fas fa-chart-pie", sub: "Dashboards · Storytelling", subAr: "لوحات تحكم · سرد قصصي", color: "#e97627" },
-            { name: "SQL & Database Management", nameAr: "SQL وإدارة قواعد البيانات", percent: 85, icon: "fas fa-database", sub: "MySQL · PostgreSQL · BigQuery", subAr: "MySQL · PostgreSQL · BigQuery", color: "#f29111" },
-            { name: "Statistical Analysis", nameAr: "التحليل الإحصائي", percent: 78, icon: "fas fa-chart-simple", sub: "Hypothesis Testing · Regression", subAr: "اختبار الفرضيات · الانحدار", color: "#276dc3" },
-            { name: "Predictive Modeling", nameAr: "النمذجة التنبؤية", percent: 82, icon: "fas fa-brain", sub: "Scikit-learn · XGBoost · ML", subAr: "Scikit-learn · XGBoost · تعلم آلة", color: "#9b59b6" },
-            { name: "Microsoft Office (ICDL)", nameAr: "مايكروسوفت أوفيس (ICDL)", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Outlook", subAr: "وورد · باوربوينت · أوتلوك", color: "#e67e22" }
-        ];
+            { name: "Excel", nameAr: "إكسل", percent: 95, icon: "fas fa-file-excel", sub: "Pivot Table · VBA · Functions · Power Query · Dashboard", subAr: "بيفوت · VBA · باور كويري ·  دوال · لوحات تحكم", color: "#1d7240" },
+            { name: "Power BI", nameAr: "باور بي آي", percent: 80, icon: "fas fa-chart-line", sub: "DAX · Power Query · Dashboard", subAr: "داكس · باور كويري · لوحات تحكم", color: "#f2c811" },
+            { name: "Python", nameAr: "بايثون", percent: 85, icon: "fab fa-python", sub: "Pandas · Matplotlib · Numpy", subAr: "Pandas · Matplotlib · Numpy", color: "#306998" },
+            { name: "Tableau", nameAr: "تابلو", percent: 70, icon: "fas fa-chart-pie", sub: "Data Visualization · Business Intelligence · Interactive Dashboards", subAr: "لوحات تحكم تفاعلية· ذكاء الأعمال · تصور البيانات", color: "#e97627" },
+            { name: "SQL", nameAr: "SQL", percent: 70, icon: "fas fa-database", sub: "Databases · Queries · Data Model · Data Analysis", subAr: "قواعد البيانات · الاستعلامات · نمذجة البيانات · تحليل البيانات", color: "#f29111" },
+            { name: "Statistical Analysis", nameAr: "التحليل الإحصائي", percent: 70, icon: "fas fa-chart-simple", sub: "Statistics · Data Insights · Reporting", subAr: "الإحصاء · تحليل البيانات · إعداد التقارير", color: "#276dc3" },
+            { name: "Predictive Modeling", nameAr: "النمذجة التنبؤية", percent: 70, icon: "fas fa-brain", sub: "Machine Learning · Forecasting · Data Patterns", subAr: "تعلم الآلة · التنبؤ · أنماط البيانات", color: "#9b59b6" },
+            { name: "Microsoft Office", nameAr: "مايكروسوفت أوفيس", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Excel · Access", subAr: "وورد · باوربوينت · إكسل · اكسيس", color: "#e67e22" }];
 
         const experienceData = [
-            { 
-                title: "Data Analyst", 
-                titleAr: "محلل بيانات", 
-                company: "International Marathon United Technology (IMUT)", 
-                companyAr: "إنترناشيونال ماراثون يونايتد تكنولوجي (IMUT)", 
-                date: "10/2024 – present | Cairo, Egypt", 
-                dateAr: "أكتوبر 2024 – حتى الآن | القاهرة، مصر", 
-                icon: "fas fa-chart-line", 
-                desc: [
-                    "Leading data analytics initiatives to support business decisions.",
-                    "Developing dashboards and reports using Power BI and Python.",
-                    "Extracting insights from complex datasets to drive operational improvements."
-                ], 
-                descAr: [
-                    "قيادة مبادرات تحليلات البيانات لدعم القرارات التجارية.",
-                    "تطوير لوحات التحكم والتقارير باستخدام Power BI و Python.",
-                    "استخراج الرؤى من مجموعات البيانات المعقدة لدفع التحسينات التشغيلية."
-                ] 
-            },
-            { 
-                title: "Sales", 
-                titleAr: "مبيعات", 
-                company: "la poire & On The Run", 
-                companyAr: "لا بوار & أون ذي ران", 
-                date: "03/2024 – 09/2024 | Cairo, Egypt", 
-                dateAr: "مارس 2024 – سبتمبر 2024 | القاهرة، مصر", 
-                icon: "fas fa-chart-simple", 
-                desc: [
-                    "Increased Q1 sales by 20% through targeted customer engagement and personalized service strategies.",
-                    "Optimized stock levels, reducing excess inventory by 10% using Excel data analysis.",
-                    "Developed compelling sales presentations that improved customer understanding, leading to higher satisfaction and retention rates."
-                ], 
-                descAr: [
-                    "زيادة مبيعات الربع الأول بنسبة 20% من خلال التواصل المستهدف مع العملاء واستراتيجيات الخدمة المخصصة.",
-                    "تحسين مستويات المخزون، تقليل المخزون الزائد بنسبة 10% باستخدام تحليل بيانات Excel.",
-                    "تطوير عروض مبيعات مقنعة أدت إلى تحسين فهم العملاء، مما أدى إلى زيادة الرضا ومعدلات الاحتفاظ."
-                ] 
-            },
-            { 
-                title: "Data Entry / Accountant", 
-                titleAr: "إدخال بيانات / محاسب", 
-                company: "Egyptian Ministry of Interior", 
-                companyAr: "وزارة الداخلية المصرية", 
-                date: "07/2022 – 03/2024 | Cairo, Egypt", 
-                dateAr: "يوليو 2022 – مارس 2024 | القاهرة، مصر", 
-                icon: "fas fa-database", 
-                desc: [
-                    "Managed data entry of 500+ records daily with 99% accuracy by ensuring meticulous attention to detail.",
-                    "Managed financial transactions and generated detailed reports, reducing errors by 5% and improving financial tracking.",
-                    "Streamlined data collection, improving operational efficiency across departments."
-                ], 
-                descAr: [
-                    "إدارة إدخال بيانات لأكثر من 500 سجل يومياً بدقة 99% من خلال ضمان الاهتمام الدقيق بالتفاصيل.",
-                    "إدارة المعاملات المالية وإنشاء تقارير مفصلة، تقليل الأخطاء بنسبة 5% وتحسين التتبع المالي.",
-                    "تبسيط جمع البيانات، تحسين الكفاءة التشغيلية عبر الأقسام."
-                ] 
-            },
-            { 
-                title: "Cashier & Accountant", 
-                titleAr: "كاشير ومحاسب", 
-                company: "Restaurant & Accounting Office", 
-                companyAr: "مطعم ومكتب محاسبة", 
-                date: "02/2016 – 06/2022 | Cairo, Egypt", 
-                dateAr: "فبراير 2016 – يونيو 2022 | القاهرة، مصر", 
-                icon: "fas fa-calculator", 
-                desc: [
-                    "Managed daily cash transactions, ensuring accuracy and excellent customer service.",
-                    "Prepared financial reports and managed accounts receivable/payable.",
-                    "Assisted in inventory control and monthly reconciliations.",
-                    "Handled data entry of financial records with high accuracy."
-                ], 
-                descAr: [
-                    "إدارة المعاملات النقدية اليومية، ضمان الدقة وخدمة العملاء الممتازة.",
-                    "إعداد التقارير المالية وإدارة حسابات المدينين والدائنين.",
-                    "المساعدة في مراقبة المخزون والتسويات الشهرية.",
-                    "إدخال البيانات المالية بدقة عالية."
-                ] 
-            }
-        ];
-
-        // ================ متغيرات عامة ================
+            { title: "Data Analyst", titleAr: "محلل بيانات", company: "IMUT", companyAr: "IMUT", date: "10/2024 – present", dateAr: "أكتوبر 2024 – الآن", icon: "fas fa-chart-line", desc: ["Leading data analytics initiatives.", "Developing dashboards using Power BI.", "Extracting insights from complex datasets."], descAr: ["قيادة مبادرات تحليلات البيانات.", "تطوير لوحات التحكم باستخدام Power BI.", "استخراج الرؤى من البيانات."] },
+            { title: "Sales", titleAr: "مبيعات", company: "la poire & On The Run", companyAr: "لا بوار & أون ذي ران", date: "03/2024 – 09/2024", dateAr: "مارس 2024 – سبتمبر 2024", icon: "fas fa-chart-simple", desc: ["Increased Q1 sales by 20%.", "Reduced excess inventory by 10%.", "Developed sales presentations."], descAr: ["زيادة المبيعات بنسبة 20%.", "تقليل المخزون الزائد بنسبة 10%.", "تطوير عروض مبيعات."] },
+            { title: "Data Entry", titleAr: "إدخال بيانات", company: "Ministry of Interior", companyAr: "وزارة الداخلية", date: "07/2022 – 03/2024", dateAr: "يوليو 2022 – مارس 2024", icon: "fas fa-database", desc: ["Managed 500+ records daily with 99% accuracy.", "Reduced errors by 5%.", "Streamlined data collection."], descAr: ["إدارة أكثر من 500 سجل يومياً بدقة 99%.", "تقليل الأخطاء بنسبة 5%.", "تبسيط جمع البيانات."] }];
         let currentLang = 'en';
         let currentModalData = { images: [], currentIndex: 0 };
-
-        // ================ دوال مساعدة ================
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function setRTL(isRTL) {
-            if (isRTL) {
-                document.body.classList.add('rtl');
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.setAttribute('lang', 'ar');
-            } else {
-                document.body.classList.remove('rtl');
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', 'en');
-            }
-        }
-
-        // ================ عرض المحتوى الفوري ================
+        function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
+        function setRTL(isRTL) { if(isRTL) { document.body.classList.add('rtl'); document.documentElement.setAttribute('dir', 'rtl'); } else { document.body.classList.remove('rtl'); document.documentElement.setAttribute('dir', 'ltr'); } }
         function renderSkills() {
-            const container = document.getElementById('skillsContainer');
             const isAr = currentLang === 'ar';
-            container.innerHTML = skillsData.map(skill => `
-                <div class="sk" style="--sc:${skill.color}">
-                    <div class="sk-icon"><i class="${skill.icon}"></i></div>
-                    <div class="sk-name">${isAr ? skill.nameAr : skill.name}</div>
-                    <div class="sk-bar"><div class="sk-fill" style="width:${skill.percent}%"></div></div>
-                    <div class="sk-sub">${isAr ? skill.subAr : skill.sub}</div>
-                </div>
-            `).join('');
-        }
-
+            document.getElementById('skillsContainer').innerHTML = skillsData.map(s => `<div class="sk" style="--sc:${s.color}"><div class="sk-icon"><i class="${s.icon}"></i></div><div class="sk-name">${isAr ? s.nameAr : s.name}</div><div class="sk-bar"><div class="sk-fill" style="width:${s.percent}%"></div></div><div class="sk-sub">${isAr ? s.subAr : s.sub}</div></div>`).join('');}
         function renderExperience() {
-            const container = document.getElementById('expContainer');
             const isAr = currentLang === 'ar';
-            container.innerHTML = experienceData.map(exp => `
-                <div class="exp-item">
-                    <div class="exp-icon"><i class="${exp.icon}"></i></div>
-                    <div class="exp-info">
-                        <div class="exp-title">${isAr ? exp.titleAr : exp.title}</div>
-                        <div class="exp-company">${isAr ? exp.companyAr : exp.company}</div>
-                        <div class="exp-date">${isAr ? exp.dateAr : exp.date}</div>
-                        <ul class="exp-desc">
-                            ${(isAr ? exp.descAr : exp.desc).map(d => `<li>${d}</li>`).join('')}
-                        </ul>
+            document.getElementById('expContainer').innerHTML = experienceData.map(e => `<div class="exp-item"><div class="exp-icon"><i class="${e.icon}"></i></div><div class="exp-info"><div class="exp-title">${isAr ? e.titleAr : e.title}</div><div class="exp-company">${isAr ? e.companyAr : e.company}</div><div class="exp-date">${isAr ? e.dateAr : e.date}</div><ul class="exp-desc">${(isAr ? e.descAr : e.desc).map(d => `<li>${d}</li>`).join('')}</ul></div></div>`).join('');}
+        function renderCertifications() {
+            const isAr = currentLang === 'ar';
+            document.getElementById('certsGrid').innerHTML = Object.keys(certDetails).map(key => { 
+                const c = certDetails[key]; 
+                // أيقونات LinkedIn و Drive للشهادات
+                const certIconsHtml = `
+                    <div class="cert-icons">
+                        <a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-google-drive"></i>
+                        </a>
                     </div>
-                </div>
-            `).join('');
-        }
-
-        function renderChallengeSection(project, isAr) {
-            const challenges = isAr ? project.challengesAr : project.challengesEn;
-            if (!challenges) return '';
-            
-            return `
-                <div class="challenge-section">
-                    <div class="challenge-header">
-                        <i class="fas fa-bullseye"></i>
-                        ${isAr ? 'التحديات والحلول' : 'Challenges & Solutions'}
-                    </div>
-                    <div class="challenge-content">
-                        <div class="challenge-item">
-                            <div class="challenge-title">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                ${isAr ? 'التحدي:' : 'Challenge:'}
-                            </div>
-                            <div class="challenge-text">${challenges.problem}</div>
-                        </div>
-                        <div class="challenge-item">
-                            <div class="challenge-title">
-                                <i class="fas fa-lightbulb"></i>
-                                ${isAr ? 'الحل:' : 'Solution:'}
-                            </div>
-                            <div class="challenge-text">${challenges.solution}</div>
-                        </div>
-                        <div class="insight-item">
-                            <div class="challenge-title">
-                                <i class="fas fa-chart-line"></i>
-                                ${isAr ? 'الرؤى المستخلصة:' : 'Key Insights:'}
-                            </div>
-                            <div class="insight-text">${challenges.insights}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                `;
+                
+                return `<div class="cert-card" onclick="openCertModal('${key}')"><img src="${c.images[0]}" class="cert-img" onerror="this.style.display='none'; this.parentNode.querySelector('.cert-placeholder').style.display='flex';"><div class="cert-placeholder" style="display:none;"><i class="fas fa-certificate"></i></div><div class="ph"><div class="ptag">${isAr ? 'شهادة' : 'Certificate'}</div><div class="ptitle">${isAr ? c.titleAr : c.titleEn}</div><div class="pdesc">${isAr ? c.issuerAr : c.issuerEn}</div><div class="exp-date">${isAr ? c.dateAr : c.dateEn}</div></div><div class="pf pf-with-icons"><div class="pf-techs">${c.tech.slice(0,3).map(t => `<span class="tb">${t}</span>`).join('')}</div>${certIconsHtml}</div></div>`; 
+            }).join('');
         }
 
         function renderProjects() {
-            const container = document.getElementById('projectsContainer');
             const isAr = currentLang === 'ar';
-            
-            container.innerHTML = Object.keys(projectDetails).map(key => {
-                const project = projectDetails[key];
-                // استخدم الصورة الأولى مباشرة - بدون فحص
-                const firstImage = project.images[0];
-                const imageHtml = `
-                    <img src="${firstImage}" 
-                         class="project-img" 
-                         alt="${project.titleEn}"
-                         loading="lazy"
-                         onerror="this.style.display='none'; this.parentNode.querySelector('.project-placeholder').style.display='flex';">
-                    <div class="project-placeholder" style="display:none;">
-                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--acc);"></i>
+            document.getElementById('projectsContainer').innerHTML = Object.keys(projectDetails).map(key => { 
+                const p = projectDetails[key]; 
+                // أيقونات LinkedIn و Power BI للمشاريع (بأيقونة Power BI الصحيحة)
+                const iconsHtml = `
+                    <div class="project-icons">
+                        <a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon" onclick="event.stopPropagation()">
+                            <i class="fas fa-chart-bar"></i>
+                        </a>
                     </div>
                 `;
                 
-                const challengeHtml = renderChallengeSection(project, isAr);
-                
-                return `
-                    <div class="pc" onclick="openProjectModal('${key}')">
-                        ${imageHtml}
-                        <div class="ph">
-                            <div class="ptag">${project.tech[0]}</div>
-                            <div class="ptitle">${isAr ? project.titleAr : project.titleEn}</div>
-                            <div class="pdesc">${(isAr ? project.descAr : project.descEn).substring(0, 100)}...</div>
-                        </div>
-                        ${challengeHtml}
-                        <div class="pf">
-                            ${project.tech.map(t => `<span class="tb">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
+                return `<div class="pc" onclick="openProjectModal('${key}')"><img src="${p.images[0]}" class="project-img" onerror="this.style.display='none'; this.parentNode.querySelector('.project-placeholder').style.display='flex';"><div class="project-placeholder" style="display:none;"><i class="fas fa-chart-line"></i></div><div class="ph"><div class="ptag">${p.tech[0]}</div><div class="ptitle">${isAr ? p.titleAr : p.titleEn}</div><div class="pdesc">${(isAr ? p.descAr : p.descEn).substring(0, 80)}...</div></div><div class="pf pf-with-icons"><div class="pf-techs">${p.tech.slice(0,3).map(t => `<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div></div>`; 
             }).join('');
         }
 
-        function renderCertifications() {
-            const container = document.getElementById('certsGrid');
-            const isAr = currentLang === 'ar';
-            
-            container.innerHTML = Object.keys(certDetails).map(key => {
-                const cert = certDetails[key];
-                const firstImage = cert.images[0];
-                const imageHtml = `
-                    <img src="${firstImage}" 
-                         class="cert-img" 
-                         alt="${cert.titleEn}"
-                         loading="lazy"
-                         onerror="this.style.display='none'; this.parentNode.querySelector('.cert-placeholder').style.display='flex';">
-                    <div class="cert-placeholder" style="display:none;">
-                        <i class="fas fa-certificate" style="font-size: 3rem; color: var(--acc);"></i>
-                    </div>
-                `;
-                
-                return `
-                    <div class="cert-card" onclick="openCertModal('${key}')">
-                        ${imageHtml}
-                        <div class="ph">
-                            <div class="ptag">${isAr ? 'شهادة معتمدة' : 'Certificate'}</div>
-                            <div class="ptitle">${isAr ? cert.titleAr : cert.titleEn}</div>
-                            <div class="pdesc">${isAr ? cert.issuerAr : cert.issuerEn}</div>
-                            <div class="exp-date" style="margin-top: 5px;">${isAr ? cert.dateAr : cert.dateEn}</div>
-                        </div>
-                        <div class="pf">
-                            ${cert.tech.slice(0, 3).map(t => `<span class="tb">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-            }).join('');
+        function renderChallengeSection(p, isAr) {
+            const ch = isAr ? p.challengesAr : p.challengesEn;
+            if(!ch) return '';
+            const insights = ch.insights.split('\n').filter(l=>l.trim());
+            return `<div class="challenge-section"><div class="challenge-header">${isAr ? 'التحديات والحلول' : 'Challenges & Solutions'}</div><div class="challenge-content"><div class="challenge-item"><div class="challenge-title">${isAr ? 'التحدي:' : 'Challenge:'}</div><div class="challenge-text">${ch.problem}</div></div><div class="challenge-item"><div class="challenge-title">${isAr ? 'الحل:' : 'Solution:'}</div><div class="challenge-text">${ch.solution}</div></div><div class="insight-item"><div class="challenge-title">${isAr ? 'الرؤى:' : 'Key Insights:'}</div><div class="insight-text">${insights.map(l=>`• ${l}`).join('<br>')}</div></div></div></div>`;
         }
 
-        // ================ معرض الصور ================
-        function buildGalleryUI(imagesArray, startIdx) {
-            if (!imagesArray.length) {
-                return `<div class="project-placeholder" style="height: 300px;"><i class="fas fa-image" style="font-size: 4rem; color: var(--acc);"></i><p style="margin-top: 1rem;">No images available</p></div>`;
-            }
-            return `
-                <div class="gallery-container">
-                    <div class="gallery-main">
-                        <button class="gallery-nav nav-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
-                        <img id="galleryMainImg" class="gallery-img-main" src="${imagesArray[startIdx]}" alt="gallery" onclick="openFullscreenFromGallery()" loading="lazy">
-                        <button class="gallery-nav nav-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="thumbnails" id="thumbnailsContainer"></div>
-                </div>
-            `;
-        }
-
-        function renderThumbnails(images, activeIdx) {
+        function buildGalleryUI(images, idx) {
+            if(!images.length) return '<div class="project-placeholder" style="height:300px;"><i class="fas fa-image"></i></div>';
+            const hasMultiple = images.length > 1;
+            return `<div class="gallery-container"><div class="gallery-main">${hasMultiple ? `<button class="gallery-nav nav-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>` : ''}<img id="galleryMainImg" class="gallery-img-main" src="${images[idx]}" onclick="openFullscreenFromGallery()">${hasMultiple ? `<button class="gallery-nav nav-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>` : ''}</div>${hasMultiple ? `<div class="thumbnails" id="thumbnailsContainer"></div>` : ''}</div>`;}
+        function renderThumbnails(images, idx) {
             const container = document.getElementById('thumbnailsContainer');
-            if (!container) return;
-            container.innerHTML = images.map((img, idx) => `
-                <img src="${img}" class="thumb-img ${idx === activeIdx ? 'active' : ''}" onclick="setGalleryImage(${idx})" alt="thumb" loading="lazy">
-            `).join('');
-        }
+            if(container) container.innerHTML = images.map((img,i)=>`<img src="${img}" class="thumb-img ${i===idx?'active':''}" onclick="setGalleryImage(${i})">`).join('');}
 
-        function setGalleryImage(idx) {
-            if (!currentModalData.images.length) return;
-            currentModalData.currentIndex = idx;
-            const mainImg = document.getElementById('galleryMainImg');
-            if (mainImg) mainImg.src = currentModalData.images[idx];
-            document.querySelectorAll('.thumb-img').forEach((thumb, i) => {
-                if (i === idx) thumb.classList.add('active');
-                else thumb.classList.remove('active');
-            });
-        }
+        function setGalleryImage(i) { currentModalData.currentIndex = i; document.getElementById('galleryMainImg').src = currentModalData.images[i]; document.querySelectorAll('.thumb-img').forEach((t,idx)=> t.classList.toggle('active', idx===i)); }
+        function changeImage(d) { let i = currentModalData.currentIndex + d; if(i<0) i = currentModalData.images.length-1; if(i>=currentModalData.images.length) i=0; setGalleryImage(i); }
+        function openFullscreenFromGallery() { let src = document.getElementById('galleryMainImg')?.src; if(src) { document.getElementById('fullscreenImage').src = src; document.getElementById('fullscreenViewer').style.display = 'flex'; document.body.style.overflow = 'hidden'; } }
+        function closeFullscreen() { document.getElementById('fullscreenViewer').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        function changeImage(direction) {
-            let newIdx = currentModalData.currentIndex + direction;
-            if (newIdx < 0) newIdx = currentModalData.images.length - 1;
-            if (newIdx >= currentModalData.images.length) newIdx = 0;
-            setGalleryImage(newIdx);
-        }
-
-        function openFullscreenFromGallery() {
-            const imgSrc = document.getElementById('galleryMainImg')?.src;
-            if (imgSrc) {
-                document.getElementById('fullscreenImage').src = imgSrc;
-                document.getElementById('fullscreenViewer').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeFullscreen() {
-            document.getElementById('fullscreenViewer').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function openProjectModal(projectId) {
-            const p = projectDetails[projectId];
-            if (!p) return;
+        function openProjectModal(id) {
+            const p = projectDetails[id];
+            if(!p) return;
             const isAr = currentLang === 'ar';
-            
-            const images = p.images;
-            currentModalData = { images: [...images], currentIndex: 0 };
-            const title = isAr ? p.titleAr : p.titleEn;
-            const desc = isAr ? p.descAr : p.descEn;
-            const techHtml = p.tech.map(t => `<span class="tb">${t}</span>`).join('');
-            const galleryHtml = buildGalleryUI(images, 0);
-            const challengeHtml = renderChallengeSection(p, isAr);
-            
-            const modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
-                <h2 class="modal-title">🚀 ${title}</h2>
-                ${galleryHtml}
-                <div class="modal-desc"><strong>📋 ${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br><br>${desc}</div>
-                ${challengeHtml}
-                <div class="modal-tech"><strong>🛠 ${isAr ? 'التقنيات:' : 'Technologies:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
-            `;
+            currentModalData = { images: [...p.images], currentIndex: 0 };
+            const iconsHtml = `<div class="project-icons"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a></div>`;
+            document.getElementById('modalBody').innerHTML = `<h2 class="modal-title">${isAr ? p.titleAr : p.titleEn}</h2>${buildGalleryUI(p.images,0)}<div class="modal-desc"><strong>Overview:</strong><br>${isAr ? p.descAr : p.descEn}</div>${renderChallengeSection(p,isAr)}<div class="modal-tech"><strong>Technologies:</strong><div class="pf">${p.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            setTimeout(() => renderThumbnails(images, 0), 50);
-        }
-
-        function openCertModal(certId) {
-            const c = certDetails[certId];
-            if (!c) return;
+            if(p.images.length>1) setTimeout(()=>renderThumbnails(p.images,0),50);}
+        function openCertModal(id) {
+            const c = certDetails[id];
+            if(!c) return;
             const isAr = currentLang === 'ar';
-            
-            const images = c.images;
-            currentModalData = { images: [...images], currentIndex: 0 };
-            const title = isAr ? c.titleAr : c.titleEn;
-            const desc = isAr ? c.descAr : c.descEn;
-            const techHtml = c.tech.map(t => `<span class="tb">${t}</span>`).join('');
-            const galleryHtml = buildGalleryUI(images, 0);
-            
-            const modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
-                <h2 class="modal-title">📜 ${title}</h2>
-                ${galleryHtml}
-                <div class="modal-desc"><strong>📋 ${isAr ? 'تفاصيل الشهادة:' : 'Certificate Details:'}</strong><br><br>${desc}</div>
-                <div class="modal-tech"><strong>🛠 ${isAr ? 'المهارات المكتسبة:' : 'Skills Covered:'}</strong><div class="pf" style="padding-top:0.8rem;">${techHtml}</div></div>
-            `;
+            currentModalData = { images: [...c.images], currentIndex: 0 };
+            const iconsHtml = `<div class="cert-icons" style="margin-top:0.8rem; justify-content:center;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
+            document.getElementById('modalBody').innerHTML = `<h2 class="modal-title">${isAr ? c.titleAr : c.titleEn}</h2>${buildGalleryUI(c.images,0)}<div class="modal-desc"><strong>Details:</strong><br>${isAr ? c.descAr : c.descEn}</div><div class="modal-tech"><strong>Skills:</strong><div class="pf">${c.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            setTimeout(() => renderThumbnails(images, 0), 50);
-        }
-
-        function closeProjectModal() {
-            document.getElementById('projectModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            currentModalData = { images: [], currentIndex: 0 };
-        }
-
-        // ================ الترجمة ================
+            if(c.images.length>1) setTimeout(()=>renderThumbnails(c.images,0),50);}
+        function closeProjectModal() { document.getElementById('projectModal').style.display = 'none'; document.body.style.overflow = 'auto'; currentModalData = { images: [], currentIndex: 0 }; }
         function updateLanguageUI() {
             const isAr = currentLang === 'ar';
-            
             setRTL(isAr);
-            
             document.getElementById('langBtn').innerHTML = isAr ? 'En' : 'Ar';
             document.getElementById('heroTag').innerHTML = isAr ? 'محلل بيانات' : 'Data Analyst';
             document.getElementById('heroName').innerHTML = isAr ? 'أحمد<br><em>رجب</em>' : 'Ahmed<br><em>Ragab</em>';
-            document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ. متخصص في بايثون، SQL، Power BI والنمذجة الإحصائية لدفع القرارات المبنية على البيانات.' : 'Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.';
+            document.getElementById('heroDesc').innerHTML = isAr ? 'تحويل البيانات الخام إلى رؤى قابلة للتنفيذ.' : 'Turning raw data into actionable insights.';
             document.getElementById('projectsBtn').innerHTML = isAr ? 'استعراض المشاريع' : 'View Projects';
-            document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية' : '<i class="fas fa-file-pdf"></i> Download CV';
+            document.getElementById('cvBtn').innerHTML = isAr ? '<i class="fas fa-file-pdf"></i> تحميل السيرة' : '<i class="fas fa-file-pdf"></i> Download CV';
             document.getElementById('stat1Label').innerHTML = isAr ? 'مشاريع' : 'Projects';
             document.getElementById('stat2Label').innerHTML = isAr ? 'سنوات خبرة' : 'Years Exp.';
             document.getElementById('stat3Label').innerHTML = isAr ? 'أدوات' : 'Tools';
@@ -1746,79 +1274,19 @@
             document.getElementById('workLabel').innerHTML = isAr ? 'أعمال' : 'Work';
             document.getElementById('projectsTitle').innerHTML = isAr ? 'المشاريع المميزة' : 'Featured Projects';
             document.getElementById('contactTitle').innerHTML = isAr ? 'لنعمل معاً' : 'Let\'s work together';
-            document.getElementById('contactSub').innerHTML = isAr ? 'متاح للمشاريع المستقلة والوظائف بدوام كامل' : 'Available for freelance projects & full-time roles';
-            document.getElementById('callBtn').innerHTML = isAr ? '<i class="fas fa-phone-alt"></i> اتصل بي' : '<i class="fas fa-phone-alt"></i> Call Me';
-            document.getElementById('linkedinBtn').innerHTML = isAr ? '<i class="fab fa-linkedin"></i> لينكد إن' : '<i class="fab fa-linkedin"></i> LinkedIn';
-            document.getElementById('emailBtn').innerHTML = isAr ? '<i class="fas fa-envelope"></i> بريد إلكتروني' : '<i class="fas fa-envelope"></i> Email';
-            document.getElementById('whatsappBtn').innerHTML = isAr ? '<i class="fab fa-whatsapp"></i> واتساب' : '<i class="fab fa-whatsapp"></i> WhatsApp';
+            document.getElementById('contactSub').innerHTML = isAr ? 'متاح للعمل' : 'Available for work';
             document.getElementById('openToWork').innerHTML = isAr ? 'متاح للعمل' : 'Open to work';
-            document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · ملف أعمال محلل بيانات 2025 · صنع بـ <i class="fas fa-heart"></i>' : 'Ahmed Ragab · Data Analyst Portfolio 2025 · Made with <i class="fas fa-heart"></i>';
-            
-            const navTexts = {
-                home: isAr ? '🏠 الرئيسية' : '🏠 Home',
-                skills: isAr ? '📊 المهارات' : '📊 Skills',
-                experience: isAr ? '💼 الخبرات' : '💼 Experience',
-                certifications: isAr ? '📜 الشهادات' : '📜 Certifications',
-                projects: isAr ? '🚀 المشاريع' : '🚀 Projects',
-                contact: isAr ? '📧 التواصل' : '📧 Contact'
-            };
-            document.querySelectorAll('.nav-link').forEach((btn) => {
-                if (btn.dataset.section) btn.innerHTML = navTexts[btn.dataset.section];
-            });
-            
-            renderSkills();
-            renderExperience();
-            renderCertifications();
-            renderProjects();
-        }
+            document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · 2025' : 'Ahmed Ragab · 2025';
+            document.querySelectorAll('.nav-link').forEach(btn => { if(btn.dataset.section) btn.innerHTML = {home:isAr?'🏠 الرئيسية':'🏠 Home', skills:isAr?'📊 المهارات':'📊 Skills', experience:isAr?'💼 الخبرات':'💼 Experience', certifications:isAr?'📜 الشهادات':'📜 Certifications', projects:isAr?'🚀 المشاريع':'🚀 Projects', contact:isAr?'📧 التواصل':'📧 Contact'}[btn.dataset.section]; });
+            renderSkills(); renderExperience(); renderCertifications(); renderProjects();}
+        function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateLanguageUI(); }
+        function setTheme(theme) { if(theme==='light') { document.body.classList.add('light'); localStorage.setItem('theme','light'); document.getElementById('themeToggle').innerHTML='☀️'; } else { document.body.classList.remove('light'); localStorage.setItem('theme','dark'); document.getElementById('themeToggle').innerHTML='🌙'; } }
+        function toggleTheme() { setTheme(document.body.classList.contains('light') ? 'dark' : 'light'); }
+        function loadSavedTheme() { setTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark'); }
+        function updateLinkedInLinks(url) { document.getElementById('sidebarLinkedin').href=url; document.getElementById('linkedinBtn').href=url; Object.keys(projectDetails).forEach(k=>projectDetails[k].linkedinUrl=url); renderProjects(); }
+        function updatePowerBILinks(url) { Object.keys(projectDetails).forEach(k=>projectDetails[k].powerbiUrl=url); renderProjects(); }
+        function updateActiveNavLink() { const sections=['home','skills','experience','certifications','projects','contact']; const scrollPos=window.scrollY+100; for(let s of sections){ const el=document.getElementById(s); if(el && scrollPos>=el.offsetTop && scrollPos<el.offsetTop+el.offsetHeight){ document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active')); document.querySelector(`.nav-link[data-section="${s}"]`)?.classList.add('active'); break; } } }
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            updateLanguageUI();
-        }
-
-        // ================ الثيم مع LocalStorage ================
-        function setTheme(theme) {
-            if (theme === 'light') {
-                document.body.classList.add('light');
-                localStorage.setItem('theme', 'light');
-                document.getElementById('themeToggle').innerHTML = '☀️';
-            } else {
-                document.body.classList.remove('light');
-                localStorage.setItem('theme', 'dark');
-                document.getElementById('themeToggle').innerHTML = '🌙';
-            }
-        }
-
-        function toggleTheme() {
-            const isLight = document.body.classList.contains('light');
-            setTheme(isLight ? 'dark' : 'light');
-        }
-
-        function loadSavedTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                setTheme('light');
-            } else {
-                setTheme('dark');
-            }
-        }
-
-        // ================ التنقل الفعال ================
-        function updateActiveNavLink() {
-            const sections = ['home', 'skills', 'experience', 'certifications', 'projects', 'contact'];
-            const scrollPos = window.scrollY + 100;
-            for (let s of sections) {
-                const el = document.getElementById(s);
-                if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
-                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                    document.querySelector(`.nav-link[data-section="${s}"]`)?.classList.add('active');
-                    break;
-                }
-            }
-        }
-
-        // ================ تهيئة ================
         window.scrollToSection = scrollToSection;
         window.openProjectModal = openProjectModal;
         window.openCertModal = openCertModal;
@@ -1827,22 +1295,20 @@
         window.setGalleryImage = setGalleryImage;
         window.openFullscreenFromGallery = openFullscreenFromGallery;
         window.closeFullscreen = closeFullscreen;
+        window.updateLinkedInLinks = updateLinkedInLinks;
+        window.updatePowerBILinks = updatePowerBILinks;
 
-        document.querySelectorAll('.nav-link').forEach(btn => {
-            btn.addEventListener('click', () => scrollToSection(btn.dataset.section));
-        });
-        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-        document.getElementById('langBtn').addEventListener('click', toggleLanguage);
-        window.addEventListener('scroll', updateActiveNavLink);
+        document.querySelectorAll('.nav-link').forEach(btn=>btn.addEventListener('click',()=>scrollToSection(btn.dataset.section)));
+        document.getElementById('themeToggle').addEventListener('click',toggleTheme);
+        document.getElementById('langBtn').addEventListener('click',toggleLanguage);
+        window.addEventListener('scroll',updateActiveNavLink);
+        window.onclick = e => { if(e.target===document.getElementById('projectModal')) closeProjectModal(); };
         
-        // بدء التشغيل الفوري
         loadSavedTheme();
         updateActiveNavLink();
         updateLanguageUI();
-        
-        window.onclick = function(e) {
-            if (e.target === document.getElementById('projectModal')) closeProjectModal();
-        };
+        updateLinkedInLinks(MY_LINKEDIN_URL);
+        updatePowerBILinks(MY_POWERBI_URL);
     </script>
 </body>
 </html>
