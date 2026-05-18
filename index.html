@@ -646,7 +646,7 @@
             color: var(--muted);
         }
 
-        /* Modal */
+        /* ========== MODAL STYLES ========== */
         .modal {
             display: none;
             position: fixed;
@@ -664,7 +664,7 @@
         .modal-content {
             background: var(--surface);
             border-radius: 24px;
-            max-width: 900px;
+            max-width: 1200px;
             width: 90%;
             margin: 2rem auto;
             padding: 1.5rem;
@@ -688,14 +688,61 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
+        }
+
+        body.rtl .modal-close {
+            right: auto;
+            left: 1.2rem;
         }
 
         .modal-close:hover { color: var(--acc); transform: scale(1.1); }
 
-        /* Gallery */
+        /* Modal Split Layout -只在电脑上生效 */
+        @media (min-width: 769px) {
+            .modal-split {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+                align-items: start;
+            }
+            
+            /* English (LTR): الصورة على اليمين */
+            body:not(.rtl) .modal-split .gallery-container {
+                order: 2;
+            }
+            
+            body:not(.rtl) .modal-split .modal-info {
+                order: 1;
+            }
+            
+            /* Arabic (RTL): الصورة على الشمال */
+            body.rtl .modal-split {
+                direction: ltr;
+            }
+            
+            body.rtl .modal-split .gallery-container {
+                order: 1;
+            }
+            
+            body.rtl .modal-split .modal-info {
+                order: 2;
+                direction: rtl;
+            }
+        }
+
+        /* على التليفون - الصورة فوق والكتابة تحت */
+        @media (max-width: 768px) {
+            .modal-split {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* Gallery inside modal */
         .gallery-container {
             position: relative;
-            margin: 1rem 0 1.5rem;
+            margin: 0;
             background: var(--surface2);
             border-radius: 16px;
             overflow: hidden;
@@ -706,12 +753,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 300px;
+            min-height: 280px;
         }
 
         .gallery-img-main {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 350px;
             object-fit: contain;
             border-radius: 12px;
             cursor: zoom-in;
@@ -725,11 +772,11 @@
             backdrop-filter: blur(8px);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -746,10 +793,8 @@
             color: #000;
         }
 
-        .nav-prev { left: 12px; }
-        .nav-next { right: 12px; }
-        body.rtl .nav-prev { left: auto; right: 12px; }
-        body.rtl .nav-next { right: auto; left: 12px; }
+        .nav-prev { left: 8px; }
+        .nav-next { right: 8px; }
 
         .thumbnails {
             display: flex;
@@ -763,8 +808,8 @@
         }
 
         .thumb-img {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
@@ -775,6 +820,74 @@
         .thumb-img.active, .thumb-img:hover {
             border-color: var(--acc);
             opacity: 1;
+        }
+
+        /* Modal Info Section */
+        .modal-info {
+            background: var(--surface2);
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--acc);
+        }
+
+        .modal-desc {
+            background: var(--surface);
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin: 0.8rem 0;
+            border-left: 3px solid var(--acc);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        body.rtl .modal-desc {
+            border-left: none;
+            border-right: 3px solid var(--acc);
+        }
+
+        .challenge-section {
+            background: var(--surface);
+            border-radius: 12px;
+            margin: 0.8rem 0;
+            overflow: hidden;
+        }
+
+        .challenge-header {
+            background: color-mix(in srgb, var(--acc) 10%, transparent);
+            padding: 0.5rem 0.8rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--acc);
+        }
+
+        .challenge-content { padding: 0.6rem 0.8rem; }
+        .challenge-item { margin-bottom: 0.6rem; }
+        .challenge-title { font-weight: 700; font-size: 0.7rem; color: var(--acc2); margin-bottom: 0.2rem; display: flex; gap: 6px; }
+        .challenge-text, .insight-text { font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
+        .insight-item {
+            background: color-mix(in srgb, var(--acc) 5%, transparent);
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            margin-top: 0.5rem;
+            border-right: 3px solid var(--acc);
+        }
+
+        body.rtl .insight-item {
+            border-right: none;
+            border-left: 3px solid var(--acc);
+        }
+
+        .modal-tech {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
         }
 
         .fullscreen-viewer {
@@ -814,57 +927,12 @@
             justify-content: center;
         }
 
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--acc);
+        body.rtl .fullscreen-close {
+            right: auto;
+            left: 35px;
         }
 
-        .modal-desc {
-            background: var(--surface2);
-            padding: 1rem;
-            border-radius: 12px;
-            margin: 1rem 0;
-            border-left: 3px solid var(--acc);
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        .challenge-section {
-            background: var(--surface2);
-            border-radius: 12px;
-            margin: 1rem 0;
-            overflow: hidden;
-        }
-
-        .challenge-header {
-            background: color-mix(in srgb, var(--acc) 10%, transparent);
-            padding: 0.6rem 1rem;
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--acc);
-        }
-
-        .challenge-content { padding: 0.8rem 1rem; }
-        .challenge-item { margin-bottom: 0.8rem; }
-        .challenge-title { font-weight: 700; font-size: 0.7rem; color: var(--acc2); margin-bottom: 0.3rem; display: flex; gap: 6px; }
-        .challenge-text, .insight-text { font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
-        .insight-item {
-            background: color-mix(in srgb, var(--acc) 5%, transparent);
-            border-radius: 8px;
-            padding: 0.5rem 0.7rem;
-            margin-top: 0.5rem;
-            border-right: 3px solid var(--acc);
-        }
-
-        .modal-tech {
-            background: var(--surface2);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .social-sidebar { right: 10px; padding: 8px 6px; gap: 8px; }
             body.rtl .social-sidebar { right: auto; left: 10px; }
@@ -882,10 +950,14 @@
             .projects, .certs-grid { grid-template-columns: 1fr; }
             .pf-with-icons { flex-direction: column; align-items: flex-start; }
             .project-icons, .cert-icons { margin-left: 0; margin-top: 0.5rem; }
+            .modal-content { width: 95%; padding: 1rem; }
+            .modal-title { font-size: 1.1rem; }
         }
 
         @media (max-width: 480px) {
             .social-sidebar { display: none; }
+            .gallery-img-main { max-height: 250px; }
+            .thumb-img { width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -1168,7 +1240,6 @@
             const isAr = currentLang === 'ar';
             document.getElementById('certsGrid').innerHTML = Object.keys(certDetails).map(key => { 
                 const c = certDetails[key]; 
-                // أيقونات LinkedIn و Drive للشهادات
                 const certIconsHtml = `
                     <div class="cert-icons">
                         <a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon" onclick="event.stopPropagation()">
@@ -1188,7 +1259,6 @@
             const isAr = currentLang === 'ar';
             document.getElementById('projectsContainer').innerHTML = Object.keys(projectDetails).map(key => { 
                 const p = projectDetails[key]; 
-                // أيقونات LinkedIn و Power BI للمشاريع (بأيقونة Power BI الصحيحة)
                 const iconsHtml = `
                     <div class="project-icons">
                         <a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon" onclick="event.stopPropagation()">
@@ -1215,6 +1285,7 @@
             if(!images.length) return '<div class="project-placeholder" style="height:300px;"><i class="fas fa-image"></i></div>';
             const hasMultiple = images.length > 1;
             return `<div class="gallery-container"><div class="gallery-main">${hasMultiple ? `<button class="gallery-nav nav-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>` : ''}<img id="galleryMainImg" class="gallery-img-main" src="${images[idx]}" onclick="openFullscreenFromGallery()">${hasMultiple ? `<button class="gallery-nav nav-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>` : ''}</div>${hasMultiple ? `<div class="thumbnails" id="thumbnailsContainer"></div>` : ''}</div>`;}
+        
         function renderThumbnails(images, idx) {
             const container = document.getElementById('thumbnailsContainer');
             if(container) container.innerHTML = images.map((img,i)=>`<img src="${img}" class="thumb-img ${i===idx?'active':''}" onclick="setGalleryImage(${i})">`).join('');}
@@ -1230,21 +1301,56 @@
             const isAr = currentLang === 'ar';
             currentModalData = { images: [...p.images], currentIndex: 0 };
             const iconsHtml = `<div class="project-icons"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a></div>`;
-            document.getElementById('modalBody').innerHTML = `<h2 class="modal-title">${isAr ? p.titleAr : p.titleEn}</h2>${buildGalleryUI(p.images,0)}<div class="modal-desc"><strong>Overview:</strong><br>${isAr ? p.descAr : p.descEn}</div>${renderChallengeSection(p,isAr)}<div class="modal-tech"><strong>Technologies:</strong><div class="pf">${p.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`;
+            
+            // Modal split layout: gallery + info
+            const modalHTML = `
+                <div class="modal-split">
+                    <div class="gallery-container">
+                        ${buildGalleryUI(p.images, 0)}
+                    </div>
+                    <div class="modal-info">
+                        <h2 class="modal-title">${isAr ? p.titleAr : p.titleEn}</h2>
+                        <div class="modal-desc"><strong>${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br>${isAr ? p.descAr : p.descEn}</div>
+                        ${renderChallengeSection(p, isAr)}
+                        <div class="modal-tech"><strong>${isAr ? 'التقنيات المستخدمة:' : 'Technologies:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${p.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modalBody').innerHTML = modalHTML;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            if(p.images.length>1) setTimeout(()=>renderThumbnails(p.images,0),50);}
+            if(p.images.length>1) setTimeout(()=>renderThumbnails(p.images,0),50);
+        }
+        
         function openCertModal(id) {
             const c = certDetails[id];
             if(!c) return;
             const isAr = currentLang === 'ar';
             currentModalData = { images: [...c.images], currentIndex: 0 };
-            const iconsHtml = `<div class="cert-icons" style="margin-top:0.8rem; justify-content:center;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
-            document.getElementById('modalBody').innerHTML = `<h2 class="modal-title">${isAr ? c.titleAr : c.titleEn}</h2>${buildGalleryUI(c.images,0)}<div class="modal-desc"><strong>Details:</strong><br>${isAr ? c.descAr : c.descEn}</div><div class="modal-tech"><strong>Skills:</strong><div class="pf">${c.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`;
+            const iconsHtml = `<div class="cert-icons" style="margin-top:0.8rem; justify-content:flex-start;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
+            
+            const modalHTML = `
+                <div class="modal-split">
+                    <div class="gallery-container">
+                        ${buildGalleryUI(c.images, 0)}
+                    </div>
+                    <div class="modal-info">
+                        <h2 class="modal-title">${isAr ? c.titleAr : c.titleEn}</h2>
+                        <div class="modal-desc"><strong>${isAr ? 'التفاصيل:' : 'Details:'}</strong><br>${isAr ? c.descAr : c.descEn}</div>
+                        <div class="modal-tech"><strong>${isAr ? 'المهارات:' : 'Skills:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${c.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modalBody').innerHTML = modalHTML;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            if(c.images.length>1) setTimeout(()=>renderThumbnails(c.images,0),50);}
+            if(c.images.length>1) setTimeout(()=>renderThumbnails(c.images,0),50);
+        }
+        
         function closeProjectModal() { document.getElementById('projectModal').style.display = 'none'; document.body.style.overflow = 'auto'; currentModalData = { images: [], currentIndex: 0 }; }
+        
         function updateLanguageUI() {
             const isAr = currentLang === 'ar';
             setRTL(isAr);
