@@ -698,7 +698,7 @@
 
         .modal-close:hover { color: var(--acc); transform: scale(1.1); }
 
-        /* Modal Split Layout -只在电脑上生效 */
+        /* Modal Split Layout - ONLY on desktop */
         @media (min-width: 769px) {
             .modal-split {
                 display: grid;
@@ -707,7 +707,7 @@
                 align-items: start;
             }
             
-            /* English (LTR): الصورة على اليمين */
+            /* English (LTR): image on the right */
             body:not(.rtl) .modal-split .gallery-container {
                 order: 2;
             }
@@ -716,7 +716,7 @@
                 order: 1;
             }
             
-            /* Arabic (RTL): الصورة على الشمال */
+            /* Arabic (RTL): image on the left */
             body.rtl .modal-split {
                 direction: ltr;
             }
@@ -731,7 +731,7 @@
             }
         }
 
-        /* على التليفون - الصورة فوق والكتابة تحت */
+        /* On mobile: image above, text below */
         @media (max-width: 768px) {
             .modal-split {
                 display: flex;
@@ -1154,6 +1154,26 @@
                     solution: "طورنا سكريبتات Python لتوحيد رموز المطارات والتوقيتات.",
                     insights: "1. الرحلات قبل 8 صباحاً لديها معدل التزام 90%\n2. رحلات بعد الظهر تظهر احتمال تأخير 40%"
                 }
+            },
+            productionDashboards: {
+                titleEn: "Production Monitoring System (4 Integrated Dashboards)",
+                titleAr: "نظام متابعة الإنتاج المتكامل (4 لوحات تحكم)",
+                images: ["Hedef/Coating.png", "Hedef/Tuft.png", "Hedef/Quality.png", "Hedef/Planning.png"],
+                descEn: "Integrated production monitoring system consisting of 4 interactive dashboards (Planning, Coating, Tuft, Quality) to track the entire manufacturing process from orders to final product quality. Built during my role at a manufacturing company. All displayed numbers have been modified to representative values to protect company confidentiality.",
+                descAr: "نظام متكامل لمتابعة الإنتاج يتكون من 4 لوحات تحكم تفاعلية (التخطيط، التجهيز، النسيج، الجودة) لمتابعة دورة الإنتاج الكاملة من الطلبات حتى جودة المنتج النهائي. تم تطويره أثناء عملي في إحدى شركات التصنيع. جميع الأرقام المعروضة تم تعديلها بقيم تمثيلية للحفاظ على سرية بيانات الشركة.",
+                tech: ["Power BI", "DAX", "Power Query", "Data Modeling", "KPI Tracking"],
+                linkedinUrl: MY_LINKEDIN_URL,
+                powerbiUrl: MY_POWERBI_URL,
+                challengesEn: {
+                    problem: "The production process involved 4 critical stages (Planning, Coating, Tufting, Quality) with disconnected data sources, making it hard to track overall performance and identify bottlenecks.",
+                    solution: "Built 4 integrated dashboards in Power BI that connect to a centralized data model. Each dashboard focuses on one stage while maintaining cross-dashboard consistency.",
+                    insights: "1. Overall accepted quality rate reached 93.86%\n2. Total production achieved 80.24% of target\n3. USA is the largest export market (418K M²)\n4. Top sales performer achieved 558.9K in orders"
+                },
+                challengesAr: {
+                    problem: "عملية الإنتاج تضمنت 4 مراحل حرجة (التخطيط، التجهيز، النسيج، الجودة) مع مصادر بيانات غير متصلة، مما صعّب متابعة الأداء العام وتحديد اختناقات الإنتاج.",
+                    solution: "قمت ببناء 4 لوحات تحكم متكاملة في Power BI تتصل بنموذج بيانات مركزي. كل لوحة تركز على مرحلة واحدة مع الحفاظ على التناسق بين اللوحات.",
+                    insights: "1. نسبة الجودة المقبولة الكلية وصلت إلى 93.86%\n2. الإنتاج الكلي حقق 80.24% من الهدف\n3. السوق الأمريكي هو أكبر أسواق التصدير (418K م²)\n4. أفضل مندوب مبيعات حقق 558.9K في الطلبات"
+                }
             }
         };
 
@@ -1302,7 +1322,6 @@
             currentModalData = { images: [...p.images], currentIndex: 0 };
             const iconsHtml = `<div class="project-icons"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a></div>`;
             
-            // Modal split layout: gallery + info
             const modalHTML = `
                 <div class="modal-split">
                     <div class="gallery-container">
