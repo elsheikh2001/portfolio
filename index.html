@@ -548,8 +548,11 @@
 
         .project-icon-link.linkedin-icon:hover { background: #0077b5; color: #fff; }
         .project-icon-link.powerbi-icon:hover { background: #f2c811; color: #000; }
+        .project-icon-link.github-icon:hover { background: #333; color: #fff; }
+        .project-icon-link.drive-icon:hover { background: #4285f4; color: #fff; }
         .cert-icon-link.linkedin-icon:hover { background: #0077b5; color: #fff; }
         .cert-icon-link.drive-icon:hover { background: #4285f4; color: #fff; }
+        .cert-icon-link.github-icon:hover { background: #333; color: #fff; }
 
         .pf-with-icons {
             display: flex;
@@ -963,7 +966,7 @@
 </head>
 <body>
     <div class="social-sidebar">
-        <a href="#" target="_blank" class="social-icon linkedin" id="sidebarLinkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/in/ahmed-ragab2001/" target="_blank" class="social-icon linkedin" id="sidebarLinkedin"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://wa.me/+201119880367" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
         <a href="tel:+201119880367" class="social-icon phone"><i class="fas fa-phone-alt"></i></a>
         <a href="mailto:elsheikh1721@gmail.com" class="social-icon email"><i class="fas fa-envelope"></i></a>
@@ -993,10 +996,10 @@
             <p id="heroDesc">Turning raw data into actionable insights. Specialized in Python, SQL, Power BI and statistical modeling to drive data-informed decisions.</p>
             <div class="btns">
                 <button class="btn-p" id="projectsBtn" onclick="scrollToSection('projects')">View Projects</button>
-                <a href="https://drive.google.com/file/d/1_LTfpJ0mR_79sSo0UzrgwSeTNc4XXEkH/view?usp=drivesdk" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i>CV</a>
+                <a href="https://drive.google.com/file/d/1X_Q7uPcNeWdtrNFtxO_fE-u4JN0LhlMX/view?usp=sharing" target="_blank" class="btn-o" id="cvBtn"><i class="fas fa-file-pdf"></i>CV</a>
             </div>
         </div>
-        <div class="avatar">
+        <div class="avatar">5
             <img src="profile.png" alt="Ahmed Ragab" id="avatarImg" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-user-circle avatar-icon\'></i>'">
         </div>
     </div>
@@ -1040,7 +1043,7 @@
             </div>
             <div class="cbtns">
                 <a href="tel:+201119880367" class="cbtn p" id="callBtn"><i class="fas fa-phone-alt"></i> Call Me</a>
-                <a href="#" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.linkedin.com/in/ahmed-ragab2001/" target="_blank" class="cbtn" id="linkedinBtn"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <a href="mailto:elsheikh1721@gmail.com" class="cbtn" id="emailBtn"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://wa.me/+201119880367" target="_blank" class="cbtn" id="whatsappBtn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
@@ -1062,16 +1065,16 @@
     </div>
 
     <script>
-        // روابط LinkedIn و Drive المطلوبة
-        const MY_LINKEDIN_URL = "https://www.linkedin.com/in/ahmed-ragab-a4727226b/";
+        // الروابط الأساسية
+        const MY_LINKEDIN_URL = "https://www.linkedin.com/in/ahmed-ragab2001/";
         const MY_POWERBI_URL = "https://app.powerbi.com/";
         
         // روابط تحميل الشهادات من Google Drive
         const CERT_DRIVE_LINKS = {
-            depi: "https://drive.google.com/file/d/1depi_certificate_id/view",
-            powerbi: "https://drive.google.com/file/d/1powerbi_certificate_id/view",
-            icdl: "https://drive.google.com/file/d/1icdl_certificate_id/view",
-            army: "https://drive.google.com/file/d/1army_certificate_id/view"
+            depi: "https://drive.google.com/drive/folders/1sBSYMN0Zn4XY3RuNMX3USVm0Yu34kxNK?usp=sharing",
+            powerbi: "https://drive.google.com/drive/folders/1uTek3i7HHWQW8i9Va8LagY0m69DS3nDc?usp=sharing",
+            icdl: "https://drive.google.com/drive/folders/1Li0rGnblPG3WqRYSbwutR3B0FNbOy4ik?usp=sharing",
+            army: "https://drive.google.com/drive/folders/1csbzMRxfEhq18Jpbf6Ww_mSumaft_qlq?usp=sharing"
         };
 
         const projectDetails = {
@@ -1082,8 +1085,10 @@
                 descEn: "Analyzed supermarket sales data across 3 branches (A, B, C) to identify revenue patterns and customer behavior.",
                 descAr: "تم تحليل بيانات مبيعات السوبر ماركت عبر 3 فروع (A، B، C) لتحديد أنماط الإيرادات وسلوك العملاء.",
                 tech: ["Excel", "Power Query", "Data Cleaning" , "Pivot Tables", "Dashboard"],
-                linkedinUrl: MY_LINKEDIN_URL,
-                powerbiUrl: MY_POWERBI_URL,
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_excel-data-dashboardsdeexcel-activity-7221552990745227264-Cz4x?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                powerbiUrl: "#",
+                githubUrl: "#",
+                driveUrl: "https://drive.google.com/drive/folders/1djJmb5ft4jQInyinlDn2ieuFKRyTkErn?usp=sharing",
                 challengesEn: {
                     problem: "Sales data was scattered across 3 branches with no clear performance indicators.",
                     solution: "Cleaned data using Excel Power Query, used Pivot Tables to calculate total revenue ($322,967) and gross income ($15,379) per branch. Created interactive dashboard with Slicers.",
@@ -1102,8 +1107,10 @@
                 descEn: "Analyzed Titanic passenger data to identify factors affecting survival rates (38.38% overall survival).",
                 descAr: "تم تحليل بيانات ركاب التايتانيك لتحديد العوامل المؤثرة على معدلات النجاة.",
                 tech: ["Python", "Pandas", "Power BI", "Dax", "Data Model" , "Dashboard"],
-                linkedinUrl: MY_LINKEDIN_URL,
-                powerbiUrl: MY_POWERBI_URL,
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_dashboard-datavisualization-titanicdataset-activity-7248699822344482816-DNix?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                powerbiUrl: "#",
+                githubUrl: "#",
+                driveUrl: "https://drive.google.com/drive/folders/1soGgGxhQGur1j9nsMxPYwTiOfYyyQ-5z?usp=sharing",
                 challengesEn: {
                     problem: "Dataset contained 891 passengers with missing values in Age and Cabin columns.",
                     solution: "Cleaned data using Excel, filled missing Age values using median. Designed Power BI dashboard showing relationships between survival rate and other factors.",
@@ -1122,8 +1129,10 @@
                 descEn: "Analyzed road accident data across 3 years (2021-2023) with over 300,000 accidents.",
                 descAr: "تم تحليل بيانات حوادث الطرق على مدار 3 سنوات مع أكثر من 300,000 حادث.",
                 tech: ["Excel", "Python" , "Data Cleaning", "Pivot Tables", "Dashboard"],
-                linkedinUrl: MY_LINKEDIN_URL,
-                powerbiUrl: MY_POWERBI_URL,
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_dataanalytics-datavisualization-internship-activity-7242709950676832256-ymVk?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                powerbiUrl: "#",
+                githubUrl: "#",
+                driveUrl: "https://drive.google.com/drive/folders/1W31RFzzwNKsyqNlZh5IvYWUcPK7ut9Fr?usp=sharing",
                 challengesEn: {
                     problem: "Large dataset containing over 300,000 accidents across 3 years.",
                     solution: "Used Excel Pivot Tables to analyze casualties by vehicle type and road type. Designed comparative dashboard.",
@@ -1142,8 +1151,10 @@
                 descEn: "Team project analyzing flight data across 20,000+ flights to identify on-time performance patterns.",
                 descAr: "مشروع جماعي لتحليل بيانات الرحلات الجوية لأكثر من 20,000 رحلة.",
                 tech: ["Excel" , "Python", "Data Cleaning", "SQL" , "Data Model" , "Tableau", "Team Work"],
-                linkedinUrl: MY_LINKEDIN_URL,
-                powerbiUrl: MY_POWERBI_URL,
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_linkedin-final-project-depi-activity-7254915193833500672-V480?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                powerbiUrl: "#",
+                githubUrl: "#",
+                driveUrl: "https://drive.google.com/drive/folders/1HHRCXReJcrflxh4I-hu4FhrUfE-fRW9B?usp=sharing",
                 challengesEn: {
                     problem: "Challenges with inconsistent airport codes and time zone differences across 20,000+ flights.",
                     solution: "Developed Python scripts to standardize airport codes and timestamps to UTC. Optimized JSON parsing.",
@@ -1164,6 +1175,8 @@
                 tech: ["Excel", "Python","Data Cleaning","Data Modeling", "KPI Tracking" ,"DAX", "Power BI"],
                 linkedinUrl: MY_LINKEDIN_URL,
                 powerbiUrl: MY_POWERBI_URL,
+                githubUrl: "#",
+                driveUrl: "https://drive.google.com/drive/folders/1n8pLgxd-O-OuqJ2-om0zNLsM0udd1bJo?usp=sharing",
                 challengesEn: {
                     problem: "The production process involved 4 critical stages (Planning, Coating, Tufting, Quality) with disconnected data sources, making it hard to track overall performance and identify bottlenecks.",
                     solution: "Built 4 integrated dashboards in Power BI that connect to a centralized data model. Each dashboard focuses on one stage while maintaining cross-dashboard consistency.",
@@ -1189,8 +1202,9 @@
                 issuerAr: "مبادرة رواد مصر الرقمية",
                 dateEn: "04/2024 – 10/2024",
                 dateAr: "أبريل 2024 – أكتوبر 2024",
-                linkedinUrl: MY_LINKEDIN_URL,
-                driveUrl: CERT_DRIVE_LINKS.depi
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_dataanalysis-digitalegyptpioneers-continuouslearning-activity-7294986070331445248-5lZf?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                driveUrl: CERT_DRIVE_LINKS.depi,
+                githubUrl: "#"
             },
             powerbi: {
                 titleEn: "Power BI Certificate",
@@ -1203,8 +1217,10 @@
                 issuerAr: "Maven Analytics",
                 dateEn: "10/2024",
                 dateAr: "أكتوبر 2024",
-                linkedinUrl: MY_LINKEDIN_URL,
-                driveUrl: CERT_DRIVE_LINKS.powerbi},
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_powerbi-dataanalysis-mavenanalytics-activity-7262793173955964928-cwkg?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
+                driveUrl: CERT_DRIVE_LINKS.powerbi,
+                githubUrl: "#"
+            },
             icdl: {
                 titleEn: "ICDL Certificate",
                 titleAr: "شهادة ICDL",
@@ -1217,7 +1233,9 @@
                 dateEn: "07/2020 – 08/2020",
                 dateAr: "يوليو 2020 – أغسطس 2020",
                 linkedinUrl: MY_LINKEDIN_URL,
-                driveUrl: CERT_DRIVE_LINKS.icdl},
+                driveUrl: CERT_DRIVE_LINKS.icdl,
+                githubUrl: "#"
+            },
             army: {
                 titleEn: "Military Service Certificate",
                 titleAr: "شهادة الخدمة الوطنية",
@@ -1230,7 +1248,10 @@
                 dateEn: "07/2022 – 03/2024",
                 dateAr: "يوليو 2022 – مارس 2024",
                 linkedinUrl: MY_LINKEDIN_URL,
-                driveUrl: CERT_DRIVE_LINKS.army}};
+                driveUrl: CERT_DRIVE_LINKS.army,
+                githubUrl: "#"
+            }
+        };
 
         const skillsData = [
             { name: "Excel", nameAr: "إكسل", percent: 95, icon: "fas fa-file-excel", sub: "Pivot Table · VBA · Functions · Power Query · Dashboard", subAr: "بيفوت · VBA · باور كويري ·  دوال · لوحات تحكم", color: "#1d7240" },
@@ -1239,23 +1260,118 @@
             { name: "Tableau", nameAr: "تابلو", percent: 70, icon: "fas fa-chart-pie", sub: "Data Visualization · Business Intelligence · Interactive Dashboards", subAr: "لوحات تحكم تفاعلية· ذكاء الأعمال · تصور البيانات", color: "#e97627" },
             { name: "SQL", nameAr: "SQL", percent: 70, icon: "fas fa-database", sub: "Databases · Queries · Data Model · Data Analysis", subAr: "قواعد البيانات · الاستعلامات · نمذجة البيانات · تحليل البيانات", color: "#f29111" },
             { name: "Statistical Analysis", nameAr: "التحليل الإحصائي", percent: 70, icon: "fas fa-chart-simple", sub: "Statistics · Data Insights · Reporting", subAr: "الإحصاء · تحليل البيانات · إعداد التقارير", color: "#276dc3" },
-            { name: "Predictive Modeling", nameAr: "النمذجة التنبؤية", percent: 70, icon: "fas fa-brain", sub: "Machine Learning · Forecasting · Data Patterns", subAr: "تعلم الآلة · التنبؤ · أنماط البيانات", color: "#9b59b6" },
             { name: "Microsoft Office", nameAr: "مايكروسوفت أوفيس", percent: 95, icon: "fas fa-microsoft", sub: "Word · PowerPoint · Excel · Access", subAr: "وورد · باوربوينت · إكسل · اكسيس", color: "#e67e22" }];
 
         const experienceData = [
-            { title: "Data Analyst", titleAr: "محلل بيانات", company: "IMUT", companyAr: "IMUT", date: "10/2024 – present", dateAr: "أكتوبر 2024 – الآن", icon: "fas fa-chart-line", desc: ["Leading data analytics initiatives.", "Developing dashboards using Power BI.", "Extracting insights from complex datasets."], descAr: ["قيادة مبادرات تحليلات البيانات.", "تطوير لوحات التحكم باستخدام Power BI.", "استخراج الرؤى من البيانات."] },
-            { title: "Sales", titleAr: "مبيعات", company: "la poire & On The Run", companyAr: "لا بوار & أون ذي ران", date: "03/2024 – 09/2024", dateAr: "مارس 2024 – سبتمبر 2024", icon: "fas fa-chart-simple", desc: ["Increased Q1 sales by 20%.", "Reduced excess inventory by 10%.", "Developed sales presentations."], descAr: ["زيادة المبيعات بنسبة 20%.", "تقليل المخزون الزائد بنسبة 10%.", "تطوير عروض مبيعات."] },
-            { title: "Data Entry", titleAr: "إدخال بيانات", company: "Ministry of Interior", companyAr: "وزارة الداخلية", date: "07/2022 – 03/2024", dateAr: "يوليو 2022 – مارس 2024", icon: "fas fa-database", desc: ["Managed 500+ records daily with 99% accuracy.", "Reduced errors by 5%.", "Streamlined data collection."], descAr: ["إدارة أكثر من 500 سجل يومياً بدقة 99%.", "تقليل الأخطاء بنسبة 5%.", "تبسيط جمع البيانات."] }];
+            {
+                title: "E-commerce Marketplace Operations Specialist",
+                titleAr: "أخصائي عمليات الأسواق الإلكترونية",
+                company: "More Electronics",
+                companyAr: "مور إلكترونيكس",
+                date: "05/2026 – Present",
+                dateAr: "مايو 2026 – الآن",
+                icon: "fas fa-chart-line",
+                desc: [
+                    "Sync inventory quantities from Odoo and manage product listings across Amazon, Noon, and Jumia.",
+                    "Monitor competitor prices daily and adjust product prices to stay competitive.",
+                    "Implement pricing strategies to win the Buy Box and issue customer invoices directly from Odoo."
+                ],
+                descAr: [
+                    "مزامنة كميات المخزون من Odoo وإدارة قوائم المنتجات عبر Amazon و Noon و Jumia.",
+                    "مراقبة أسعار المنافسين يومياً وتعديل أسعار المنتجات للحفاظ على القدرة التنافسية.",
+                    "تنفيذ استراتيجيات التسعير للفوز بصندوق الشراء وإصدار فواتير العملاء مباشرة من Odoo."
+                ]
+            },
+            {
+                title: "Data Analyst",
+                titleAr: "محلل بيانات",
+                company: "International Marathon United Technology (IMUT)",
+                companyAr: "International Marathon United Technology (IMUT)",
+                date: "10/2024 – 04/2026",
+                dateAr: "أكتوبر 2024 – أبريل 2026",
+                icon: "fas fa-chart-line",
+                desc: [
+                    "Developed dashboards for planning and cost departments to visualize order priorities and track actual costs used in production.",
+                    "Presented data insights to the team to help determine the most critical orders based on cost and planning requirements."
+                ],
+                descAr: [
+                    "تطوير لوحات تحكم لإدارتي التخطيط والتكاليف لتصور أولويات الطلبات وتتبع التكاليف الفعلية المستخدمة في الإنتاج.",
+                    "تقديم رؤى البيانات للفريق للمساعدة في تحديد الطلبات الأكثر أهمية بناءً على متطلبات التكلفة والتخطيط."
+                ]
+            },
+            {
+                title: "Sales",
+                titleAr: "مبيعات",
+                company: "la poire & On The Run",
+                companyAr: "لا بوار & أون ذي ران",
+                date: "03/2024 – 09/2024",
+                dateAr: "مارس 2024 – سبتمبر 2024",
+                icon: "fas fa-chart-simple",
+                desc: [
+                    "Worked on increasing sales by keeping in touch with customers and offering personalized service, plus used Excel to help reduce extra stock.",
+                    "Created sales presentations that made product info clearer for customers, which seemed to improve satisfaction and keep them coming back."
+                ],
+                descAr: [
+                    "العمل على زيادة المبيعات من خلال التواصل مع العملاء وتقديم خدمة مخصصة، بالإضافة إلى استخدام Excel للمساعدة في تقليل المخزون الزائد.",
+                    "إنشاء عروض مبيعات جعلت معلومات المنتج أوضح للعملاء، مما أدى إلى تحسين رضاهم وعودتهم."
+                ]
+            },
+            {
+                title: "Data Entry / Accountant",
+                titleAr: "إدخال بيانات / محاسب",
+                company: "Egyptian Ministry of Interior",
+                companyAr: "وزارة الداخلية المصرية",
+                date: "07/2022 – 03/2024",
+                dateAr: "يوليو 2022 – مارس 2024",
+                icon: "fas fa-database",
+                desc: [
+                    "Entered and reviewed data daily, double-checking for accuracy before submitting.",
+                    "Managed financial records and generated reports to support better financial tracking.",
+                    "Improved how data was collected across teams, making operations run more smoothly."
+                ],
+                descAr: [
+                    "إدخال ومراجعة البيانات يومياً، والتدقيق المزدوج للتأكد من الدقة قبل التقديم.",
+                    "إدارة السجلات المالية وإنشاء تقارير لدعم التتبع المالي بشكل أفضل.",
+                    "تحسين طريقة جمع البيانات عبر الفرق، مما جعل العمليات تسير بسلاسة أكبر."
+                ]
+            },
+            {
+                title: "Cashier & Accountant",
+                titleAr: "أمين صندوق ومحاسب",
+                company: "Restaurant",
+                companyAr: "مطعم",
+                date: "02/2016 – 06/2022",
+                dateAr: "فبراير 2016 – يونيو 2022",
+                icon: "fas fa-cash-register",
+                desc: [
+                    "Managed daily cash transactions and provided customer service.",
+                    "Prepared financial reports and handled accounts receivable/payable.",
+                    "Assisted with inventory control, monthly reconciliations, and data entry of financial records."
+                ],
+                descAr: [
+                    "إدارة المعاملات النقدية اليومية وتقديم خدمة العملاء.",
+                    "إعداد التقارير المالية والتعامل مع حسابات المدينين والدائنين.",
+                    "المساعدة في مراقبة المخزون والتسويات الشهرية وإدخال البيانات للسجلات المالية."
+                ]
+            }
+        ];
+        
         let currentLang = 'en';
         let currentModalData = { images: [], currentIndex: 0 };
+        
         function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
         function setRTL(isRTL) { if(isRTL) { document.body.classList.add('rtl'); document.documentElement.setAttribute('dir', 'rtl'); } else { document.body.classList.remove('rtl'); document.documentElement.setAttribute('dir', 'ltr'); } }
+        
         function renderSkills() {
             const isAr = currentLang === 'ar';
-            document.getElementById('skillsContainer').innerHTML = skillsData.map(s => `<div class="sk" style="--sc:${s.color}"><div class="sk-icon"><i class="${s.icon}"></i></div><div class="sk-name">${isAr ? s.nameAr : s.name}</div><div class="sk-bar"><div class="sk-fill" style="width:${s.percent}%"></div></div><div class="sk-sub">${isAr ? s.subAr : s.sub}</div></div>`).join('');}
+            document.getElementById('skillsContainer').innerHTML = skillsData.map(s => `<div class="sk" style="--sc:${s.color}"><div class="sk-icon"><i class="${s.icon}"></i></div><div class="sk-name">${isAr ? s.nameAr : s.name}</div><div class="sk-bar"><div class="sk-fill" style="width:${s.percent}%"></div></div><div class="sk-sub">${isAr ? s.subAr : s.sub}</div></div>`).join('');
+        }
+        
         function renderExperience() {
             const isAr = currentLang === 'ar';
-            document.getElementById('expContainer').innerHTML = experienceData.map(e => `<div class="exp-item"><div class="exp-icon"><i class="${e.icon}"></i></div><div class="exp-info"><div class="exp-title">${isAr ? e.titleAr : e.title}</div><div class="exp-company">${isAr ? e.companyAr : e.company}</div><div class="exp-date">${isAr ? e.dateAr : e.date}</div><ul class="exp-desc">${(isAr ? e.descAr : e.desc).map(d => `<li>${d}</li>`).join('')}</ul></div></div>`).join('');}
+            document.getElementById('expContainer').innerHTML = experienceData.map(e => `<div class="exp-item"><div class="exp-icon"><i class="${e.icon}"></i></div><div class="exp-info"><div class="exp-title">${isAr ? e.titleAr : e.title}</div><div class="exp-company">${isAr ? e.companyAr : e.company}</div><div class="exp-date">${isAr ? e.dateAr : e.date}</div><ul class="exp-desc">${(isAr ? e.descAr : e.desc).map(d => `<li>${d}</li>`).join('')}</ul></div></div>`).join('');
+        }
+        
         function renderCertifications() {
             const isAr = currentLang === 'ar';
             document.getElementById('certsGrid').innerHTML = Object.keys(certDetails).map(key => { 
@@ -1267,6 +1383,9 @@
                         </a>
                         <a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon" onclick="event.stopPropagation()">
                             <i class="fab fa-google-drive"></i>
+                        </a>
+                        <a href="${c.githubUrl}" target="_blank" class="cert-icon-link github-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-github"></i>
                         </a>
                     </div>
                 `;
@@ -1286,6 +1405,12 @@
                         </a>
                         <a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon" onclick="event.stopPropagation()">
                             <i class="fas fa-chart-bar"></i>
+                        </a>
+                        <a href="${p.githubUrl}" target="_blank" class="project-icon-link github-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="${p.driveUrl}" target="_blank" class="project-icon-link drive-icon" onclick="event.stopPropagation()">
+                            <i class="fab fa-google-drive"></i>
                         </a>
                     </div>
                 `;
@@ -1320,7 +1445,7 @@
             if(!p) return;
             const isAr = currentLang === 'ar';
             currentModalData = { images: [...p.images], currentIndex: 0 };
-            const iconsHtml = `<div class="project-icons"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a></div>`;
+            const iconsHtml = `<div class="project-icons" style="justify-content:flex-start; margin-left:0;"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a><a href="${p.githubUrl}" target="_blank" class="project-icon-link github-icon"><i class="fab fa-github"></i></a><a href="${p.driveUrl}" target="_blank" class="project-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
             
             const modalHTML = `
                 <div class="modal-split">
@@ -1347,7 +1472,7 @@
             if(!c) return;
             const isAr = currentLang === 'ar';
             currentModalData = { images: [...c.images], currentIndex: 0 };
-            const iconsHtml = `<div class="cert-icons" style="margin-top:0.8rem; justify-content:flex-start;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
+            const iconsHtml = `<div class="cert-icons" style="justify-content:flex-start; margin-left:0; margin-top:0.8rem;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a><a href="${c.githubUrl}" target="_blank" class="cert-icon-link github-icon"><i class="fab fa-github"></i></a></div>`;
             
             const modalHTML = `
                 <div class="modal-split">
@@ -1396,13 +1521,13 @@
             document.getElementById('openToWork').innerHTML = isAr ? 'متاح للعمل' : 'Open to work';
             document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · 2025' : 'Ahmed Ragab · 2025';
             document.querySelectorAll('.nav-link').forEach(btn => { if(btn.dataset.section) btn.innerHTML = {home:isAr?'🏠 الرئيسية':'🏠 Home', skills:isAr?'📊 المهارات':'📊 Skills', experience:isAr?'💼 الخبرات':'💼 Experience', certifications:isAr?'📜 الشهادات':'📜 Certifications', projects:isAr?'🚀 المشاريع':'🚀 Projects', contact:isAr?'📧 التواصل':'📧 Contact'}[btn.dataset.section]; });
-            renderSkills(); renderExperience(); renderCertifications(); renderProjects();}
+            renderSkills(); renderExperience(); renderCertifications(); renderProjects();
+        }
+        
         function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateLanguageUI(); }
         function setTheme(theme) { if(theme==='light') { document.body.classList.add('light'); localStorage.setItem('theme','light'); document.getElementById('themeToggle').innerHTML='☀️'; } else { document.body.classList.remove('light'); localStorage.setItem('theme','dark'); document.getElementById('themeToggle').innerHTML='🌙'; } }
         function toggleTheme() { setTheme(document.body.classList.contains('light') ? 'dark' : 'light'); }
         function loadSavedTheme() { setTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark'); }
-        function updateLinkedInLinks(url) { document.getElementById('sidebarLinkedin').href=url; document.getElementById('linkedinBtn').href=url; Object.keys(projectDetails).forEach(k=>projectDetails[k].linkedinUrl=url); renderProjects(); }
-        function updatePowerBILinks(url) { Object.keys(projectDetails).forEach(k=>projectDetails[k].powerbiUrl=url); renderProjects(); }
         function updateActiveNavLink() { const sections=['home','skills','experience','certifications','projects','contact']; const scrollPos=window.scrollY+100; for(let s of sections){ const el=document.getElementById(s); if(el && scrollPos>=el.offsetTop && scrollPos<el.offsetTop+el.offsetHeight){ document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active')); document.querySelector(`.nav-link[data-section="${s}"]`)?.classList.add('active'); break; } } }
 
         window.scrollToSection = scrollToSection;
@@ -1413,8 +1538,6 @@
         window.setGalleryImage = setGalleryImage;
         window.openFullscreenFromGallery = openFullscreenFromGallery;
         window.closeFullscreen = closeFullscreen;
-        window.updateLinkedInLinks = updateLinkedInLinks;
-        window.updatePowerBILinks = updatePowerBILinks;
 
         document.querySelectorAll('.nav-link').forEach(btn=>btn.addEventListener('click',()=>scrollToSection(btn.dataset.section)));
         document.getElementById('themeToggle').addEventListener('click',toggleTheme);
@@ -1425,8 +1548,6 @@
         loadSavedTheme();
         updateActiveNavLink();
         updateLanguageUI();
-        updateLinkedInLinks(MY_LINKEDIN_URL);
-        updatePowerBILinks(MY_POWERBI_URL);
     </script>
 </body>
 </html>
