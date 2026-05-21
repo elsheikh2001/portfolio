@@ -1072,7 +1072,8 @@
         
         // روابط تحميل الشهادات من Google Drive
         const CERT_DRIVE_LINKS = {
-            depi: "https://drive.google.com/drive/folders/1sBSYMN0Zn4XY3RuNMX3USVm0Yu34kxNK?usp=sharing",
+            depianalysis:"https://drive.google.com/drive/folders/1sBSYMN0Zn4XY3RuNMX3USVm0Yu34kxNK?usp=sharing",
+            depienglish:"https://drive.google.com/drive/folders/1Xvkho9Eqw2LcufZ14akZknTY0gnKVYYe?usp=sharing",
             powerbi: "https://drive.google.com/drive/folders/1uTek3i7HHWQW8i9Va8LagY0m69DS3nDc?usp=sharing",
             icdl: "https://drive.google.com/drive/folders/1Li0rGnblPG3WqRYSbwutR3B0FNbOy4ik?usp=sharing",
             army: "https://drive.google.com/drive/folders/1csbzMRxfEhq18Jpbf6Ww_mSumaft_qlq?usp=sharing"
@@ -1192,21 +1193,34 @@
         };
 
         const certDetails = {
-            depi: {
-                titleEn: "Data Analysis Certificate - DEPI",
-                titleAr: "شهادة تحليل البيانات - DEPI",
-                images: ["Certificates/Depi/depi1.png", "Certificates/Depi/depi2.png"],
-                descEn: "Certificate from Digital Egypt Pioneers Initiative covering data analysis using Excel, Power BI, Tableau, SQL, R, and Predictive Modeling.",
-                descAr: "شهادة من مبادرة رواد مصر الرقمية تغطي تحليل البيانات باستخدام Excel و Power BI و Tableau و SQL و R والنمذجة التنبؤية.",
-                tech: ["Excel", "Power BI", "Tableau", "SQL", "R"],
-                issuerEn: "DEPI",
-                issuerAr: "مبادرة رواد مصر الرقمية",
+            depiDataAnalysis: {
+                titleEn: "Data Analyst Specialist - DEPI",
+                titleAr: "أخصائي تحليل البيانات - DEPI",
+                images: ["Certificates/Depi/depi1.png"],
+                descEn: "Professional certificate from Digital Egypt Pioneers Initiative (DEPI) - Data Analyst Specialist track. Gained hands-on experience in data cleaning, visualization, and predictive modeling using industry-standard tools.",
+                descAr: "شهادة احترافية من مبادرة رواد مصر الرقمية - تخصص أخصائي تحليل البيانات. اكتسبت خبرة عملية في تنظيف البيانات، والتصور، والنمذجة التنبؤية باستخدام أدوات معتمدة في الصناعة.",
+                tech: ["Excel", "Power BI", "Tableau", "SQL", "R", "Predictive Modeling"],
+                issuerEn: "MCIT - DEPI",
+                issuerAr: "وزارة الاتصالات - مبادرة رواد مصر الرقمية",
                 dateEn: "04/2024 – 10/2024",
                 dateAr: "أبريل 2024 – أكتوبر 2024",
-                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_dataanalysis-digitalegyptpioneers-continuouslearning-activity-7294986070331445248-5lZf?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEUAWg8BfddfdaY13gLz535Z_wQvNyMC6c8",
-                driveUrl: CERT_DRIVE_LINKS.depi,
-                githubUrl: "#"
-            },
+                linkedinUrl: "https://www.linkedin.com/posts/ahmed-ragab2001_dataanalysis-digitalegyptpioneers-continuouslearning-activity-7294986070331445248-5lZf",
+                driveUrl: CERT_DRIVE_LINKS.depianalysis,
+                githubUrl: "#"},
+            depiBusinessEnglish: {
+                titleEn: "Business English - DEPI",
+                titleAr: "اللغة الإنجليزية للأعمال - DEPI",
+                images: ["Certificates/Depi/depi2.png"],
+                descEn: "Business English Track (Round 1) from Digital Egypt Pioneers Initiative. Developed professional communication skills including business writing, email correspondence, report drafting, presentations, and workplace conversation.",
+                descAr: "مسار اللغة الإنجليزية للأعمال (الجولة الأولى) من مبادرة رواد مصر الرقمية. تطوير مهارات التواصل المهني بما في ذلك الكتابة التجارية، والمراسلات الإلكترونية، وصياغة التقارير، والعروض التقديمية، والمحادثات في بيئة العمل.",
+                tech: ["Business Writing", "Email Correspondence", "Report Drafting", "Presentations", "Workplace Communication"],
+                issuerEn: "MCIT - DEPI (offered by OTO Courses)",
+                issuerAr: "وزارة الاتصالات - مبادرة رواد مصر الرقمية (مقدمة من OTO Courses)",
+                dateEn: "04/2024 – 10/2024",
+                dateAr: "أبريل 2024 – أكتوبر 2024",
+                linkedinUrl: "",
+                driveUrl: CERT_DRIVE_LINKS.depienglish,
+                githubUrl: "#"},
             powerbi: {
                 titleEn: "Power BI Certificate",
                 titleAr: "شهادة Power BI",
