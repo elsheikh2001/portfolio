@@ -702,6 +702,44 @@
 
         .modal-close:hover { color: var(--acc); transform: scale(1.1); }
 
+        /* أزرار التنقل بين العناصر (السابق/التالي) */
+        .modal-nav-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+
+        .modal-nav-btn {
+            flex: 1;
+            background: var(--surface2);
+            border: 1px solid var(--brd);
+            color: var(--text);
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-nav-btn:hover:not(:disabled) {
+            background: var(--acc);
+            color: #fff;
+            border-color: var(--acc);
+            transform: translateY(-2px);
+        }
+
+        .modal-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* Modal Split Layout - ONLY on desktop */
         @media (min-width: 769px) {
             .modal-split {
@@ -894,6 +932,7 @@
             margin-top: 0.8rem;
         }
 
+        /* Fullscreen Viewer with Navigation */
         .fullscreen-viewer {
             display: none;
             position: fixed;
@@ -905,7 +944,6 @@
             z-index: 3000;
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
         }
 
         .fullscreen-img {
@@ -929,11 +967,55 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 3001;
         }
 
         body.rtl .fullscreen-close {
             right: auto;
             left: 35px;
+        }
+
+        .fullscreen-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3001;
+            transition: all 0.2s;
+        }
+
+        .fullscreen-nav:hover {
+            background: var(--acc);
+            color: #000;
+        }
+
+        .fullscreen-prev {
+            left: 25px;
+        }
+
+        .fullscreen-next {
+            right: 25px;
+        }
+
+        body.rtl .fullscreen-prev {
+            left: auto;
+            right: 25px;
+        }
+
+        body.rtl .fullscreen-next {
+            right: auto;
+            left: 25px;
         }
 
         /* Responsive Adjustments */
@@ -956,6 +1038,9 @@
             .project-icons, .cert-icons { margin-left: 0; margin-top: 0.5rem; }
             .modal-content { width: 95%; padding: 1rem; }
             .modal-title { font-size: 1.1rem; }
+            .fullscreen-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+            .fullscreen-prev { left: 10px; }
+            .fullscreen-next { right: 10px; }
         }
 
         @media (max-width: 480px) {
@@ -1055,14 +1140,17 @@
 
     <div id="projectModal" class="modal">
         <div class="modal-content">
-            <div class="modal-close" onclick="closeProjectModal()">&times;</div>
+            <div class="modal-close" onclick="closeModal()">&times;</div>
             <div id="modalBody"></div>
+            <div class="modal-nav-row" id="modalNavRow"></div>
         </div>
     </div>
 
-    <div id="fullscreenViewer" class="fullscreen-viewer" onclick="closeFullscreen()">
+    <div id="fullscreenViewer" class="fullscreen-viewer">
         <span class="fullscreen-close" onclick="closeFullscreen()">&times;</span>
+        <button class="fullscreen-nav fullscreen-prev" onclick="fullscreenPrevImage()"><i class="fas fa-chevron-left"></i></button>
         <img id="fullscreenImage" class="fullscreen-img" src="" alt="Enlarged">
+        <button class="fullscreen-nav fullscreen-next" onclick="fullscreenNextImage()"><i class="fas fa-chevron-right"></i></button>
     </div>
 
     <script>
@@ -1083,6 +1171,8 @@
             supermarket: {
                 titleEn: "Supermarket Sales Analysis",
                 titleAr: "تحليل مبيعات السوبر ماركت",
+                tag: "Excel",
+                tagAr: "إكسل",
                 images: ["Projects/Super Market/supermarket.png"],
                 descEn: "Analyzed supermarket sales data across 3 branches (A, B, C) to identify revenue patterns and customer behavior.",
                 descAr: "تم تحليل بيانات مبيعات السوبر ماركت عبر 3 فروع (A، B، C) لتحديد أنماط الإيرادات وسلوك العملاء.",
@@ -1105,6 +1195,8 @@
             titanic: {
                 titleEn: "Titanic Survival Analysis",
                 titleAr: "تحليل نجاة ركاب التايتانيك",
+                tag: "Power BI",
+                tagAr: "باور بي آي",
                 images: ["Projects/Titanic/Titanic.png"],
                 descEn: "Analyzed Titanic passenger data to identify factors affecting survival rates (38.38% overall survival).",
                 descAr: "تم تحليل بيانات ركاب التايتانيك لتحديد العوامل المؤثرة على معدلات النجاة.",
@@ -1127,6 +1219,8 @@
             roadAccident: {
                 titleEn: "Road Accident Analysis",
                 titleAr: "تحليل حوادث الطرق",
+                tag: "Excel",
+                tagAr: "إكسل",
                 images: ["Projects/Road Accident/Roadaccident.png"],
                 descEn: "Analyzed road accident data across 3 years (2021-2023) with over 300,000 accidents.",
                 descAr: "تم تحليل بيانات حوادث الطرق على مدار 3 سنوات مع أكثر من 300,000 حادث.",
@@ -1149,6 +1243,8 @@
             flightAirplane: {
                 titleEn: "Flight Airplane Data Analysis",
                 titleAr: "تحليل بيانات الرحلات الجوية",
+                tag: "Tableau",
+                tagAr: "تابلو",
                 images: ["Projects/Flight Airplane/FlightAirplane1.png", "Projects/Flight Airplane/FlightAirplane2.png", "Projects/Flight Airplane/FlightAirplane3.png"],
                 descEn: "Team project analyzing flight data across 20,000+ flights to identify on-time performance patterns.",
                 descAr: "مشروع جماعي لتحليل بيانات الرحلات الجوية لأكثر من 20,000 رحلة.",
@@ -1171,6 +1267,8 @@
             productionDashboards: {
                 titleEn: "Production Monitoring System (4 Integrated Dashboards)",
                 titleAr: "نظام متابعة الإنتاج المتكامل (4 لوحات تحكم)",
+                tag: "Power BI",
+                tagAr: "باور بي آي",
                 images: ["Projects/Hedef/Coating.png", "Projects/Hedef/Tuft.png", "Projects/Hedef/Quality.png", "Projects/Hedef/Planning.png"],
                 descEn: "Integrated production monitoring system consisting of 4 interactive dashboards (Planning, Coating, Tuft, Quality) to track the entire manufacturing process from orders to final product quality. Built during my role at a manufacturing company. All displayed numbers have been modified to representative values to protect company confidentiality.",
                 descAr: "نظام متكامل لمتابعة الإنتاج يتكون من 4 لوحات تحكم تفاعلية (التخطيط، النسيج ،التجهيز، الجودة) لمتابعة دورة الإنتاج الكاملة من الطلبات حتى جودة المنتج النهائي. تم تطويره أثناء عملي في إحدى شركات التصنيع. جميع الأرقام المعروضة تم تعديلها بقيم تمثيلية للحفاظ على سرية بيانات الشركة.",
@@ -1372,7 +1470,10 @@
         ];
         
         let currentLang = 'en';
-        let currentModalData = { images: [], currentIndex: 0 };
+        let currentModalData = { images: [], currentIndex: 0, fullscreenImages: [], fullscreenCurrentIndex: 0 };
+        let currentModalType = null;
+        let currentModalId = null;
+        let currentListKeys = [];
         
         function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
         function setRTL(isRTL) { if(isRTL) { document.body.classList.add('rtl'); document.documentElement.setAttribute('dir', 'rtl'); } else { document.body.classList.remove('rtl'); document.documentElement.setAttribute('dir', 'ltr'); } }
@@ -1430,7 +1531,10 @@
                     </div>
                 `;
                 
-                return `<div class="pc" onclick="openProjectModal('${key}')"><img src="${p.images[0]}" class="project-img" onerror="this.style.display='none'; this.parentNode.querySelector('.project-placeholder').style.display='flex';"><div class="project-placeholder" style="display:none;"><i class="fas fa-chart-line"></i></div><div class="ph"><div class="ptag">${p.tech[0]}</div><div class="ptitle">${isAr ? p.titleAr : p.titleEn}</div><div class="pdesc">${(isAr ? p.descAr : p.descEn).substring(0, 80)}...</div></div><div class="pf pf-with-icons"><div class="pf-techs">${p.tech.slice(0,3).map(t => `<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div></div>`; 
+                // استخدام tag المخصص بدلاً من أول عنصر في tech
+                const displayTag = isAr ? (p.tagAr || p.tech[0]) : (p.tag || p.tech[0]);
+                
+                return `<div class="pc" onclick="openProjectModal('${key}')"><img src="${p.images[0]}" class="project-img" onerror="this.style.display='none'; this.parentNode.querySelector('.project-placeholder').style.display='flex';"><div class="project-placeholder" style="display:none;"><i class="fas fa-chart-line"></i></div><div class="ph"><div class="ptag">${displayTag}</div><div class="ptitle">${isAr ? p.titleAr : p.titleEn}</div><div class="pdesc">${(isAr ? p.descAr : p.descEn).substring(0, 80)}...</div></div><div class="pf pf-with-icons"><div class="pf-techs">${p.tech.slice(0,3).map(t => `<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div></div>`; 
             }).join('');
         }
 
@@ -1450,28 +1554,121 @@
             const container = document.getElementById('thumbnailsContainer');
             if(container) container.innerHTML = images.map((img,i)=>`<img src="${img}" class="thumb-img ${i===idx?'active':''}" onclick="setGalleryImage(${i})">`).join('');}
 
-        function setGalleryImage(i) { currentModalData.currentIndex = i; document.getElementById('galleryMainImg').src = currentModalData.images[i]; document.querySelectorAll('.thumb-img').forEach((t,idx)=> t.classList.toggle('active', idx===i)); }
-        function changeImage(d) { let i = currentModalData.currentIndex + d; if(i<0) i = currentModalData.images.length-1; if(i>=currentModalData.images.length) i=0; setGalleryImage(i); }
-        function openFullscreenFromGallery() { let src = document.getElementById('galleryMainImg')?.src; if(src) { document.getElementById('fullscreenImage').src = src; document.getElementById('fullscreenViewer').style.display = 'flex'; document.body.style.overflow = 'hidden'; } }
-        function closeFullscreen() { document.getElementById('fullscreenViewer').style.display = 'none'; document.body.style.overflow = 'auto'; }
-
-        function openProjectModal(id) {
-            const p = projectDetails[id];
-            if(!p) return;
+        function setGalleryImage(i) { 
+            currentModalData.currentIndex = i; 
+            const imgEl = document.getElementById('galleryMainImg');
+            if(imgEl) imgEl.src = currentModalData.images[i];
+            document.querySelectorAll('.thumb-img').forEach((t,idx)=> t.classList.toggle('active', idx===i)); 
+        }
+        
+        function changeImage(d) { 
+            let i = currentModalData.currentIndex + d; 
+            if(i < 0) i = currentModalData.images.length - 1; 
+            if(i >= currentModalData.images.length) i = 0; 
+            setGalleryImage(i); 
+        }
+        
+        function openFullscreenFromGallery() { 
+            let src = document.getElementById('galleryMainImg')?.src; 
+            if(src) { 
+                currentModalData.fullscreenImages = [...currentModalData.images];
+                currentModalData.fullscreenCurrentIndex = currentModalData.currentIndex;
+                document.getElementById('fullscreenImage').src = src; 
+                document.getElementById('fullscreenViewer').style.display = 'flex'; 
+                document.body.style.overflow = 'hidden'; 
+            } 
+        }
+        
+        function closeFullscreen() { 
+            document.getElementById('fullscreenViewer').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        }
+        
+        function fullscreenPrevImage() {
+            let idx = currentModalData.fullscreenCurrentIndex - 1;
+            if(idx < 0) idx = currentModalData.fullscreenImages.length - 1;
+            currentModalData.fullscreenCurrentIndex = idx;
+            document.getElementById('fullscreenImage').src = currentModalData.fullscreenImages[idx];
+        }
+        
+        function fullscreenNextImage() {
+            let idx = currentModalData.fullscreenCurrentIndex + 1;
+            if(idx >= currentModalData.fullscreenImages.length) idx = 0;
+            currentModalData.fullscreenCurrentIndex = idx;
+            document.getElementById('fullscreenImage').src = currentModalData.fullscreenImages[idx];
+        }
+        
+        function renderModalNavButtons() {
             const isAr = currentLang === 'ar';
-            currentModalData = { images: [...p.images], currentIndex: 0 };
-            const iconsHtml = `<div class="project-icons" style="justify-content:flex-start; margin-left:0;"><a href="${p.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${p.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a><a href="${p.githubUrl}" target="_blank" class="project-icon-link github-icon"><i class="fab fa-github"></i></a><a href="${p.driveUrl}" target="_blank" class="project-icon-link drive-icon"><i class="fab fa-google-drive"></i></a></div>`;
+            const currentIndex = currentListKeys.indexOf(currentModalId);
+            const prevDisabled = currentIndex <= 0;
+            const nextDisabled = currentIndex >= currentListKeys.length - 1;
+            
+            const navHtml = `
+                <button class="modal-nav-btn" onclick="navigateModal('prev')" ${prevDisabled ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-${isAr ? 'right' : 'left'}"></i> ${isAr ? 'السابق' : 'Previous'}
+                </button>
+                <button class="modal-nav-btn" onclick="navigateModal('next')" ${nextDisabled ? 'disabled' : ''}>
+                    ${isAr ? 'التالي' : 'Next'} <i class="fas fa-chevron-${isAr ? 'left' : 'right'}"></i>
+                </button>
+            `;
+            document.getElementById('modalNavRow').innerHTML = navHtml;
+        }
+        
+        function navigateModal(direction) {
+            const currentIndex = currentListKeys.indexOf(currentModalId);
+            let newIndex;
+            if(direction === 'prev') newIndex = currentIndex - 1;
+            else newIndex = currentIndex + 1;
+            
+            if(newIndex >= 0 && newIndex < currentListKeys.length) {
+                const newId = currentListKeys[newIndex];
+                if(currentModalType === 'project') {
+                    renderModalContent('project', newId);
+                } else {
+                    renderModalContent('cert', newId);
+                }
+            }
+        }
+        
+        function renderModalContent(type, id) {
+            const isAr = currentLang === 'ar';
+            const data = type === 'project' ? projectDetails[id] : certDetails[id];
+            if(!data) return;
+            
+            currentModalType = type;
+            currentModalId = id;
+            currentListKeys = type === 'project' ? Object.keys(projectDetails) : Object.keys(certDetails);
+            currentModalData = { images: [...data.images], currentIndex: 0, fullscreenImages: [], fullscreenCurrentIndex: 0 };
+            
+            const iconsHtml = type === 'project' 
+                ? `<div class="project-icons" style="justify-content:flex-start; margin-left:0;">
+                    <a href="${data.linkedinUrl}" target="_blank" class="project-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="${data.powerbiUrl}" target="_blank" class="project-icon-link powerbi-icon"><i class="fas fa-chart-bar"></i></a>
+                    <a href="${data.githubUrl}" target="_blank" class="project-icon-link github-icon"><i class="fab fa-github"></i></a>
+                    <a href="${data.driveUrl}" target="_blank" class="project-icon-link drive-icon"><i class="fab fa-google-drive"></i></a>
+                </div>`
+                : `<div class="cert-icons" style="justify-content:flex-start; margin-left:0; margin-top:0.8rem;">
+                    <a href="${data.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="${data.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a>
+                    <a href="${data.githubUrl}" target="_blank" class="cert-icon-link github-icon"><i class="fab fa-github"></i></a>
+                </div>`;
+            
+            const contentHtml = type === 'project'
+                ? `<div class="modal-desc"><strong>${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br>${isAr ? data.descAr : data.descEn}</div>
+                   ${renderChallengeSection(data, isAr)}
+                   <div class="modal-tech"><strong>${isAr ? 'التقنيات المستخدمة:' : 'Technologies:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${data.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`
+                : `<div class="modal-desc"><strong>${isAr ? 'التفاصيل:' : 'Details:'}</strong><br>${isAr ? data.descAr : data.descEn}</div>
+                   <div class="modal-tech"><strong>${isAr ? 'المهارات:' : 'Skills:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${data.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>`;
             
             const modalHTML = `
                 <div class="modal-split">
                     <div class="gallery-container">
-                        ${buildGalleryUI(p.images, 0)}
+                        ${buildGalleryUI(data.images, 0)}
                     </div>
                     <div class="modal-info">
-                        <h2 class="modal-title">${isAr ? p.titleAr : p.titleEn}</h2>
-                        <div class="modal-desc"><strong>${isAr ? 'نظرة عامة:' : 'Overview:'}</strong><br>${isAr ? p.descAr : p.descEn}</div>
-                        ${renderChallengeSection(p, isAr)}
-                        <div class="modal-tech"><strong>${isAr ? 'التقنيات المستخدمة:' : 'Technologies:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${p.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>
+                        <h2 class="modal-title">${isAr ? data.titleAr : data.titleEn}</h2>
+                        ${contentHtml}
                     </div>
                 </div>
             `;
@@ -1479,36 +1676,20 @@
             document.getElementById('modalBody').innerHTML = modalHTML;
             document.getElementById('projectModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            if(p.images.length>1) setTimeout(()=>renderThumbnails(p.images,0),50);
+            renderModalNavButtons();
+            if(data.images.length > 1) setTimeout(()=>renderThumbnails(data.images,0),50);
         }
         
-        function openCertModal(id) {
-            const c = certDetails[id];
-            if(!c) return;
-            const isAr = currentLang === 'ar';
-            currentModalData = { images: [...c.images], currentIndex: 0 };
-            const iconsHtml = `<div class="cert-icons" style="justify-content:flex-start; margin-left:0; margin-top:0.8rem;"><a href="${c.linkedinUrl}" target="_blank" class="cert-icon-link linkedin-icon"><i class="fab fa-linkedin-in"></i></a><a href="${c.driveUrl}" target="_blank" class="cert-icon-link drive-icon"><i class="fab fa-google-drive"></i></a><a href="${c.githubUrl}" target="_blank" class="cert-icon-link github-icon"><i class="fab fa-github"></i></a></div>`;
-            
-            const modalHTML = `
-                <div class="modal-split">
-                    <div class="gallery-container">
-                        ${buildGalleryUI(c.images, 0)}
-                    </div>
-                    <div class="modal-info">
-                        <h2 class="modal-title">${isAr ? c.titleAr : c.titleEn}</h2>
-                        <div class="modal-desc"><strong>${isAr ? 'التفاصيل:' : 'Details:'}</strong><br>${isAr ? c.descAr : c.descEn}</div>
-                        <div class="modal-tech"><strong>${isAr ? 'المهارات:' : 'Skills:'}</strong><div class="pf" style="border-top: none; padding-left: 0;">${c.tech.map(t=>`<span class="tb">${t}</span>`).join('')}</div>${iconsHtml}</div>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('modalBody').innerHTML = modalHTML;
-            document.getElementById('projectModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            if(c.images.length>1) setTimeout(()=>renderThumbnails(c.images,0),50);
-        }
+        function openProjectModal(id) { renderModalContent('project', id); }
+        function openCertModal(id) { renderModalContent('cert', id); }
         
-        function closeProjectModal() { document.getElementById('projectModal').style.display = 'none'; document.body.style.overflow = 'auto'; currentModalData = { images: [], currentIndex: 0 }; }
+        function closeModal() { 
+            document.getElementById('projectModal').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+            currentModalData = { images: [], currentIndex: 0, fullscreenImages: [], fullscreenCurrentIndex: 0 };
+            currentModalType = null;
+            currentModalId = null;
+        }
         
         function updateLanguageUI() {
             const isAr = currentLang === 'ar';
@@ -1537,6 +1718,9 @@
             document.getElementById('footer').innerHTML = isAr ? 'أحمد رجب · 2025' : 'Ahmed Ragab · 2025';
             document.querySelectorAll('.nav-link').forEach(btn => { if(btn.dataset.section) btn.innerHTML = {home:isAr?'🏠 الرئيسية':'🏠 Home', skills:isAr?'📊 المهارات':'📊 Skills', experience:isAr?'💼 الخبرات':'💼 Experience', certifications:isAr?'📜 الشهادات':'📜 Certifications', projects:isAr?'🚀 المشاريع':'🚀 Projects', contact:isAr?'📧 التواصل':'📧 Contact'}[btn.dataset.section]; });
             renderSkills(); renderExperience(); renderCertifications(); renderProjects();
+            if(currentModalId && document.getElementById('projectModal').style.display === 'flex') {
+                renderModalContent(currentModalType, currentModalId);
+            }
         }
         
         function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateLanguageUI(); }
@@ -1548,17 +1732,20 @@
         window.scrollToSection = scrollToSection;
         window.openProjectModal = openProjectModal;
         window.openCertModal = openCertModal;
-        window.closeProjectModal = closeProjectModal;
+        window.closeModal = closeModal;
         window.changeImage = changeImage;
         window.setGalleryImage = setGalleryImage;
         window.openFullscreenFromGallery = openFullscreenFromGallery;
         window.closeFullscreen = closeFullscreen;
+        window.fullscreenPrevImage = fullscreenPrevImage;
+        window.fullscreenNextImage = fullscreenNextImage;
+        window.navigateModal = navigateModal;
 
         document.querySelectorAll('.nav-link').forEach(btn=>btn.addEventListener('click',()=>scrollToSection(btn.dataset.section)));
         document.getElementById('themeToggle').addEventListener('click',toggleTheme);
         document.getElementById('langBtn').addEventListener('click',toggleLanguage);
         window.addEventListener('scroll',updateActiveNavLink);
-        window.onclick = e => { if(e.target===document.getElementById('projectModal')) closeProjectModal(); };
+        window.onclick = e => { if(e.target===document.getElementById('projectModal')) closeModal(); };
         
         loadSavedTheme();
         updateActiveNavLink();
